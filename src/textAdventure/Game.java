@@ -117,6 +117,10 @@ public class Game {
         return true; // signal that we want to quit
     } else if (commandWord.equals("eat")) {
       System.out.println("Do you really think you should be eating at a time like this?");
+    } else if (commandWord.equals("take")) {
+      takeItem(command.getSecondWord());
+    } else if (commandWord.equals("drop")) {
+      dropItem(command.getSecondWord());
     }
     return false;
   }
@@ -159,23 +163,35 @@ public class Game {
     }
   }
 
-  private void takeItem(Item item) {
-    if (currentRoom.getItems().contains(item)) {
-      currentRoom.getInventory().removeItem(item);
-      player.getInventory().addItem(item);
-      System.out.println("Taken.");
-    } else {
-      System.out.println("This item is not in the room.");
-    }
+  private void takeItem(String item) {
+    boolean itemExists = false;
+      for (int i = 0; i < currentRoom.getItems().size(); i++) {
+        if (currentRoom.getItems().get(i).getName().equals(item)) {
+          currentRoom.getInventory().removeItem(currentRoom.getItems().get(i));
+          player.getInventory().addItem(currentRoom.getItems().get(i));
+          System.out.println("Taken.");
+
+          itemExists = true;
+        }
+      }
+      if (!itemExists)
+        System.out.println("You can't see " + item + " anywhere.");
+          // Maybe make it so that if the item exists in the game then it says the above, otherwise say something else.
   }
 
-  private void dropItem(Item item) {
-    if (player.getItems().contains(item)) {
-      player.getInventory().removeItem(item);
-      currentRoom.getInventory().addItem(item);
-      System.out.println("You dropped your " + item.getName() + " in the " + currentRoom.getRoomName());
-    } else {
-      System.out.println("You do not have this item.");
+  private void dropItem(String item) {
+    boolean itemExists = false;
+    for (int i = 0; i < currentRoom.getItems().size(); i++) {
+      if (currentRoom.getItems().get(i).getName().equals(item)) {
+        player.getInventory().removeItem(currentRoom.getItems().get(i));
+        currentRoom.getInventory().addItem(currentRoom.getItems().get(i));
+        System.out.println("You dropped your " + item + "in the " + currentRoom.getRoomName());
+
+        itemExists = true;
+      }
     }
+    if (!itemExists)
+      System.out.println("You can't see " + item + " anywhere.");
+        // Maybe make it so that if the item exists in the game then it says the above, otherwise say something else.
   }
 }

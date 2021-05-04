@@ -191,6 +191,7 @@ public class Game {
     } else {
       System.out.println("This item is not in the room.");
     }
+  }
   private void takeItem(String item) {
     boolean itemExists = false;
       for (int i = 0; i < currentRoom.getItems().size(); i++) {

@@ -104,7 +104,7 @@
         {
           "isLocked": false,
           "direction": "South",
-          "adjacentRoom": "StairsBottom"
+          "adjacentRoom": "Stairs1"
         },
         {
           "isLocked": false,
@@ -126,7 +126,7 @@
         {
           "isLocked": false,
           "direction": "West",
-          "adjacentRoom": "SittingRoom"
+          "adjacentRoom": "SittingArea"
         },
         {
           "isLocked": false,

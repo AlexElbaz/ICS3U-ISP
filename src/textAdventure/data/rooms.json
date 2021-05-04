@@ -1,6 +1,18 @@
 {
   "rooms": [
     {
+      "id": "TrainStation",
+      "name": "Train Station",
+      "description": "You are in the train station. There's a brick wall to the east.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "East",
+          "adjacentRoom": "DininghallTopLeft"
+        }
+      ]
+    },
+    {
       "id": "DininghallTopLeft",
       "name": "Great Hall",
       "description": "You are in the Great Hall just after supper. Feel free to explore Hogwarts for the next few hours.",
@@ -17,6 +29,7 @@
         }
       ]
     },
+   
     {
       "id": "DininghallTopRight",
       "name": "Great Hall",

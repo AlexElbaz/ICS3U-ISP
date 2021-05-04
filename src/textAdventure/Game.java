@@ -185,8 +185,7 @@ public class Game {
       if (currentRoom.getItems().get(i).getName().equals(item)) {
         player.getInventory().removeItem(currentRoom.getItems().get(i));
         currentRoom.getInventory().addItem(currentRoom.getItems().get(i));
-        System.out.println("You dropped your " + item + "in the " + currentRoom.getRoomName());
-
+        System.out.println("You dropped your " + item + " in the " + currentRoom.getRoomName());
         itemExists = true;
       }
     }

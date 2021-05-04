@@ -1,72 +1,157 @@
 {
   "rooms": [
     {
-      "id": "Hallway",
-      "name": "Hallway",
-      "description": "You are in a long hallway. There are family pictures on all of the walls.",
-      "exits": [
-        {
-          "isLocked": false,
-          "direction": "North",
-          "adjacentRoom": "Bedroom"
-        },
-        {
-          "isLocked": true,
-          "direction": "East",
-          "adjacentRoom": "Bathroom",
-          "keyId": "1234"
-        }
-      ]
-    },
-    {
-      "id": "Bedroom",
-      "name": "Bedroom",
-      "description": "You are in a large bedroom",
+      "id": "DininghallTopLeft",
+      "name": "Great Hall",
+      "description": "You are in the Great Hall just after supper. Feel free to explore Hogwarts for the next few hours.",
       "exits": [
         {
           "isLocked": false,
           "direction": "South",
-          "adjacentRoom": "Hallway"
-        },
-        {
-          "isLocked": false,
-          "direction": "SouthEast",
-          "adjacentRoom": "Bathroom"
+          "adjacentRoom": "DininghallBottomLeft"
         },
         {
           "isLocked": false,
           "direction": "East",
-          "adjacentRoom": "Closet"
+          "adjacentRoom": "DininghallTopRight"
         }
       ]
     },
     {
-      "id": "Bathroom",
-      "name": "Bathroom",
-      "description": "You are in a blue bathroom",
+      "id": "DininghallTopRight",
+      "name": "Great Hall",
+      "description": "You are still in the Great Hall. To the east, you see a door to the kitchen. It is unlocked.",
       "exits": [
         {
-          "isLocked": true,
-          "direction": "West",
-          "adjacentRoom": "Hallway",
-          "keyId": "1234"
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "DininghallBottomRight"
         },
         {
           "isLocked": false,
-          "direction": "NorthWest",
-          "adjacentRoom": "Bedroom"
+          "direction": "West",
+          "adjacentRoom": "DininghallTopLeft"
+        },
+        {
+          "isLocked": false,
+          "direction": "East",
+          "adjacentRoom": "Kitchen"
         }
       ]
     },
     {
-      "id": "Closet",
-      "name": "Closet",
-      "description": "You are in the closet. It is dark.",
+      "id": "DininghallBottomLeft",
+      "name": "Great Hall",
+      "description": "Still in the Great Hall, you walk by Ron and Hermionie.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "North",
+          "adjacentRoom": "DininghallTopLeft"
+        },
+        {
+          "isLocked": false,
+          "direction": "East",
+          "adjacentRoom": "DininghallBottomRight"
+        }
+      ]
+    },
+    {
+      "id": "DininghallBottomRight",
+      "name": "Great Hall",
+      "description": "You are still in the Great Hall. To the south, you see a small sitting area.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "North",
+          "adjacentRoom": "DininghallTopRight"
+        },
+        {
+          "isLocked": false,
+          "direction": "West",
+          "adjacentRoom": "DininghallBottomLeft"
+        }
+      ]
+    },
+    {
+      "id": "Kitchen",
+      "name": "Kitchen",
+      "description": "You are in a large kitchen, surrounded by pots and pans.",
       "exits": [
         {
           "isLocked": false,
           "direction": "West",
-          "adjacentRoom": "Bedroom"
+          "adjacentRoom": "DininghallTopRight"
+        },
+        {
+          "isLocked": false,
+          "direction": "East",
+          "adjacentRoom": "Hallway1"
+        }
+      ]
+    },
+    {
+      "id": "Hallway1",
+      "name": "Hallway",
+      "description": "You are in a long hallway.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "North",
+          "adjacentRoom": "Outside"
+        },
+        {
+          "isLocked": false,
+          "direction": "West",
+          "adjacentRoom": "Kitchen"
+        },
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "MusicRoom"
+        }
+      ]
+    },
+    {
+      "id": "Outside",
+      "name": "Outside",
+      "description": "You look outside......... it gets old fast.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "Hallway1"
+        }
+      ]
+    },
+    {
+      "id": "MusicRoom",
+      "name": "Music Room",
+      "description": "You are in an empty music room. Instruments surround you.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "North",
+          "adjacentRoom": "Hallway1"
+        },
+        {
+          "isLocked": true,
+          "direction": "West",
+          "adjacentRoom": "MusicCloset",
+          "keyId": "1"
+        }
+      ]
+    },
+    {
+      "id": "MusicCloset",
+      "name": "Closet",
+      "description": "You are in a small storage room. To your left you see a flute.",
+      "exits": [
+        {
+          "isLocked": true,
+          "direction": "East",
+          "adjacentRoom": "MusicRoom",
+          "keyId": "1"
         }
       ]
     }

@@ -15,12 +15,14 @@ public class Game {
 
   private Parser parser;
   private Room currentRoom;
+  private Character player;
 
   /**
    * Create the game and initialise its internal map.
    */
   public Game() {
     try {
+      player = new Character(new Inventory(100));
       initRooms("src\\textAdventure\\data\\rooms.json");
       currentRoom = roomMap.get("Bedroom");
     } catch (Exception e) {
@@ -154,6 +156,26 @@ public class Game {
     else {
       currentRoom = nextRoom;
       System.out.println(currentRoom.longDescription());
+    }
+  }
+
+  private void takeItem(Item item) {
+    if (currentRoom.getItems().contains(item)) {
+      currentRoom.getInventory().removeItem(item);
+      player.getInventory().addItem(item);
+      System.out.println("Taken.");
+    } else {
+      System.out.println("This item is not in the room.");
+    }
+  }
+
+  private void dropItem(Item item) {
+    if (player.getItems().contains(item)) {
+      player.getInventory().removeItem(item);
+      currentRoom.getInventory().addItem(item);
+      System.out.println("You dropped your " + item.getName() + "in the " + currentRoom.getRoomName());
+    } else {
+      System.out.println("You do not have this item.");
     }
   }
 }

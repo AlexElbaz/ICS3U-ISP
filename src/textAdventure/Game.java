@@ -22,7 +22,7 @@ public class Game {
   public Game() {
     try {
       initRooms("src\\textAdventure\\data\\rooms.json");
-      currentRoom = roomMap.get("Bedroom");
+      currentRoom = roomMap.get("DininghallTopLeft");
     } catch (Exception e) {
       e.printStackTrace();
     }

@@ -3,7 +3,19 @@
     {
       "id": "TrainStation",
       "name": "Train Station",
-      "description": "You are in the train station. There's a brick wall to the east.",
+      "description": "Hagrid leaves you all alone in a busy train station. You watch as the Weaslys run into the brick wall to the east.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "East",
+          "adjacentRoom": "TrainPlatform"
+        }
+      ]
+    },
+    {
+      "id": "TrainPlatform",
+      "name": "Platform 9 3/4",
+      "description": "You see the Hogwarts Express train and watch people board the train with their owls and luggage.",
       "exits": [
         {
           "isLocked": false,
@@ -165,6 +177,263 @@
           "direction": "East",
           "adjacentRoom": "MusicRoom",
           "keyId": "1"
+        }
+      ]
+    },
+    {
+      "id": "Stairs2",
+      "name": "Stairs",
+      "description": "You are in the stairway. The walls are filled with portraits from the olden days. There's a stair landing up ahead.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "North",
+          "adjacentRoom": "StairLanding"
+        }
+      ]
+    },
+    {
+      "id": "StairLanding",
+      "name": "Stair Landing",
+      "description": "You are standing in the stair landing. You see dark mysterious hallways to your east and west.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "East",
+          "adjacentRoom": "Hallway20"
+        },
+        {
+          "isLocked": false,
+          "direction": "West",
+          "adjacentRoom": "Hallway21"
+        }
+      ]
+    },
+    {
+      "id": "Hallway20",
+      "name": "Hallway",
+      "description": "The hallway is awfully long. The light shines through the north facing windows and shines directly onto the door to the Charms class. The door is creeked open.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "North",
+          "adjacentRoom": "AstronomyClassBottomRight"
+        },
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "CharmsClass"
+        },
+        {
+          "isLocked": false,
+          "direction": "West",
+          "adjacentRoom": "DarkMatterClass"
+        }
+      ]
+    },
+    {
+      "id": "CharmsClass",
+      "name": "Charms Classroom",
+      "description": "Long desks fill the room. You see white feathers laying on the desks. Professor Lupin teaches you how to cast a boggart-bainshing spell.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "North",
+          "adjacentRoom": "Hallway20"
+        }
+      ]
+    },
+    {
+      "id": "AstronomyClassBottomRight",
+      "name": "Astronomy Classroom",
+      "description": "The room is dimly lit. You see a dusty globe that looks untouched.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "North",
+          "adjacentRoom": "AstronomyClassTopRight"
+        },
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "Hallway20"
+        }
+      ]
+    },
+    {
+      "id": "AstronomyClassBottomLeft",
+      "name": "Astronomy Classroom",
+      "description": "You see a model of the solar system in front of you. The center of the sun is glowing.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "North",
+          "adjacentRoom": "AstronomyClassTopLeft"
+        },
+        {
+          "isLocked": false,
+          "direction": "East",
+          "adjacentRoom": "AstronomyClassBottomRight"
+        }
+      ]
+    },
+    {
+      "id": "AstronomyClassTopLeft",
+      "name": "Astronomy Classroom",
+      "description": "Nothing much to see here. Just a few bookshelves filled with astronomy books.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "East",
+          "adjacentRoom": "AstronomyClassTopRight"
+        },
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "AstronomyClassBottomLeft"
+        }
+      ]
+    },
+    {
+      "id": "AstronomyClassTopRight",
+      "name": "Astronomy Class",
+      "description": "There's a golden telescope in front of you. It points towards the direction of the Gryffindor Dormitory.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "AstronomyClassBottomRight"
+        },
+        {
+          "isLocked": false,
+          "direction": "West",
+          "adjacentRoom": "AstronomyClassTopLeft"
+        }
+      ]
+    },
+    {
+      "id": "DarkMatterClass",
+      "name": "Dark Matter Class",
+      "description": "The room is empty. But a book of death spells catches your eye.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "West",
+          "adjacentRoom": "FunnyDeathRoom"
+        }
+      ]
+    },
+    {
+      "id": "FunnyDeathRoom",
+      "name": "Funny Death Room",
+      "description": "[description] You died.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "East",
+          "adjacentRoom": "DarkMatterClass"
+        }
+      ]
+    },
+    {
+      "id": "Hallway21",
+      "name": "Hallway",
+      "description": "[add description] Walking in a hallway.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "North",
+          "adjacentRoom": "Room"
+        },
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "RoomOfWisdom"
+        },
+        {
+          "isLocked": false,
+          "direction": "West",
+          "adjacentRoom": "Hallway22"
+        },
+        {
+          "isLocked": false,
+          "direction": "East",
+          "adjacentRoom": "StairLanding"
+        }
+      ]
+    },
+    {
+      "id": "Room",
+      "name": "Your Room",
+      "description": "[description] You spot a black cloak sitting in an opened gift box.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "Hallway21"
+        },
+        {
+          "isLocked": false,
+          "direction": "East", 
+          "adjacentRoom": "Tunnel"
+        }
+      ]
+    },
+    {
+      "id": "Tunnel",
+      "name": "Tunnel",
+      "description": "You are in a very dark tunnel with a few lights that flicker.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "East",
+          "adjacentRoom": "StorageRoom"
+        },
+        {
+          "isLocked": false,
+          "direction": "West", 
+          "adjacentRoom": "Room"
+        }
+      ]
+    },
+    {
+      "id": "RoomOfWisdom",
+      "name": "Room of Wisdom",
+      "description": "[description, gives player clues].",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "North",
+          "adjacentRoom": "Hallway21"
+        }
+      ]
+    },
+    {
+      "id": "Hallway22",
+      "name": "Hallway",
+      "description": "[description] At the end of the hallway you see a glass door leading to the outside.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "West",
+          "adjacentRoom": "Balcony"
+        },
+        {
+          "isLocked": false,
+          "direction": "East",
+          "adjacentRoom": "Hallway21"
+        }
+      ]
+    },
+    {
+      "id": "Balcony",
+      "name": "Balcony",
+      "description": "Ooh its chilly outside. You better go back inside before the wind picks up.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "West",
+          "adjacentRoom": "Hallway22"
         }
       ]
     }

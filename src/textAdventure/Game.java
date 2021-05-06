@@ -212,6 +212,7 @@ public class Game {
     } else {
       System.out.println("This item is not in the room.");
     }
+  }
   private void takeItem(String item) {
     boolean itemExists = false;
       for (int i = 0; i < currentRoom.getItems().size(); i++) {
@@ -234,8 +235,7 @@ public class Game {
       if (currentRoom.getItems().get(i).getName().equals(item)) {
         player.getInventory().removeItem(currentRoom.getItems().get(i));
         currentRoom.getInventory().addItem(currentRoom.getItems().get(i));
-        System.out.println("You dropped your " + item + "in the " + currentRoom.getRoomName());
-
+        System.out.println("You dropped your " + item + " in the " + currentRoom.getRoomName());
         itemExists = true;
       }
     }

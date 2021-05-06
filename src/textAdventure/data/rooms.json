@@ -95,6 +95,161 @@
           "isLocked": false,
           "direction": "West",
           "adjacentRoom": "DininghallBottomLeft"
+        },
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "SittingArea"
+        }
+      ]
+    },
+    {
+      "id": "SittingArea",
+      "name": "Sitting Area",
+      "description": "You are in a small sitting area, surrounded by plush chairs and couches.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "North",
+          "adjacentRoom": "DininghallBottomLeft"
+        },
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "Stairs1"
+        },
+        {
+          "isLocked": false,
+          "direction": "East",
+          "adjacentRoom": "Hallway12"
+        },
+        {
+          "isLocked": false,
+          "direction": "West",
+          "adjacentRoom": "Hallway13"
+        }
+      ]
+    },
+    {
+      "id": "Hallway13",
+      "name": "Hallway",
+      "description": "You are in a cramped hallway.",
+      "exits": [
+        {
+          "isLocked": true,
+          "direction": "North",
+          "adjacentRoom": "PotionsStorage",
+          "keyId": "2"
+        },
+        {
+          "isLocked": false,
+          "direction": "East",
+          "adjacentRoom": "PotionsClass"
+        }
+      ]
+    },
+    {
+      "id": "PotionsStorage",
+      "name": "Storage",
+      "description": "You are in a small storage room, filled with magical items.",
+      "exits": [
+        {
+          "isLocked": true,
+          "direction": "South",
+          "adjacentRoom": "Hallway13",
+          "keyId": "2"
+        }
+      ]
+    },
+    {
+      "id": "PotionsClass",
+      "name": "Potions Classroom",
+      "description": "yes",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "West",
+          "adjacentRoom": "Hallway13"
+        }
+      ]
+    },
+    {
+      "id": "Hallway12",
+      "name": "Hallway",
+      "description": "You are in a short hallway with plush chairs identical to the ones in the sitting area.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "West",
+          "adjacentRoom": "SittingArea"
+        },
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "Chapel"
+        }
+      ]
+    },
+    {
+      "id": "Chapel",
+      "name": "Chapel",
+      "description": "Put long, interesting description because this room is very boring otherwise.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "North",
+          "adjacentRoom": "Hallway12"
+        },
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "BakeHouse"
+        }
+      ]
+    },
+    {
+      "id": "Stairs1",
+      "name": "Staircase",
+      "description": "You are in a staircase.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "Up",
+          "adjacentRoom": "Stairs2"
+        },
+        {
+          "isLocked": false,
+          "direction": "North",
+          "adjacentRoom": "SittingArea"
+        }
+      ]
+    },
+    {
+      "id": "BakeHouse",
+      "name": "Bake House",
+      "description": "You are in a bakehouse in need of a good description :)",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "North",
+          "adjacentRoom": "Chapel"
+        }
+      ]
+    },
+    {
+      "id": "Hallway12",
+      "name": "Hallway",
+      "description": "You are in a short hallway with plush chairs identical to the ones in the sitting area.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "West",
+          "adjacentRoom": "SittingArea"
+        },
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "Chapel"
         }
       ]
     },
@@ -111,12 +266,12 @@
         {
           "isLocked": false,
           "direction": "East",
-          "adjacentRoom": "Hallway1"
+          "adjacentRoom": "Hallway11"
         }
       ]
     },
     {
-      "id": "Hallway1",
+      "id": "Hallway11",
       "name": "Hallway",
       "description": "You are in a long hallway.",
       "exits": [
@@ -145,7 +300,7 @@
         {
           "isLocked": false,
           "direction": "South",
-          "adjacentRoom": "Hallway1"
+          "adjacentRoom": "Hallway11"
         }
       ]
     },
@@ -157,7 +312,7 @@
         {
           "isLocked": false,
           "direction": "North",
-          "adjacentRoom": "Hallway1"
+          "adjacentRoom": "Hallway11"
         },
         {
           "isLocked": true,

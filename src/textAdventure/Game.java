@@ -204,15 +204,6 @@ public class Game {
       System.out.println(currentRoom.longDescription());
     }
   }
-  private void takeItem(Item item) {
-    if (currentRoom.getItems().contains(item)) {
-      currentRoom.getInventory().removeItem(item);
-      player.getInventory().addItem(item);
-      System.out.println("Taken.");
-    } else {
-      System.out.println("This item is not in the room.");
-    }
-  }
   private void takeItem(String item) {
     boolean itemExists = false;
       for (int i = 0; i < currentRoom.getItems().size(); i++) {

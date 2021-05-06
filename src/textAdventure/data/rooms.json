@@ -119,6 +119,49 @@
       ]
     },
     {
+      "id": "Hallway13",
+      "name": "Hallway",
+      "description": "You are in a cramped hallway.",
+      "exits": [
+        {
+          "isLocked": true,
+          "direction": "North",
+          "adjacentRoom": "PotionsStorage",
+          "keyId": "2"
+        },
+        {
+          "isLocked": false,
+          "direction": "East",
+          "adjacentRoom": "PotionsClass"
+        }
+      ]
+    },
+    {
+      "id": "PotionsStorage",
+      "name": "Storage",
+      "description": "You are in a small storage room, filled with magical items.",
+      "exits": [
+        {
+          "isLocked": true,
+          "direction": "South",
+          "adjacentRoom": "Hallway13",
+          "keyId": "2"
+        }
+      ]
+    },
+    {
+      "id": "PotionsClass",
+      "name": "Potions Classroom",
+      "description": "yes",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "West",
+          "adjacentRoom": "Hallway13"
+        }
+      ]
+    },
+    {
       "id": "Hallway12",
       "name": "Hallway",
       "description": "You are in a short hallway with plush chairs identical to the ones in the sitting area.",
@@ -189,7 +232,7 @@
         {
           "isLocked": false,
           "direction": "West",
-          "adjacentRoom": "SittingRoom"
+          "adjacentRoom": "SittingArea"
         },
         {
           "isLocked": false,

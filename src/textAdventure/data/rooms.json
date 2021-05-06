@@ -3,7 +3,7 @@
     {
       "id": "TrainStation",
       "name": "Train Station",
-      "description": "Hagrid leaves you all alone in a busy train station. You watch as the Weaslys run into the brick wall to the east.",
+      "description": "Hagrid leaves you all alone in a busy train station. You watch as the Weasleys run into the brick wall to the east.",
       "exits": [
         {
           "isLocked": false,
@@ -344,6 +344,11 @@
           "isLocked": false,
           "direction": "North",
           "adjacentRoom": "StairLanding"
+        },
+        {
+          "isLocked": false,
+          "direction": "Down",
+          "adjacentRoom": "Stairs1"
         }
       ]
     },
@@ -361,6 +366,11 @@
           "isLocked": false,
           "direction": "West",
           "adjacentRoom": "Hallway21"
+        },
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "Stairs2"
         }
       ]
     },
@@ -373,6 +383,11 @@
           "isLocked": false,
           "direction": "North",
           "adjacentRoom": "AstronomyClassBottomRight"
+        },
+        {
+          "isLocked": false,
+          "direction": "East",
+          "adjacentRoom": "StairLanding"
         },
         {
           "isLocked": false,
@@ -502,6 +517,11 @@
         },
         {
           "isLocked": false,
+          "direction": "East",
+          "adjacentRoom": "StairLanding"
+        },
+        {
+          "isLocked": false,
           "direction": "South",
           "adjacentRoom": "RoomOfWisdom"
         },
@@ -509,11 +529,6 @@
           "isLocked": false,
           "direction": "West",
           "adjacentRoom": "Hallway22"
-        },
-        {
-          "isLocked": false,
-          "direction": "East",
-          "adjacentRoom": "StairLanding"
         }
       ]
     },
@@ -524,13 +539,13 @@
       "exits": [
         {
           "isLocked": false,
-          "direction": "South",
-          "adjacentRoom": "Hallway21"
+          "direction": "East", 
+          "adjacentRoom": "Tunnel"
         },
         {
           "isLocked": false,
-          "direction": "East", 
-          "adjacentRoom": "Tunnel"
+          "direction": "South",
+          "adjacentRoom": "Hallway21"
         }
       ]
     },
@@ -566,17 +581,22 @@
     {
       "id": "Hallway22",
       "name": "Hallway",
-      "description": "[description] At the end of the hallway you see a glass door leading to the outside.",
+      "description": "You see a small door, but looks like it's all boarded up. At the end of the hallway you see a glass door leading to the outside.",
       "exits": [
         {
           "isLocked": false,
-          "direction": "West",
+          "direction": "East",
           "adjacentRoom": "Balcony"
         },
         {
           "isLocked": false,
-          "direction": "East",
+          "direction": "West",
           "adjacentRoom": "Hallway21"
+        },
+        {
+          "isLocked": true,
+          "direction": "North",
+          "adjacentRoom": "StorageRoom"
         }
       ]
     },
@@ -589,6 +609,137 @@
           "isLocked": false,
           "direction": "West",
           "adjacentRoom": "Hallway22"
+        }
+      ]
+    },
+    {
+      "id": "StorageRoom",
+      "name": "Storage Room",
+      "description": "You are in a cob-webby storage room. You see a shiny key ring in the corner of your eye.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "North",
+          "adjacentRoom": "Tunnel2"
+        },
+        {
+          "isLocked": false,
+          "direction": "West",
+          "adjacentRoom": "Tunnel1"
+        }
+      ]
+    },
+    {
+      "id": "Tunnel2",
+      "name": "Tunnel2",
+      "description": "You are in a torch-lit tunnel. It looks abandoned and it feels like the walls are closing in on you.",
+      "exits": [
+        {
+          "isLocked": true,
+          "direction": "North",
+          "adjacentRoom": "3HeadedDog"
+        },
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "StorageRoom"
+        }
+      ]
+    },
+    {
+      "id": "3HeadedDog",
+      "name": "3 Headed Dog",
+      "description": "You hear the dogs snoring peacefully. YOu walk closer and the snoring intensifies. The ground greeks and the dog starts to growl at you. It's barking viciously in your face.",
+      "exits": [
+        {
+          "isLocked": true,
+          "direction": "North",
+          "adjacentRoom": "DeathSnarePlant"
+        },
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "Tunnel2"
+        }
+      ]
+    },
+    {
+      "id": "DeathSnarePlant",
+      "name": "Death Snare Plant",
+      "description": "You are in an empty room and see a magical plant in the middle. It sways in the wind. A fly flies by and the plant aggresively strangles it to death.",
+      "exits": [
+        {
+          "isLocked": true,
+          "direction": "North",
+          "adjacentRoom": "FlyingWingsGame"
+        },
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "DeathSnarePlant"
+        }
+      ]
+    },
+    {
+      "id": "FlyingWingsGame",
+      "name": "Flying Wings Game",
+      "description": "You are in an empty room and see a magical plant in the middle. A fly flies by and the plant aggresively strangles it to death. You're going to need something to disguise yourself in.",
+      "exits": [
+        {
+          "isLocked": true,
+          "direction": "North",
+          "adjacentRoom": "FlyingWingsGame"
+        },
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "DeathSnarePlant"
+        }
+      ]
+    },
+    {
+      "id": "GillyWeedRoom",
+      "name": "Room",
+      "description": "The room is small and windowless. A stream of water from the faucet on the wall starts to pick up speed. Looks like water is going to fill up the room soon!",
+      "exits": [
+        {
+          "isLocked": true,
+          "direction": "North",
+          "adjacentRoom": "BoggartRoom"
+        },
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "DeathSnarePlant"
+        }
+      ]
+    },
+    {
+      "id": "BoggartRoom",
+      "name": "Room",
+      "description": "You see a tall wooden chest. The door swings open violently and the spirit lurks around the room. The spirit whips around the corner and is coming to attack your face.",
+      "exits": [
+        {
+          "isLocked": true,
+          "direction": "North",
+          "adjacentRoom": "MirrorRoom"
+        },
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "GillyWeedRoom"
+        }
+      ]
+    },
+    {
+      "id": "MirrorRoom",
+      "name": "Room",
+      "description": "[end of game] Congradulations! You made it to the end of the game without dying. You're a wizard!",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "BoggartRoom"
         }
       ]
     }

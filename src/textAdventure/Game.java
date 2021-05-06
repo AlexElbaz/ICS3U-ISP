@@ -119,6 +119,8 @@ public class Game {
       System.out.println("Do you really think you should be eating at a time like this?");
     } else if (commandWord.equals("run")) {
       runWall(command);
+    } else if (commandWord.equals("board")){
+      boardTrain(command);
     } else if (commandWord.equals("take")) {
       takeItem(command.getSecondWord());
     } else if (commandWord.equals("drop")) {
@@ -165,6 +167,25 @@ public class Game {
     }
   }
   private void runWall(Command command) {
+    if (!command.hasSecondWord()) {
+      // if there is no second word, we don't know where to go...
+      System.out.println("Go where?");
+      return;
+    }
+
+    String direction = command.getSecondWord();
+
+    // Try to leave current room.
+    Room nextRoom = currentRoom.nextRoom(direction);
+
+    if (nextRoom == null)
+      System.out.println("There is no door!");
+    else {
+      currentRoom = nextRoom;
+      System.out.println(currentRoom.longDescription());
+    }
+  }
+  private void boardTrain(Command command) {
     if (!command.hasSecondWord()) {
       // if there is no second word, we don't know where to go...
       System.out.println("Go where?");

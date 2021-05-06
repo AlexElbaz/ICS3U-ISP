@@ -169,50 +169,44 @@ public class Game {
   private void runWall(Command command) {
     if (!command.hasSecondWord()) {
       // if there is no second word, we don't know where to go...
-      System.out.println("Go where?");
+      System.out.println("Run where?");
       return;
     }
+    if (command.getSecondWord().equals("at the wall")) {
+      Room nextRoom = currentRoom.nextRoom("east");
+        // direction of wall exit from player
 
-    String direction = command.getSecondWord();
-
-    // Try to leave current room.
-    Room nextRoom = currentRoom.nextRoom(direction);
-
-    if (nextRoom == null)
-      System.out.println("There is no door!");
-    else {
-      currentRoom = nextRoom;
-      System.out.println(currentRoom.longDescription());
+      if (nextRoom == null)
+        System.out.println("There's nowhere to go there.");
+      else {
+        currentRoom = nextRoom;
+        System.out.println(currentRoom.longDescription());
+      }
+    } else {
+      System.out.println("There's nowhere to go there.");
     }
   }
   private void boardTrain(Command command) {
     if (!command.hasSecondWord()) {
       // if there is no second word, we don't know where to go...
-      System.out.println("Go where?");
+      System.out.println("Board what?");
       return;
     }
+    if (command.getSecondWord().equals("train")) {
+      Room nextRoom = currentRoom.nextRoom("east");
+        // direction of train exit from player
 
-    String direction = command.getSecondWord();
-
-    // Try to leave current room.
-    Room nextRoom = currentRoom.nextRoom(direction);
-
-    if (nextRoom == null)
-      System.out.println("There is no door!");
-    else {
-      currentRoom = nextRoom;
-      System.out.println(currentRoom.longDescription());
-    }
-  }
-  private void takeItem(Item item) {
-    if (currentRoom.getItems().contains(item)) {
-      currentRoom.getInventory().removeItem(item);
-      player.getInventory().addItem(item);
-      System.out.println("Taken.");
+      if (nextRoom == null)
+        System.out.println("You can't board that.");
+      else {
+        currentRoom = nextRoom;
+        System.out.println(currentRoom.longDescription());
+      }
     } else {
-      System.out.println("This item is not in the room.");
+      System.out.println("You can't board that.");
     }
   }
+
   private void takeItem(String item) {
     boolean itemExists = false;
       for (int i = 0; i < currentRoom.getItems().size(); i++) {

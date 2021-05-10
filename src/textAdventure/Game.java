@@ -71,9 +71,8 @@ public class Game {
 
     boolean finished = false;
     while (!finished) {
-      Command command;
       try {
-        command = parser.getCommand();
+        ArrayList<String> command = parser.getCommand();
         finished = processCommand(command);
       } catch (IOException e) {
         e.printStackTrace();
@@ -99,32 +98,48 @@ public class Game {
    * Given a command, process (that is: execute) the command. If this command ends
    * the game, true is returned, otherwise false is returned.
    */
-  private boolean processCommand(Command command) {
+  private boolean processCommand(ArrayList<String> command) {
+    /*
     if (command.isUnknown()) {
       System.out.println("I don't know what you mean...");
       return false;
     }
+    */
 
-    String commandWord = command.getCommandWord();
-    if (commandWord.equals("help"))
-      printHelp();
-    else if (commandWord.equals("go"))
-      goRoom(command);
-    else if (commandWord.equals("quit")) {
-      if (command.hasSecondWord())
-        System.out.println("Quit what?");
-      else
-        return true; // signal that we want to quit
-    } else if (commandWord.equals("eat")) {
-      System.out.println("Do you really think you should be eating at a time like this?");
-    } else if (commandWord.equals("run")) {
-      runWall(command);
-    } else if (commandWord.equals("board")){
-      boardTrain(command);
-    } else if (commandWord.equals("take")) {
-      takeItem(command.getSecondWord());
-    } else if (commandWord.equals("drop")) {
-      dropItem(command.getSecondWord());
+    if (command.size() < 1)
+      System.out.println("I don't know what you mean...");
+    
+
+    //String commandWord = command.getCommandWord();
+    if (command.size() <= 2) { // command is 2 words or less
+      if (command.get(0).equals("help"))
+        printHelp();
+      else if (command.get(0).equals("go"))
+        goRoom(command);
+      else if (command.get(0).equals("quit")) {
+        if (command.size() > 1)
+          System.out.println("Quit what?");
+        else
+          return true; // signal that we want to quit
+      } else if (command.get(0).equals("eat")) {
+        System.out.println("Do you really think you should be eating at a time like this?");
+      } else if (command.get(0).equals("run")) {
+        runWall(command);
+      } else if (command.get(0).equals("board")){
+        boardTrain(command);
+      } else if (command.get(0).equals("take")) {
+        takeItem(command.get(1));
+      } else if (command.get(0).equals("drop")) {
+        dropItem(command.get(1));
+      } else {
+        System.out.println("I don't know what you mean...");
+      }
+    } else if (command.size() <= 3) { // command is 3 words
+
+    } else if (command.size() <= 4) { // command is 4 words
+
+    } else { // command is over 4 words
+      System.out.println("You can't do that.");
     }
     return false;
   }
@@ -147,14 +162,14 @@ public class Game {
    * Try to go to one direction. If there is an exit, enter the new room,
    * otherwise print an error message.
    */
-  private void goRoom(Command command) {
-    if (!command.hasSecondWord()) {
+  private void goRoom(ArrayList<String> command) {
+    if (command.size() < 2) {
       // if there is no second word, we don't know where to go...
       System.out.println("Go where?");
       return;
     }
 
-    String direction = command.getSecondWord();
+    String direction = command.get(1);
 
     // Try to leave current room.
     Room nextRoom = currentRoom.nextRoom(direction);
@@ -166,13 +181,13 @@ public class Game {
       System.out.println(currentRoom.longDescription());
     }
   }
-  private void runWall(Command command) {
-    if (!command.hasSecondWord()) {
+  private void runWall(ArrayList<String> command) {
+    if (command.size() < 2) {
       // if there is no second word, we don't know where to go...
       System.out.println("Run where?");
       return;
     }
-    if (command.getSecondWord().equals("at the wall")) {
+    if (command.contains("wall")) {
       Room nextRoom = currentRoom.nextRoom("east");
         // direction of wall exit from player
 
@@ -186,13 +201,13 @@ public class Game {
       System.out.println("There's nowhere to go there.");
     }
   }
-  private void boardTrain(Command command) {
-    if (!command.hasSecondWord()) {
+  private void boardTrain(ArrayList<String> command) {
+    if (command.size() < 2) {
       // if there is no second word, we don't know where to go...
       System.out.println("Board what?");
       return;
     }
-    if (command.getSecondWord().equals("train")) {
+    if (command.get(1).equals("train")) {
       Room nextRoom = currentRoom.nextRoom("east");
         // direction of train exit from player
 

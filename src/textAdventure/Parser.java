@@ -1,5 +1,6 @@
 package textAdventure;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Parser {
@@ -7,11 +8,34 @@ public class Parser {
   private Scanner in;
 
   public Parser() {
-    commands = new CommandWords();
+    //commands = new CommandWords();
     in = new Scanner(System.in);
   }
 
-  public Command getCommand() throws java.io.IOException {
+  public ArrayList<String> getCommand() throws java.io.IOException {
+    String inputLine = "";
+    ArrayList<String> words = new ArrayList<String>();
+    boolean moreWords = false;
+
+    System.out.print("> "); // print prompt
+
+    inputLine = in.nextLine();
+
+    while (!moreWords) {
+      if (inputLine.indexOf(" ") >= 0)
+        words.add(inputLine.substring(0, inputLine.indexOf(" ")));
+
+      if (inputLine.indexOf(" ") == -1) {
+        words.add(inputLine);
+        moreWords = true;
+      }
+
+      inputLine = inputLine.substring(inputLine.indexOf(" ") + 1);
+    }
+
+    return words;
+    
+    /*
     String inputLine = "";
     String[] words;
 
@@ -30,11 +54,13 @@ public class Parser {
       return new Command(word1, word2);
     else
       return new Command(null, word2);
+
+    */
   }
 
   /**
    * Print out a list of valid command words.
-   */
+  */
   public void showCommands() {
     commands.showAll();
   }

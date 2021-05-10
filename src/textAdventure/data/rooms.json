@@ -111,6 +111,28 @@
         {
           "isLocked": false,
           "direction": "North",
+          "adjacentRoom": "DininghallTopRight"
+        },
+        {
+          "isLocked": false,
+          "direction": "West",
+          "adjacentRoom": "DininghallBottomLeft"
+        },
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "SittingArea"
+        }
+      ]
+    },
+    {
+      "id": "SittingArea",
+      "name": "Sitting Area",
+      "description": "You are in a small sitting area, surrounded by plush chairs and couches.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "North",
           "adjacentRoom": "DininghallBottomLeft"
         },
         {
@@ -255,6 +277,75 @@
           "isLocked": false,
           "direction": "South",
           "adjacentRoom": "Chapel"
+        }
+      ]
+    },
+    {
+      "id": "Kitchen",
+      "name": "Kitchen",
+      "description": "You are in a large kitchen, surrounded by pots and pans.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "West",
+          "adjacentRoom": "DininghallTopRight"
+        },
+        {
+          "isLocked": false,
+          "direction": "East",
+          "adjacentRoom": "Hallway11"
+        }
+      ]
+    },
+    {
+      "id": "Hallway11",
+      "name": "Hallway",
+      "description": "You are in a long hallway.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "North",
+          "adjacentRoom": "Outside"
+        },
+        {
+          "isLocked": false,
+          "direction": "West",
+          "adjacentRoom": "Kitchen"
+        },
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "MusicRoom"
+        }
+      ]
+    },
+    {
+      "id": "Outside",
+      "name": "Outside",
+      "description": "You look outside......... it gets old fast.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "South",
+          "adjacentRoom": "Hallway11"
+        }
+      ]
+    },
+    {
+      "id": "MusicRoom",
+      "name": "Music Room",
+      "description": "You are in an empty music room. Instruments surround you.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "North",
+          "adjacentRoom": "Hallway11"
+        },
+        {
+          "isLocked": true,
+          "direction": "West",
+          "adjacentRoom": "MusicCloset",
+          "keyId": "1"
         }
       ]
     },
@@ -592,6 +683,40 @@
           "isLocked": false,
           "direction": "East",
           "adjacentRoom": "Balcony"
+        },
+        {
+          "isLocked": false,
+          "direction": "West",
+          "adjacentRoom": "Hallway21"
+        },
+        {
+          "isLocked": true,
+          "direction": "North",
+          "adjacentRoom": "StorageRoom"
+        }
+      ]
+    },
+    {
+      "id": "Balcony",
+      "name": "Balcony",
+      "description": "Ooh its chilly outside. You better go back inside before the wind picks up.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "West",
+          "adjacentRoom": "Hallway22"
+        }
+      ]
+    },
+    {
+      "id": "StorageRoom",
+      "name": "Storage Room",
+      "description": "You are in a cob-webby storage room. You see a shiny key ring in the corner of your eye.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "North",
+          "adjacentRoom": "Tunnel2"
         },
         {
           "isLocked": false,

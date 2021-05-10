@@ -15,14 +15,16 @@ public class Game {
 
   private Parser parser;
   private Room currentRoom;
+  private Character player;
 
   /**
    * Create the game and initialise its internal map.
    */
   public Game() {
     try {
+      player = new Character(new Inventory(100));
       initRooms("src\\textAdventure\\data\\rooms.json");
-      currentRoom = roomMap.get("Bedroom");
+      currentRoom = roomMap.get("TrainStation");
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -115,6 +117,14 @@ public class Game {
         return true; // signal that we want to quit
     } else if (commandWord.equals("eat")) {
       System.out.println("Do you really think you should be eating at a time like this?");
+    } else if (commandWord.equals("run")) {
+      runWall(command);
+    } else if (commandWord.equals("board")){
+      boardTrain(command);
+    } else if (commandWord.equals("take")) {
+      takeItem(command.getSecondWord());
+    } else if (commandWord.equals("drop")) {
+      dropItem(command.getSecondWord());
     }
     return false;
   }
@@ -155,5 +165,76 @@ public class Game {
       currentRoom = nextRoom;
       System.out.println(currentRoom.longDescription());
     }
+  }
+  private void runWall(Command command) {
+    if (!command.hasSecondWord()) {
+      // if there is no second word, we don't know where to go...
+      System.out.println("Run where?");
+      return;
+    }
+    if (command.getSecondWord().equals("at the wall")) {
+      Room nextRoom = currentRoom.nextRoom("east");
+        // direction of wall exit from player
+
+      if (nextRoom == null)
+        System.out.println("There's nowhere to go there.");
+      else {
+        currentRoom = nextRoom;
+        System.out.println(currentRoom.longDescription());
+      }
+    } else {
+      System.out.println("There's nowhere to go there.");
+    }
+  }
+  private void boardTrain(Command command) {
+    if (!command.hasSecondWord()) {
+      // if there is no second word, we don't know where to go...
+      System.out.println("Board what?");
+      return;
+    }
+    if (command.getSecondWord().equals("train")) {
+      Room nextRoom = currentRoom.nextRoom("east");
+        // direction of train exit from player
+
+      if (nextRoom == null)
+        System.out.println("You can't board that.");
+      else {
+        currentRoom = nextRoom;
+        System.out.println(currentRoom.longDescription());
+      }
+    } else {
+      System.out.println("You can't board that.");
+    }
+  }
+
+  private void takeItem(String item) {
+    boolean itemExists = false;
+      for (int i = 0; i < currentRoom.getItems().size(); i++) {
+        if (currentRoom.getItems().get(i).getName().equals(item)) {
+          currentRoom.getInventory().removeItem(currentRoom.getItems().get(i));
+          player.getInventory().addItem(currentRoom.getItems().get(i));
+          System.out.println("Taken.");
+
+          itemExists = true;
+        }
+      }
+      if (!itemExists)
+        System.out.println("You can't see " + item + " anywhere.");
+          // Maybe make it so that if the item exists in the game then it says the above, otherwise say something else.
+  }
+
+  private void dropItem(String item) {
+    boolean itemExists = false;
+    for (int i = 0; i < currentRoom.getItems().size(); i++) {
+      if (currentRoom.getItems().get(i).getName().equals(item)) {
+        player.getInventory().removeItem(currentRoom.getItems().get(i));
+        currentRoom.getInventory().addItem(currentRoom.getItems().get(i));
+        System.out.println("You dropped your " + item + " in the " + currentRoom.getRoomName());
+        itemExists = true;
+      }
+    }
+    if (!itemExists)
+      System.out.println("You can't see " + item + " anywhere.");
+        // Maybe make it so that if the item exists in the game then it says the above, otherwise say something else.
   }
 }

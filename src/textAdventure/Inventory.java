@@ -21,6 +21,10 @@ public class Inventory {
     return currentWeight;
   }
 
+  public ArrayList<Item> getItems() {
+    return items;
+  }
+
   public boolean addItem(Item item) {
     if (item.getWeight() + currentWeight <= maxWeight)
       return items.add(item);
@@ -28,6 +32,16 @@ public class Inventory {
       System.out.println("There is no room to add the item.");
       return false;
     }
+  }
+
+  public boolean removeItem(Item item) {
+    /*if (items.size() > 0) 
+      return items.remove(item);
+    else {
+      System.out.println("You do not have this item.");
+      return false;
+    }*/
+    return items.remove(item);
   }
 
 }

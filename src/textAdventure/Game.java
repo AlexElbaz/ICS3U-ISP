@@ -260,4 +260,32 @@ public class Game {
       System.out.println("You can't see " + item + " anywhere.");
         // Maybe make it so that if the item exists in the game then it says the above, otherwise say something else.
   }
+
+  private void putItemInContainer(String item, String container) {
+    boolean itemExists = false;
+    boolean containerExists = false;
+    boolean containerOpenable = false;
+    for (int i = 0; i < player.getItems().size(); i++) {
+      if (player.getItems().get(i).getName().equals(item)) {
+        for (int j = 0; j < player.getItems().size(); j++) {
+          if (player.getItems().get(j).getName().equals(container)) {
+            if (player.getItems().get(j).isOpenable()) {
+              player.getInventory().removeItem(player.getItems().get(i));
+              player.getItems().get(j).getInventory().addItem(player.getItems().get(i));
+              System.out.println("You put your " + item + " in the " + container + ".");
+              containerOpenable = true;
+            }
+            containerExists = true;
+          }
+        }
+        itemExists = true;
+      }
+    }
+    if (!itemExists)
+      System.out.println("You don't have " + item + ".");
+    else if (!containerExists)
+      System.out.println("You don't have " + container + ".");
+    else if (!containerOpenable)
+      System.out.println("You can't open " + container + ".");
+  }
 }

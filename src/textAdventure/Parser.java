@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Parser {
-  private ArrayList<String> validCommands = new ArrayList<String>(Arrays.asList("go", "quit", "help", "eat", "run", "board", "take", "drop"));
+  private ArrayList<String> validCommands = new ArrayList<String>(Arrays.asList("go", "quit", "help", "eat", "run", "board", "take", "drop", "open"));
   private Scanner in;
 
   public Parser() {

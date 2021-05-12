@@ -44,4 +44,11 @@ public class Inventory {
     return items.remove(item);
   }
 
+  public void viewInventory() {
+    System.out.print("You see: ");
+    for (Item item : items) {
+      System.out.print(item.getName() + " ");
+    }
+    System.out.println();
+  }
 }

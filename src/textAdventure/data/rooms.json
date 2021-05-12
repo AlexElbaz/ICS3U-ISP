@@ -665,13 +665,18 @@
     {
       "id": "RoomOfWisdom",
       "name": "Room of Wisdom",
-      "description": "[description, gives player clues].",
+      "description": "",
       "exits": [
         {
           "isLocked": false,
           "direction": "North",
           "adjacentRoom": "Hallway21"
         }
+      ],
+      "hints": [
+        "1",
+        "2",
+        "3"
       ]
     },
     {

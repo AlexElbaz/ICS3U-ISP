@@ -59,6 +59,14 @@ public class Game {
         exits.add(exit);
       }
       room.setExits(exits);
+      if (((JSONObject) roomObj).get("hints") != null) {
+        JSONArray jsonHints = (JSONArray) ((JSONObject) roomObj).get("hints");
+        ArrayList<String> hints = new ArrayList<String>();
+        for (Object hint : jsonHints) {
+          hints.add((String) hint);
+        }
+        room.setHints(hints);
+      }
       roomMap.put(roomId, room);
     }
   }

@@ -322,7 +322,7 @@
     {
       "id": "Outside",
       "name": "Outside",
-      "description": "You look outside......... it gets old fast.",
+      "description": "You step outside. The grey sky, dull field and lack of anything fun is catching your eyes. You are having such a great time looking at nothing, watching the grass grow and the paint on the side of the building dry. You are relaxed, recharged, refreshed. You have decided that going outside made this day the best day of your life. Wait... why am I here again? To your supprise, going outside got old fast. You are now bored beyond belief, and want to go inside so badly, but it's almost as if a magical force is holding you here..",
       "exits": [
         {
           "isLocked": false,
@@ -456,12 +456,12 @@
         {
           "isLocked": false,
           "direction": "East",
-          "adjacentRoom": "Hallway20"
+          "adjacentRoom": "Hallway21"
         },
         {
           "isLocked": false,
           "direction": "West",
-          "adjacentRoom": "Hallway21"
+          "adjacentRoom": "Hallway20"
         },
         {
           "isLocked": false,
@@ -859,7 +859,8 @@
           "direction": "South",
           "adjacentRoom": "GillyWeedRoom"
         }
-      ]
+      ],
+      "charm": "charm..."
     },
     {
       "id": "MirrorRoom",

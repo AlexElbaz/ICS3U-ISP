@@ -1,27 +1,29 @@
 package textAdventure;
 
 public class Item extends OpenableObject {
-  private int weight;
+  private long weight;
   private String name;
   private boolean isOpenable;
 
-  public Item(int weight, String name, boolean isOpenable) {
+  public Item(long weight, String name, boolean isOpenable) {
     this.weight = weight;
     this.name = name;
     this.isOpenable = isOpenable;
   }
 
+  public Item() {
+  }
+
   public void open() {
     if (!isOpenable)
       System.out.println("The " + name + " cannot be opened.");
-
   }
 
-  public int getWeight() {
+  public long getWeight() {
     return weight;
   }
 
-  public void setWeight(int weight) {
+  public void setWeight(long weight) {
     this.weight = weight;
   }
 

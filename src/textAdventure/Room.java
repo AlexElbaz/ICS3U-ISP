@@ -126,4 +126,8 @@ public class Room {
   public void setDescription(String description) {
     this.description = description;
   }
+
+public void addItem(Item item) {
+  inventory.addItem(item);
+}
 }

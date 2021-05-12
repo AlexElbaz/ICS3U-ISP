@@ -806,7 +806,7 @@
         {
           "isLocked": false,
           "direction": "South",
-          "adjacentRoom": "DeathSnarePlant"
+          "adjacentRoom": "3HeadedDog"
         }
       ]
     },

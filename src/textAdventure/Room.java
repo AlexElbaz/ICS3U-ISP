@@ -96,11 +96,13 @@ public class Room {
 
       }
     } catch (IllegalArgumentException ex) {
-      System.out.println(direction + " is not a valid direction.");
+      if ("west east north south up down".indexOf(direction) == -1)
+        System.out.println(direction + " is not a valid direction.");
       return null;
     }
 
-    System.out.println(direction + " is not a valid direction.");
+    if ("west east north south up down".indexOf(direction) == -1)
+      System.out.println(direction + " is not a valid direction.");
     return null;
   }
 

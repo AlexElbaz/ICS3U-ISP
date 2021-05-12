@@ -8,6 +8,7 @@ public class Room {
   private String description;
   private ArrayList<Exit> exits;
   private Inventory inventory;
+  private ArrayList<String> hints;
 
   public ArrayList<Item> getItems() {
     return inventory.getItems();
@@ -63,8 +64,10 @@ public class Room {
    * Exits: north west
    */
   public String longDescription() {
-
-    return "Room: " + roomName + "\n\n" + description + "\n" + exitString();
+    String temp = description;
+    if (description.equals(""))
+      temp = hints.get((int)(Math.random() * hints.size()));
+    return "Room: " + roomName + "\n\n" + temp + "\n" + exitString();
   }
 
   /**
@@ -96,11 +99,13 @@ public class Room {
 
       }
     } catch (IllegalArgumentException ex) {
-      System.out.println(direction + " is not a valid direction.");
+      if ("west east north south up down".indexOf(direction) == -1)
+        System.out.println(direction + " is not a valid direction.");
       return null;
     }
 
-    System.out.println(direction + " is not a valid direction.");
+    if ("west east north south up down".indexOf(direction) == -1)
+      System.out.println(direction + " is not a valid direction.");
     return null;
   }
 
@@ -127,7 +132,7 @@ public class Room {
     this.description = description;
   }
 
-public void addItem(Item item) {
-  inventory.addItem(item);
-}
+  public void setHints(ArrayList<String> hints) {
+    this.hints = hints;
+  }
 }

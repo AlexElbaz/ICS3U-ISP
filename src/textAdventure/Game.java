@@ -16,6 +16,8 @@ public class Game {
   private Parser parser;
   private Room currentRoom;
   private Character player;
+  private boolean hasRunAtWall = false;
+  private boolean hasBoardedTrain = false;
 
   /**
    * Create the game and initialise its internal map.
@@ -60,6 +62,14 @@ public class Game {
         exits.add(exit);
       }
       room.setExits(exits);
+      if (((JSONObject) roomObj).get("hints") != null) {
+        JSONArray jsonHints = (JSONArray) ((JSONObject) roomObj).get("hints");
+        ArrayList<String> hints = new ArrayList<String>();
+        for (Object hint : jsonHints) {
+          hints.add((String) hint);
+        }
+        room.setHints(hints);
+      }
       roomMap.put(roomId, room);
     }
   }
@@ -121,19 +131,10 @@ public class Game {
    * the game, true is returned, otherwise false is returned.
    */
   private boolean processCommand(ArrayList<String> command) {
-    /*
-    if (command.isUnknown()) {
-      System.out.println("I don't know what you mean...");
-      return false;
-    }
-    */
-
     if (command.size() < 1)
       System.out.println("I don't know what you mean...");
-    
-
-    //String commandWord = command.getCommandWord();
-    if (command.size() <= 2) { // command is 2 words or less
+    else {
+    //if (command.size() <= 2) { // command is 2 words or less (but above 0 words)
       if (command.get(0).equals("help"))
         printHelp();
       else if (command.get(0).equals("go"))
@@ -143,25 +144,25 @@ public class Game {
           System.out.println("Quit what?");
         else
           return true; // signal that we want to quit
-      } else if (command.get(0).equals("eat")) {
+      } else if (command.get(0).equals("eat")) 
         System.out.println("Do you really think you should be eating at a time like this?");
-      } else if (command.get(0).equals("run")) {
-        runWall(command);
-      } else if (command.get(0).equals("board")){
+      else if (command.get(0).equals("board"))
         boardTrain(command);
-      } else if (command.get(0).equals("take")) {
+      else if (command.get(0).equals("take"))
         takeItem(command.get(1));
-      } else if (command.get(0).equals("drop")) {
+      else if (command.get(0).equals("drop"))
         dropItem(command.get(1));
-      } else {
-        System.out.println("I don't know what you mean...");
+      else if (command.get(0).equals("run"))
+        runWall(command);
+      else {
+        System.out.println("You can't do that.");
       }
-    } else if (command.size() <= 3) { // command is 3 words
+    //}
+    //if (command.size() <= 4) { // command is under 5 words (but above 0 words)
 
-    } else if (command.size() <= 4) { // command is 4 words
-
-    } else { // command is over 4 words
-      System.out.println("You can't do that.");
+    //} else { // command is over 4 words
+      //System.out.println("You can't do that.");
+    //}
     }
     return false;
   }
@@ -189,58 +190,61 @@ public class Game {
       // if there is no second word, we don't know where to go...
       System.out.println("Go where?");
       return;
-    }
+    } else if (command.size() < 3) {  // if the command is 2 words only.
+      String direction = command.get(1);
 
-    String direction = command.get(1);
+      // Try to leave current room.
+      Room nextRoom = currentRoom.nextRoom(direction);
 
-    // Try to leave current room.
-    Room nextRoom = currentRoom.nextRoom(direction);
-
-    if (nextRoom == null)
-      System.out.println("There is no door!");
-    else {
-      currentRoom = nextRoom;
-      System.out.println(currentRoom.longDescription());
+      if (nextRoom == null) {
+        if ("west east north south up down".indexOf(direction) >= 0)  
+          System.out.println("You can't go that way.");
+      } else {
+        currentRoom = nextRoom;
+        System.out.println(currentRoom.longDescription());
+      }
+    } else {
+      System.out.println("You can only go one way at a time.");
     }
   }
+
   private void runWall(ArrayList<String> command) {
     if (command.size() < 2) {
       // if there is no second word, we don't know where to go...
       System.out.println("Run where?");
       return;
     }
-    if (command.contains("wall")) {
+    if (command.contains("wall") && !hasRunAtWall) {
+      hasRunAtWall = true;
       Room nextRoom = currentRoom.nextRoom("east");
-        // direction of wall exit from player
-
-      if (nextRoom == null)
-        System.out.println("There's nowhere to go there.");
-      else {
+        // direction of room exit from player
         currentRoom = nextRoom;
         System.out.println(currentRoom.longDescription());
-      }
     } else {
-      System.out.println("There's nowhere to go there.");
+      if ("west east north south up down".indexOf(command.get(1)) >= 0)
+        System.out.println("Try using the go command.");
+      else
+        System.out.println("You can't do that.");
     }
   }
+
   private void boardTrain(ArrayList<String> command) {
     if (command.size() < 2) {
       // if there is no second word, we don't know where to go...
       System.out.println("Board what?");
       return;
     }
-    if (command.get(1).equals("train")) {
+    if (command.contains("train") && !hasBoardedTrain) {
+      hasBoardedTrain = true;
       Room nextRoom = currentRoom.nextRoom("east");
         // direction of train exit from player
-
-      if (nextRoom == null)
-        System.out.println("You can't board that.");
-      else {
         currentRoom = nextRoom;
         System.out.println(currentRoom.longDescription());
-      }
     } else {
-      System.out.println("You can't board that.");
+      if (command.contains("train"))
+        System.out.println("There is no train here.");
+      else
+        System.out.println("You can't board that.");
     }
   }
 
@@ -273,5 +277,33 @@ public class Game {
     if (!itemExists)
       System.out.println("You can't see " + item + " anywhere.");
         // Maybe make it so that if the item exists in the game then it says the above, otherwise say something else.
+  }
+
+  private void putItemInContainer(String item, String container) {
+    boolean itemExists = false;
+    boolean containerExists = false;
+    boolean containerOpenable = false;
+    for (int i = 0; i < player.getItems().size(); i++) {
+      if (player.getItems().get(i).getName().equals(item)) {
+        for (int j = 0; j < player.getItems().size(); j++) {
+          if (player.getItems().get(j).getName().equals(container)) {
+            if (player.getItems().get(j).isOpenable()) {
+              player.getInventory().removeItem(player.getItems().get(i));
+              player.getItems().get(j).getInventory().addItem(player.getItems().get(i));
+              System.out.println("You put your " + item + " in the " + container + ".");
+              containerOpenable = true;
+            }
+            containerExists = true;
+          }
+        }
+        itemExists = true;
+      }
+    }
+    if (!itemExists)
+      System.out.println("You don't have " + item + ".");
+    else if (!containerExists)
+      System.out.println("You don't have " + container + ".");
+    else if (!containerOpenable)
+      System.out.println("You can't open " + container + ".");
   }
 }

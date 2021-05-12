@@ -665,13 +665,18 @@
     {
       "id": "RoomOfWisdom",
       "name": "Room of Wisdom",
-      "description": "[description, gives player clues].",
+      "description": "",
       "exits": [
         {
           "isLocked": false,
           "direction": "North",
           "adjacentRoom": "Hallway21"
         }
+      ],
+      "hints": [
+        "As you walk into this mysterious room, everything seems normal at first until you hear many voices arguing over each other. Suddenly, the room fills with loud voices. You pick up a few things they are saying, I had an apple for lunch, the flute puts the three headed dog to sleep, and search in the music closet.",
+        "You walk into this boring room until you come face to face with a... thing. It tells you that hogwarts is a dangerous place, and to not enter the tunnel until you are ready.",
+        "DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. "
       ]
     },
     {

@@ -325,7 +325,7 @@ public class Game {
    * @param item the item they want to put in the container
    * @param container the place to store that item
    */
-  private void putItemInContainer(String item, String container) {
+  private void putItemInContainer(String item, String container) { // FIX SO THAT YOU ADD ITEM TO CONTAINER INVENTORY BEFORE REMOVING IT FROM PLAYER INVENTORY
     boolean itemExists = false;
     boolean containerExists = false;
     boolean containerOpenable = false;
@@ -334,8 +334,8 @@ public class Game {
         for (int j = 0; j < player.getItems().size(); j++) {
           if (player.getItems().get(j).getName().equals(container)) {
             if (player.getItems().get(j).isOpenable()) {
-              player.getInventory().removeItem(player.getItems().get(i));
               player.getItems().get(j).getInventory().addItem(player.getItems().get(i));
+              player.getInventory().removeItem(player.getItems().get(i));
               System.out.println("You put your " + item + " in the " + container + ".");
               containerOpenable = true;
             }
@@ -353,7 +353,7 @@ public class Game {
       System.out.println("You can't open " + container + ".");
   }
 
-  private void takeItemFromContainer(String item, String container) {
+  private void takeItemFromContainer(String item, String container) { // FIX SO THAT YOU ADD ITEM TO CONTAINER INVENTORY BEFORE REMOVING IT FROM PLAYER INVENTORY
     boolean itemExists = false;
     boolean containerExists = false;
     boolean containerOpenable = false;
@@ -362,13 +362,13 @@ public class Game {
         if (player.getItems().get(i).isOpenable()) {
           for (int j = 0; j < player.getItems().get(i).getItems().size(); j++) {
             if (player.getItems().get(i).getItems().get(j).getName().equals(item)) {
-              player.getItems().get(i).getInventory().removeItem(player.getItems().get(j));
               boolean addItem = player.getInventory().addItem(player.getItems().get(j)); // maybe need to automatically drop the item if there is no room
               if (!addItem) {
                 System.out.println("The " + item + " was too heavy for you to hold.");
                 dropItem(item);
               } else
                 System.out.println("You took the " + item + " out of the " + container + ".");
+              player.getItems().get(i).getInventory().removeItem(player.getItems().get(j));
               itemExists = true;
             }
           }

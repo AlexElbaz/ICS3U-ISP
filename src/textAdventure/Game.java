@@ -149,8 +149,18 @@ public class Game {
       else if (command.get(0).equals("board"))
         boardTrain(command);
       else if (command.get(0).equals("take"))
-        takeItem(command.get(1));
+        if (command.size() < 2) {
+          // if there is no second word, we don't know what to take...
+          System.out.println("Take what?");
+          return false;
+        } else
+          takeItem(command.get(1));
+        
       else if (command.get(0).equals("drop"))
+      if (command.size() < 2) {
+        System.out.println("Drop what?");
+        return false;
+      } else
         dropItem(command.get(1));
       else if (command.get(0).equals("run"))
         runWall(command);
@@ -247,7 +257,6 @@ public class Game {
         System.out.println("You can't board that.");
     }
   }
-
   /**
    * The player takes an item from the room.
    * This checks if the item is actually in the room or not.

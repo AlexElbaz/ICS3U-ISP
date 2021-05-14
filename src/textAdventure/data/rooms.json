@@ -31,13 +31,13 @@
       "exits": [
         {
           "isLocked": false,
-          "direction": "South",
-          "adjacentRoom": "DininghallBottomLeft"
+          "direction": "East",
+          "adjacentRoom": "DininghallTopRight"
         },
         {
           "isLocked": false,
-          "direction": "East",
-          "adjacentRoom": "DininghallTopRight"
+          "direction": "South",
+          "adjacentRoom": "DininghallBottomLeft"
         }
       ]
     },
@@ -49,6 +49,11 @@
       "exits": [
         {
           "isLocked": false,
+          "direction": "East",
+          "adjacentRoom": "Kitchen"
+        },
+        {
+          "isLocked": false,
           "direction": "South",
           "adjacentRoom": "DininghallBottomRight"
         },
@@ -56,11 +61,6 @@
           "isLocked": false,
           "direction": "West",
           "adjacentRoom": "DininghallTopLeft"
-        },
-        {
-          "isLocked": false,
-          "direction": "East",
-          "adjacentRoom": "Kitchen"
         }
       ]
     },
@@ -93,14 +93,15 @@
         },
         {
           "isLocked": false,
-          "direction": "West",
-          "adjacentRoom": "DininghallBottomLeft"
+          "direction": "South",
+          "adjacentRoom": "SittingArea"
         },
         {
           "isLocked": false,
-          "direction": "South",
-          "adjacentRoom": "SittingArea"
+          "direction": "West",
+          "adjacentRoom": "DininghallBottomLeft"
         }
+        
       ]
     },
     {
@@ -115,13 +116,13 @@
         },
         {
           "isLocked": false,
-          "direction": "South",
-          "adjacentRoom": "Stairs1"
+          "direction": "East",
+          "adjacentRoom": "Hallway12"
         },
         {
           "isLocked": false,
-          "direction": "East",
-          "adjacentRoom": "Hallway12"
+          "direction": "South",
+          "adjacentRoom": "Stairs1"
         },
         {
           "isLocked": false,
@@ -185,13 +186,13 @@
       "exits": [
         {
           "isLocked": false,
-          "direction": "West",
-          "adjacentRoom": "SittingArea"
+          "direction": "South",
+          "adjacentRoom": "Chapel"
         },
         {
           "isLocked": false,
-          "direction": "South",
-          "adjacentRoom": "Chapel"
+          "direction": "West",
+          "adjacentRoom": "SittingArea"
         }
       ]
     },
@@ -248,13 +249,13 @@
       "exits": [
         {
           "isLocked": false,
-          "direction": "West",
-          "adjacentRoom": "SittingArea"
+          "direction": "South",
+          "adjacentRoom": "Chapel"
         },
         {
           "isLocked": false,
-          "direction": "South",
-          "adjacentRoom": "Chapel"
+          "direction": "West",
+          "adjacentRoom": "SittingArea"
         }
       ]
     },
@@ -265,13 +266,13 @@
       "exits": [
         {
           "isLocked": false,
-          "direction": "West",
-          "adjacentRoom": "DininghallTopRight"
+          "direction": "East",
+          "adjacentRoom": "Hallway11"
         },
         {
           "isLocked": false,
-          "direction": "East",
-          "adjacentRoom": "Hallway11"
+          "direction": "West",
+          "adjacentRoom": "DininghallTopRight"
         }
       ]
     },
@@ -287,13 +288,13 @@
         },
         {
           "isLocked": false,
-          "direction": "West",
-          "adjacentRoom": "Kitchen"
+          "direction": "South",
+          "adjacentRoom": "MusicRoom"
         },
         {
           "isLocked": false,
-          "direction": "South",
-          "adjacentRoom": "MusicRoom"
+          "direction": "West",
+          "adjacentRoom": "Kitchen"
         }
       ]
     },
@@ -334,13 +335,13 @@
       "exits": [
         {
           "isLocked": false,
-          "direction": "West",
-          "adjacentRoom": "DininghallTopRight"
+          "direction": "East",
+          "adjacentRoom": "Hallway11"
         },
         {
           "isLocked": false,
-          "direction": "East",
-          "adjacentRoom": "Hallway11"
+          "direction": "West",
+          "adjacentRoom": "DininghallTopRight"
         }
       ]
     },
@@ -356,13 +357,13 @@
         },
         {
           "isLocked": false,
-          "direction": "West",
-          "adjacentRoom": "Kitchen"
+          "direction": "South",
+          "adjacentRoom": "MusicRoom"
         },
         {
           "isLocked": false,
-          "direction": "South",
-          "adjacentRoom": "MusicRoom"
+          "direction": "West",
+          "adjacentRoom": "Kitchen"
         }
       ]
     },
@@ -438,13 +439,13 @@
         },
         {
           "isLocked": false,
-          "direction": "West",
-          "adjacentRoom": "Hallway20"
+          "direction": "South",
+          "adjacentRoom": "Stairs2"
         },
         {
           "isLocked": false,
-          "direction": "South",
-          "adjacentRoom": "Stairs2"
+          "direction": "West",
+          "adjacentRoom": "Hallway20"
         }
       ]
     },
@@ -582,7 +583,7 @@
     {
       "id": "Hallway21",
       "name": "Hallway",
-      "description": "[add description] Walking in a hallway.",
+      "description": "Walking in a hallway.",
       "exits": [
         {
           "isLocked": false,
@@ -592,7 +593,7 @@
         {
           "isLocked": false,
           "direction": "East",
-          "adjacentRoom": "StairLanding"
+          "adjacentRoom": "Hallway22"
         },
         {
           "isLocked": false,
@@ -602,14 +603,14 @@
         {
           "isLocked": false,
           "direction": "West",
-          "adjacentRoom": "Hallway22"
+          "adjacentRoom": "StairLanding"
         }
       ]
     },
     {
       "id": "Room",
       "name": "Your Room",
-      "description": "[description] You spot a black cloak sitting in an opened gift box.",
+      "description": "You spot a black cloak sitting in an opened gift box.",
       "exits": [
         {
           "isLocked": false,
@@ -663,6 +664,11 @@
       "description": "You see a small door, but looks like it's all boarded up. At the end of the hallway you see a glass door leading to the outside.",
       "exits": [
         {
+          "isLocked": true,
+          "direction": "North",
+          "adjacentRoom": "StorageRoom"
+        },
+        {
           "isLocked": false,
           "direction": "East",
           "adjacentRoom": "Balcony"
@@ -671,11 +677,6 @@
           "isLocked": false,
           "direction": "West",
           "adjacentRoom": "Hallway21"
-        },
-        {
-          "isLocked": true,
-          "direction": "North",
-          "adjacentRoom": "StorageRoom"
         }
       ]
     },
@@ -688,28 +689,6 @@
           "isLocked": false,
           "direction": "West",
           "adjacentRoom": "Hallway22"
-        }
-      ]
-    },
-    {
-      "id": "StorageRoom",
-      "name": "Storage Room",
-      "description": "You are in a cob-webby storage room. You see a shiny key ring in the corner of your eye.",
-      "exits": [
-        {
-          "isLocked": false,
-          "direction": "North",
-          "adjacentRoom": "Tunnel2"
-        },
-        {
-          "isLocked": false,
-          "direction": "West",
-          "adjacentRoom": "Hallway21"
-        },
-        {
-          "isLocked": true,
-          "direction": "North",
-          "adjacentRoom": "StorageRoom"
         }
       ]
     },

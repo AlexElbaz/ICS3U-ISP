@@ -297,8 +297,8 @@ public class Game {
     boolean itemExists = false;
       for (int i = 0; i < currentRoom.getItems().size(); i++) {
         if (currentRoom.getItems().get(i).getName().equals(item)) {
-          currentRoom.getInventory().removeItem(currentRoom.getItems().get(i));
           player.getInventory().addItem(currentRoom.getItems().get(i));
+          currentRoom.getInventory().removeItem(currentRoom.getItems().get(i));
           System.out.println("Taken.");
 
           itemExists = true;
@@ -320,8 +320,8 @@ public class Game {
     boolean itemExists = false;
     for (int i = 0; i < player.getItems().size(); i++) {
       if (player.getItems().get(i).getName().equals(item)) {
-        player.getInventory().removeItem(currentRoom.getItems().get(i));
-        currentRoom.getInventory().addItem(currentRoom.getItems().get(i));
+        currentRoom.getInventory().addItem(player.getItems().get(i));
+        player.getInventory().removeItem(player.getItems().get(i));
         System.out.println("You dropped your " + item + " in the " + currentRoom.getRoomName());
         itemExists = true;
       }

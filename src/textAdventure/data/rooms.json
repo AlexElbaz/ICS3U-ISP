@@ -111,28 +111,6 @@
         {
           "isLocked": false,
           "direction": "North",
-          "adjacentRoom": "DininghallTopRight"
-        },
-        {
-          "isLocked": false,
-          "direction": "West",
-          "adjacentRoom": "DininghallBottomLeft"
-        },
-        {
-          "isLocked": false,
-          "direction": "South",
-          "adjacentRoom": "SittingArea"
-        }
-      ]
-    },
-    {
-      "id": "SittingArea",
-      "name": "Sitting Area",
-      "description": "You are in a small sitting area, surrounded by plush chairs and couches.",
-      "exits": [
-        {
-          "isLocked": false,
-          "direction": "North",
           "adjacentRoom": "DininghallBottomLeft"
         },
         {
@@ -322,7 +300,7 @@
     {
       "id": "Outside",
       "name": "Outside",
-      "description": "You look outside......... it gets old fast.",
+      "description": "You step outside. The grey sky, dull field and lack of anything fun is catching your eyes. You are having such a great time looking at nothing, watching the grass grow and the paint on the side of the building dry. You are relaxed, recharged, refreshed. You have decided that going outside made this day the best day of your life. Wait... why am I here again? To your surprise, going outside got old fast. You are now bored beyond belief, and want to go inside so badly, but it's almost as if a magical force is holding you here..",
       "exits": [
         {
           "isLocked": false,

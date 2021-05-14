@@ -19,7 +19,7 @@ public class Parser {
 
     System.out.print("> "); // print prompt
 
-    inputLine = in.nextLine();
+    inputLine = in.nextLine().toLowerCase();
 
     while (!moreWords) {
       if (inputLine.indexOf(" ") >= 0)

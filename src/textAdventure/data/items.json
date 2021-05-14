@@ -22,13 +22,15 @@
             "name": "gillyweed",
             "room": "PotionsStorage",
             "weight": 2,
-            "isOpenable": false
+            "isOpenable": false,
+            "itemRoomDescription": "There is gillyweed on the ground. "
         },
         {
             "name": "flute",
             "room": "MusicCloset",
             "weight": 5,
-            "isOpenable": false
+            "isOpenable": false,
+            "itemRoomDescription": "There is a flute on the ground. "
         },
         {
             "name": "invisibility cloak",

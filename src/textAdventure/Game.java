@@ -9,7 +9,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import jdk.internal.module.SystemModuleFinders;
+//import jdk.internal.module.SystemModuleFinders;
 
 public class Game {
 
@@ -190,7 +190,7 @@ public class Game {
     System.out.println("You are lost. You are alone. You wander");
     System.out.println("around at Monash Uni, Peninsula Campus.");
     System.out.println();
-    System.out.println("Your command words are:");
+    System.out.println("Your command words are:" );
 
     if (command.size() < 2) {
       parser.showCommands();
@@ -203,6 +203,18 @@ public class Game {
   private void commandHelp(ArrayList<String> command) {
     if (command.get(1).equals("go")){
       System.out.println("");
+    } else if (command.get(1).equals("board")){
+      System.out.println("Helps you get onto a train.");
+    } else if (command.get(1).equals("take")){
+      System.out.println("Allows you to pick up items that you can use later.");
+    }  else if (command.get(1).equals("drop")){
+      System.out.println("Allows you to release items that you do not wish to hold onto anymore.");
+    } else if (command.get(1).equals("cast")){
+      System.out.println("Helps you make magical spells with your wand.");
+    } else if (command.get(1).equals("hit")){
+      System.out.println("Allows you to whack things around you.");
+    } else if (command.get(1).equals("open")){
+      System.out.println("Allows you to see what is inside of an object");
     }
   }
 

@@ -26,6 +26,7 @@ public class Game {
     try {
       player = new Character(new Inventory(100));
       initRooms("src\\textAdventure\\data\\rooms.json");
+      initItems("src\\textAdventure\\data\\items.json");
       currentRoom = roomMap.get("TrainStation");
     } catch (Exception e) {
       e.printStackTrace();
@@ -70,6 +71,27 @@ public class Game {
         room.setHints(hints);
       }
       roomMap.put(roomId, room);
+    }
+  }
+  private void initItems(String fileName) throws Exception {
+    Path path = Path.of(fileName);
+    String jsonString = Files.readString(path);
+    JSONParser parser = new JSONParser();
+    JSONObject json = (JSONObject) parser.parse(jsonString);
+
+    JSONArray jsonItems = (JSONArray) json.get("items");
+
+    for (Object roomObj : jsonItems) {
+      Item item = new Item();
+      String itemName = (String) ((JSONObject) roomObj).get("name");
+      item.setName(itemName);
+      String roomId = (String) ((JSONObject) roomObj).get("room");
+      long weight = (long) ((JSONObject) roomObj).get("weight");
+      item.setWeight(weight);
+      Boolean isOpenable = (Boolean) ((JSONObject) roomObj).get("isOpenable");
+      item.setOpenable(isOpenable);
+      System.out.println(roomId);
+      roomMap.get(roomId).addItem(item);
     }
   }
 

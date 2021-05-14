@@ -3,7 +3,7 @@ package textAdventure;
 import java.util.ArrayList;
 
 public class Item extends OpenableObject {
-  private int weight;
+  private long weight;
   private String name;
   private boolean isOpenable;
   private Inventory inventory;
@@ -39,6 +39,9 @@ public class Item extends OpenableObject {
     this.inventory = inventory;
   }
 
+  public Item() {
+  }
+
   public void open() {
     if (!isOpenable)
       System.out.println("The " + name + " cannot be opened.");
@@ -47,11 +50,11 @@ public class Item extends OpenableObject {
     }
   }
 
-  public int getWeight() {
+  public long getWeight() {
     return weight;
   }
 
-  public void setWeight(int weight) {
+  public void setWeight(long weight) {
     this.weight = weight;
   }
 

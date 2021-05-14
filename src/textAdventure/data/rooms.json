@@ -157,7 +157,8 @@
     {
       "id": "PotionsStorage",
       "name": "Storage",
-      "description": "You are in a small storage room, filled with magical items. ",
+      "description": "You are in a small storage room, filled with magical items. You see gillyweed lying on the table. ",
+      "shortDescription": "You are in a small storage room. ",
       "exits": [
         {
           "isLocked": true,
@@ -171,6 +172,7 @@
       "id": "PotionsClass",
       "name": "Potions Classroom",
       "description": "You walk into the magical potions classroom. To your disbelief, there are potions everywhere. Inspecting the teachers desk, you notice a key labeled: \"potion storage\" ontop of it. ",
+      "shortDescription": "You walk into the magical potions classroom. To your disbelief, there are potions everywhere. ",
       "exits": [
         {
           "isLocked": false,
@@ -263,6 +265,7 @@
       "id": "Kitchen",
       "name": "Kitchen",
       "description": "You are in a large kitchen, surrounded by pots and pans. ",
+      "shortDescription": "You are in a large kitchen. ",
       "exits": [
         {
           "isLocked": false,
@@ -480,7 +483,8 @@
     {
       "id": "CharmsClass",
       "name": "Charms Classroom",
-      "description": "Long desks fill the room. You see white feathers laying on the desks. Professor Lupin teaches you how to cast a boggart-bainshing spell. ",
+      "description": "Long desks fill the room. You see charms laying on the desks. Professor Lupin teaches you how to cast a boggart-bainshing spell. ",
+      "shortDescription": "Long desks fill the room. ",
       "exits": [
         {
           "isLocked": false,
@@ -561,6 +565,7 @@
       "id": "DarkMatterClass",
       "name": "Dark Matter Class",
       "description": "The room is empty. But a book of death spells catches your eye. ",
+      "shortDescription": "The room is empty. ",
       "exits": [
         {
           "isLocked": false,
@@ -612,6 +617,7 @@
       "id": "Room",
       "name": "Your Room",
       "description": "You spot a black cloak sitting in an opened gift box. ",
+      "short description": "Nothing but an empty gift box on the ground. ",
       "exits": [
         {
           "isLocked": false,

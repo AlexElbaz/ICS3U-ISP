@@ -1,0 +1,34 @@
+{
+    "items": [
+        {
+            "name": "Book of Spells",
+            "room": "DarkMatterClass",
+            "weight": 10,
+            "isOpenable": true
+        },
+        {
+            "name": "Charm",
+            "room": "CharmsClass",
+            "weight": 2,
+            "isOpenable": false
+        },
+        {
+            "name": "Gillyweed",
+            "room": "PotionsStorage",
+            "weight": 2,
+            "isOpenable": false
+        },
+        {
+            "name": "Flute",
+            "room": "MusicCloset",
+            "weight": 5,
+            "isOpenable": false
+        },
+        {
+            "name": "Invisibility Cloak",
+            "room": "Room",
+            "weight": 20,
+            "isOpenable": false
+        }
+    ]
+}

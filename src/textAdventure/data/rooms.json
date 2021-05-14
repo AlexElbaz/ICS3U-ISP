@@ -434,12 +434,12 @@
         {
           "isLocked": false,
           "direction": "East",
-          "adjacentRoom": "Hallway20"
+          "adjacentRoom": "Hallway21"
         },
         {
           "isLocked": false,
           "direction": "West",
-          "adjacentRoom": "Hallway21"
+          "adjacentRoom": "Hallway20"
         },
         {
           "isLocked": false,
@@ -789,7 +789,7 @@
         {
           "isLocked": false,
           "direction": "South",
-          "adjacentRoom": "DeathSnarePlant"
+          "adjacentRoom": "3HeadedDog"
         }
       ]
     },
@@ -842,7 +842,8 @@
           "direction": "South",
           "adjacentRoom": "GillyWeedRoom"
         }
-      ]
+      ],
+      "charm": "charm..."
     },
     {
       "id": "MirrorRoom",

@@ -1,19 +1,25 @@
 {
     "items": [
         {
-            "name": "Book of Spells",
+            "name": "book",
             "room": "DarkMatterClass",
             "weight": 10,
             "isOpenable": true
         },
         {
-            "name": "Charm",
+            "name": "pot",
+            "room": "Kitchen",
+            "weight": 99,
+            "isOpenable": true
+        },
+        {
+            "name": "charm",
             "room": "CharmsClass",
             "weight": 2,
             "isOpenable": false
         },
         {
-            "name": "Gillyweed",
+            "name": "gillyweed",
             "room": "PotionsStorage",
             "weight": 2,
             "isOpenable": false
@@ -25,7 +31,7 @@
             "isOpenable": false
         },
         {
-            "name": "Invisibility Cloak",
+            "name": "invisibility cloak",
             "room": "Room",
             "weight": 20,
             "isOpenable": false

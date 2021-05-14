@@ -401,6 +401,7 @@
       "id": "MusicCloset",
       "name": "Closet",
       "description": "You are in a small storage room. To your left you see a flute.",
+      "shortDescription": "You are in a small storage room.",
       "exits": [
         {
           "isLocked": true,

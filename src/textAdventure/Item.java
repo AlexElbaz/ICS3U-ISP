@@ -7,12 +7,21 @@ public class Item extends OpenableObject {
   private String name;
   private boolean isOpenable;
   private Inventory inventory;
+  private String itemRoomDescription;
 
   public Item(int weight, String name) {
     this.weight = weight;
     this.name = name;
     this.isOpenable = false;
     inventory = null;
+  }
+
+  public String getItemRoomDescription() {
+    return itemRoomDescription;
+  }
+
+  public void setItemRoomDescription(String roomDescription) {
+    this.itemRoomDescription = roomDescription;
   }
 
   public Item(int weight, String name, int maxWeight) {

@@ -6,12 +6,21 @@ public class Room {
 
   private String roomName;
   private String description;
+  private String shortDescription;
   private ArrayList<Exit> exits;
   private Inventory inventory;
   private ArrayList<String> hints;
 
   public ArrayList<Item> getItems() {
     return inventory.getItems();
+  }
+
+  public String getShortDescription() {
+    return shortDescription;
+  }
+
+  public void setShortDescription(String shortDescription) {
+    this.shortDescription = shortDescription;
   }
 
   public Inventory getInventory() {

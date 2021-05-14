@@ -47,7 +47,9 @@ public class Game {
       String roomName = (String) ((JSONObject) roomObj).get("name");
       String roomId = (String) ((JSONObject) roomObj).get("id");
       String roomDescription = (String) ((JSONObject) roomObj).get("description");
+      String roomShortDescription = (String) ((JSONObject) roomObj).get("shortDescription");
       room.setDescription(roomDescription);
+      room.setShortDescription(roomShortDescription);
       room.setRoomName(roomName);
 
       JSONArray jsonExits = (JSONArray) ((JSONObject) roomObj).get("exits");
@@ -90,7 +92,9 @@ public class Game {
       item.setWeight(weight);
       Boolean isOpenable = (Boolean) ((JSONObject) roomObj).get("isOpenable");
       item.setOpenable(isOpenable);
-      System.out.println(roomId);
+      String itemRoomDescription = (String) ((JSONObject) roomObj).get("itemRoomDescription");
+      item.setItemRoomDescription(itemRoomDescription);
+      System.out.println(roomId); // delete this
       roomMap.get(roomId).getInventory().addItem(item);
     }
   }
@@ -287,6 +291,10 @@ public class Game {
         if (currentRoom.getItems().get(i).getName().equals(item)) {
           currentRoom.getInventory().removeItem(currentRoom.getItems().get(i));
           player.getInventory().addItem(currentRoom.getItems().get(i));
+          if (currentRoom.getShortDescription() == null)
+            currentRoom.setDescription(currentRoom.getDescription());
+          else
+            currentRoom.setDescription(currentRoom.getShortDescription());
           System.out.println("Taken.");
 
           itemExists = true;
@@ -310,6 +318,10 @@ public class Game {
       if (player.getItems().get(i).getName().equals(item)) {
         player.getInventory().removeItem(currentRoom.getItems().get(i));
         currentRoom.getInventory().addItem(currentRoom.getItems().get(i));
+        if (currentRoom.getShortDescription() == null)
+          currentRoom.setDescription(currentRoom.getDescription() + currentRoom.getItems().get(i).getItemRoomDescription());
+        else
+          currentRoom.setDescription(currentRoom.getShortDescription() + currentRoom.getItems().get(i).getItemRoomDescription());
         System.out.println("You dropped your " + item + " in the " + currentRoom.getRoomName());
         itemExists = true;
       }

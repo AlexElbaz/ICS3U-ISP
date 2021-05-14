@@ -22,7 +22,8 @@
             "name": "Flute",
             "room": "MusicCloset",
             "weight": 5,
-            "isOpenable": false
+            "isOpenable": false,
+            "itemRoomDescription": "There is a flute on the ground."
         },
         {
             "name": "Invisibility Cloak",

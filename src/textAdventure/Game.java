@@ -9,7 +9,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import jdk.internal.module.SystemModuleFinders;
+//import jdk.internal.module.SystemModuleFinders;
 
 public class Game {
 
@@ -190,11 +190,11 @@ public class Game {
     System.out.println("You are lost. You are alone. You wander");
     System.out.println("around at Monash Uni, Peninsula Campus.");
     System.out.println();
-    System.out.println("Your command words are:");
 
     if (command.size() < 2) {
       parser.showCommands();
     } else{
+      System.out.println("Your command words are:");
       commandHelp(command);
     }
   }
@@ -202,7 +202,15 @@ public class Game {
 
   private void commandHelp(ArrayList<String> command) {
     if (command.get(1).equals("go")){
-      System.out.println("");
+      System.out.println("Allows you to move in the following directions: [North, South, East, West, Up, Down]");
+    } else if (command.get(1).equals("quit")){
+      System.out.println("Ends the game. That's one way to go out!");
+    } else if (command.get(1).equals("help")){
+      System.out.println("Prints the help message.");
+    } else if (command.get(1).equals("eat")){
+      System.out.println("Allows you to fuel up before a very cool adventure in Hogwarts!");
+    } else if (command.get(1).equals("run")){
+      System.out.println("Makes you sprint as fast as you can in the direction you choose. You do however risk losing your dignity if you trip and fall.");
     }
   }
 

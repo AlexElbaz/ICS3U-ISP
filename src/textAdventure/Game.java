@@ -91,7 +91,7 @@ public class Game {
       Boolean isOpenable = (Boolean) ((JSONObject) roomObj).get("isOpenable");
       item.setOpenable(isOpenable);
       System.out.println(roomId);
-      roomMap.get(roomId).addItem(item);
+      roomMap.get(roomId).getInventory().addItem(item);
     }
   }
 

@@ -9,6 +9,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import jdk.internal.module.SystemModuleFinders;
+
 public class Game {
 
   public static HashMap<String, Room> roomMap = new HashMap<String, Room>();
@@ -135,7 +137,7 @@ public class Game {
       System.out.println("I don't know what you mean...");
     else {
       if (command.get(0).equals("help"))
-        printHelp();
+        printHelp(command);
       else if (command.get(0).equals("go"))
         goRoom(command);
       else if (command.get(0).equals("quit")) {
@@ -180,12 +182,25 @@ public class Game {
    * Print out some help information. Here we print some stupid, cryptic message
    * and a list of the command words.
    */
-  private void printHelp() {
+  private void printHelp(ArrayList<String> command) {
+
     System.out.println("You are lost. You are alone. You wander");
     System.out.println("around at Monash Uni, Peninsula Campus.");
     System.out.println();
     System.out.println("Your command words are:");
-    parser.showCommands();
+
+    if (command.size() < 2) {
+      parser.showCommands();
+    } else{
+      commandHelp(command);
+    }
+  }
+
+
+  private void commandHelp(ArrayList<String> command) {
+    if (command.get(1).equals("go")){
+      System.out.println("");
+    }
   }
 
   /**

@@ -19,7 +19,7 @@
             "isOpenable": false
         },
         {
-            "name": "Flute",
+            "name": "flute",
             "room": "MusicCloset",
             "weight": 5,
             "isOpenable": false,

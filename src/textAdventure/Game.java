@@ -201,6 +201,18 @@ public class Game {
   private void commandHelp(ArrayList<String> command) {
     if (command.get(1).equals("go")){
       System.out.println("Allows you to move in the following directions: [North, South, East, West, Up, Down]");
+    } else if (command.get(1).equals("board")){
+      System.out.println("Helps you get onto a train.");
+    } else if (command.get(1).equals("take")){
+      System.out.println("Allows you to pick up items that you can use later.");
+    }  else if (command.get(1).equals("drop")){
+      System.out.println("Allows you to release items that you do not wish to hold onto anymore.");
+    } else if (command.get(1).equals("cast")){
+      System.out.println("Helps you make magical spells with your wand.");
+    } else if (command.get(1).equals("hit")){
+      System.out.println("Allows you to whack things around you.");
+    } else if (command.get(1).equals("open")){
+      System.out.println("Allows you to see what is inside of an object");
     } else if (command.get(1).equals("quit")){
       System.out.println("Ends the game. That's one way to go out!");
     } else if (command.get(1).equals("help")){
@@ -289,8 +301,8 @@ public class Game {
     boolean itemExists = false;
       for (int i = 0; i < currentRoom.getItems().size(); i++) {
         if (currentRoom.getItems().get(i).getName().equals(item)) {
-          currentRoom.getInventory().removeItem(currentRoom.getItems().get(i));
           player.getInventory().addItem(currentRoom.getItems().get(i));
+          currentRoom.getInventory().removeItem(currentRoom.getItems().get(i));
           if (currentRoom.getShortDescription() == null)
             currentRoom.setDescription(currentRoom.getDescription());
           else
@@ -316,8 +328,8 @@ public class Game {
     boolean itemExists = false;
     for (int i = 0; i < player.getItems().size(); i++) {
       if (player.getItems().get(i).getName().equals(item)) {
-        player.getInventory().removeItem(currentRoom.getItems().get(i));
-        currentRoom.getInventory().addItem(currentRoom.getItems().get(i));
+        currentRoom.getInventory().addItem(player.getItems().get(i));
+        player.getInventory().removeItem(player.getItems().get(i));
         if (currentRoom.getShortDescription() == null)
           currentRoom.setDescription(currentRoom.getDescription() + currentRoom.getItems().get(i).getItemRoomDescription());
         else
@@ -337,7 +349,7 @@ public class Game {
    * @param item the item they want to put in the container
    * @param container the place to store that item
    */
-  private void putItemInContainer(String item, String container) {
+  private void putItemInContainer(String item, String container) { // FIX SO THAT YOU ADD ITEM TO CONTAINER INVENTORY BEFORE REMOVING IT FROM PLAYER INVENTORY
     boolean itemExists = false;
     boolean containerExists = false;
     boolean containerOpenable = false;
@@ -346,8 +358,8 @@ public class Game {
         for (int j = 0; j < player.getItems().size(); j++) {
           if (player.getItems().get(j).getName().equals(container)) {
             if (player.getItems().get(j).isOpenable()) {
-              player.getInventory().removeItem(player.getItems().get(i));
               player.getItems().get(j).getInventory().addItem(player.getItems().get(i));
+              player.getInventory().removeItem(player.getItems().get(i));
               System.out.println("You put your " + item + " in the " + container + ".");
               containerOpenable = true;
             }
@@ -365,7 +377,7 @@ public class Game {
       System.out.println("You can't open " + container + ".");
   }
 
-  private void takeItemFromContainer(String item, String container) {
+  private void takeItemFromContainer(String item, String container) { // FIX SO THAT YOU ADD ITEM TO CONTAINER INVENTORY BEFORE REMOVING IT FROM PLAYER INVENTORY
     boolean itemExists = false;
     boolean containerExists = false;
     boolean containerOpenable = false;
@@ -374,13 +386,13 @@ public class Game {
         if (player.getItems().get(i).isOpenable()) {
           for (int j = 0; j < player.getItems().get(i).getItems().size(); j++) {
             if (player.getItems().get(i).getItems().get(j).getName().equals(item)) {
-              player.getItems().get(i).getInventory().removeItem(player.getItems().get(j));
               boolean addItem = player.getInventory().addItem(player.getItems().get(j)); // maybe need to automatically drop the item if there is no room
               if (!addItem) {
                 System.out.println("The " + item + " was too heavy for you to hold.");
                 dropItem(item);
               } else
                 System.out.println("You took the " + item + " out of the " + container + ".");
+              player.getItems().get(i).getInventory().removeItem(player.getItems().get(j));
               itemExists = true;
             }
           }

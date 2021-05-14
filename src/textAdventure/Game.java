@@ -197,6 +197,18 @@ public class Game {
   private void commandHelp(ArrayList<String> command) {
     if (command.get(1).equals("go")){
       System.out.println("Allows you to move in the following directions: [North, South, East, West, Up, Down]");
+    } else if (command.get(1).equals("board")){
+      System.out.println("Helps you get onto a train.");
+    } else if (command.get(1).equals("take")){
+      System.out.println("Allows you to pick up items that you can use later.");
+    }  else if (command.get(1).equals("drop")){
+      System.out.println("Allows you to release items that you do not wish to hold onto anymore.");
+    } else if (command.get(1).equals("cast")){
+      System.out.println("Helps you make magical spells with your wand.");
+    } else if (command.get(1).equals("hit")){
+      System.out.println("Allows you to whack things around you.");
+    } else if (command.get(1).equals("open")){
+      System.out.println("Allows you to see what is inside of an object");
     } else if (command.get(1).equals("quit")){
       System.out.println("Ends the game. That's one way to go out!");
     } else if (command.get(1).equals("help")){
@@ -285,8 +297,8 @@ public class Game {
     boolean itemExists = false;
       for (int i = 0; i < currentRoom.getItems().size(); i++) {
         if (currentRoom.getItems().get(i).getName().equals(item)) {
-          currentRoom.getInventory().removeItem(currentRoom.getItems().get(i));
           player.getInventory().addItem(currentRoom.getItems().get(i));
+          currentRoom.getInventory().removeItem(currentRoom.getItems().get(i));
           System.out.println("Taken.");
 
           itemExists = true;
@@ -308,8 +320,8 @@ public class Game {
     boolean itemExists = false;
     for (int i = 0; i < player.getItems().size(); i++) {
       if (player.getItems().get(i).getName().equals(item)) {
-        player.getInventory().removeItem(currentRoom.getItems().get(i));
-        currentRoom.getInventory().addItem(currentRoom.getItems().get(i));
+        currentRoom.getInventory().addItem(player.getItems().get(i));
+        player.getInventory().removeItem(player.getItems().get(i));
         System.out.println("You dropped your " + item + " in the " + currentRoom.getRoomName());
         itemExists = true;
       }

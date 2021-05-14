@@ -90,7 +90,8 @@ public class Game {
       item.setWeight(weight);
       Boolean isOpenable = (Boolean) ((JSONObject) roomObj).get("isOpenable");
       item.setOpenable(isOpenable);
-      roomMap.get(roomId).addItem(item);
+      System.out.println(roomId);
+      roomMap.get(roomId).getInventory().addItem(item);
     }
   }
 
@@ -247,6 +248,13 @@ public class Game {
     }
   }
 
+  /**
+   * The player takes an item from the room.
+   * This checks if the item is actually in the room or not.
+   * The item leaves the room's inventory and goes into the player's inventory.
+   * If the item is not in the room's inventory, there is an error message and nothing happens.
+   * @param item the name of the item that player wants to take
+   */
   private void takeItem(String item) {
     boolean itemExists = false;
       for (int i = 0; i < currentRoom.getItems().size(); i++) {
@@ -263,10 +271,17 @@ public class Game {
           // Maybe make it so that if the item exists in the game then it says the above, otherwise say something else.
   }
 
+  /**
+   * The player drops an item into the room.
+   * This checks if the item is actually in the player's inventory or not.
+   * The item leaves the player's inventory and goes into the room's inventory.
+   * If the item is not in the player's inventory, there is an error message and nothing happens.
+   * @param item the name of the item the player wants to drop
+   */
   private void dropItem(String item) {
     boolean itemExists = false;
-    for (int i = 0; i < currentRoom.getItems().size(); i++) {
-      if (currentRoom.getItems().get(i).getName().equals(item)) {
+    for (int i = 0; i < player.getItems().size(); i++) {
+      if (player.getItems().get(i).getName().equals(item)) {
         player.getInventory().removeItem(currentRoom.getItems().get(i));
         currentRoom.getInventory().addItem(currentRoom.getItems().get(i));
         System.out.println("You dropped your " + item + " in the " + currentRoom.getRoomName());
@@ -278,6 +293,12 @@ public class Game {
         // Maybe make it so that if the item exists in the game then it says the above, otherwise say something else.
   }
 
+  /**
+   * The player puts an item from their inventory into a container (ex. backpack) in their inventory
+   * If the item or container do not exist or are not in the player's inventory, then there is an error message
+   * @param item the item they want to put in the container
+   * @param container the place to store that item
+   */
   private void putItemInContainer(String item, String container) {
     boolean itemExists = false;
     boolean containerExists = false;
@@ -304,5 +325,37 @@ public class Game {
       System.out.println("You don't have " + container + ".");
     else if (!containerOpenable)
       System.out.println("You can't open " + container + ".");
+  }
+
+  private void takeItemFromContainer(String item, String container) {
+    boolean itemExists = false;
+    boolean containerExists = false;
+    boolean containerOpenable = false;
+    for (int i = 0; i < player.getItems().size(); i++) {
+      if (player.getItems().get(i).getName().equals(container)) {
+        if (player.getItems().get(i).isOpenable()) {
+          for (int j = 0; j < player.getItems().get(i).getItems().size(); j++) {
+            if (player.getItems().get(i).getItems().get(j).getName().equals(item)) {
+              player.getItems().get(i).getInventory().removeItem(player.getItems().get(j));
+              boolean addItem = player.getInventory().addItem(player.getItems().get(j)); // maybe need to automatically drop the item if there is no room
+              if (!addItem) {
+                System.out.println("The " + item + " was too heavy for you to hold.");
+                dropItem(item);
+              } else
+                System.out.println("You took the " + item + " out of the " + container + ".");
+              itemExists = true;
+            }
+          }
+          containerOpenable = true;
+        }
+        containerExists = true;
+      }
+    }
+    if (!containerExists)
+      System.out.println("You don't have " + container + ".");
+    else if (!containerOpenable)
+      System.out.println("You can't open " + container + ".");
+    else if (!itemExists)
+      System.out.println("You don't have " + item + " in the " + container + ".");
   }
 }

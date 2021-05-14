@@ -1,5 +1,7 @@
 package textAdventure;
 
+import java.util.ArrayList;
+
 public class Item extends OpenableObject {
   private long weight;
   private String name;
@@ -18,6 +20,15 @@ public class Item extends OpenableObject {
     this.name = name;
     this.isOpenable = true;
     this.inventory = new Inventory(maxWeight);
+  }
+
+  public ArrayList<Item> getItems() {
+    if (!isOpenable) {
+      System.out.println("The");
+      return null;
+    }
+    else
+      return inventory.getItems();
   }
 
   public Inventory getInventory() {

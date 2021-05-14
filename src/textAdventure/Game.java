@@ -134,7 +134,6 @@ public class Game {
     if (command.size() < 1)
       System.out.println("I don't know what you mean...");
     else {
-    //if (command.size() <= 2) { // command is 2 words or less (but above 0 words)
       if (command.get(0).equals("help"))
         printHelp();
       else if (command.get(0).equals("go"))
@@ -148,21 +147,22 @@ public class Game {
         System.out.println("Do you really think you should be eating at a time like this?");
       else if (command.get(0).equals("board"))
         boardTrain(command);
-      else if (command.get(0).equals("take"))
+      else if (command.size() <= 2 && command.get(0).equals("take"))
         takeItem(command.get(1));
       else if (command.get(0).equals("drop"))
         dropItem(command.get(1));
       else if (command.get(0).equals("run"))
         runWall(command);
-      else {
+      else if (command.get(0).equals("put") || command.get(0).equals("place"))
+        putItemInContainer(command.get(1), command.get(3));
+      else if (command.size() > 2 && command.get(0).equals("take")) {
+        if (command.get(2).equals("from"))
+          takeItemFromContainer(command.get(1), command.get(3));
+        else 
+          takeItemFromContainer(command.get(1), command.get(4));
+      } else {
         System.out.println("You can't do that.");
       }
-    //}
-    //if (command.size() <= 4) { // command is under 5 words (but above 0 words)
-
-    //} else { // command is over 4 words
-      //System.out.println("You can't do that.");
-    //}
     }
     return false;
   }

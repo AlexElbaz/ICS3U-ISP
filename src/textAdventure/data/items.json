@@ -1,9 +1,15 @@
 {
     "items": [
         {
-            "name": "Book of Spells",
+            "name": "book",
             "room": "DarkMatterClass",
             "weight": 10,
+            "isOpenable": true
+        },
+        {
+            "name": "pot",
+            "room": "Kitchen",
+            "weight": 99,
             "isOpenable": true
         },
         {
@@ -27,7 +33,7 @@
             "itemRoomDescription": "There is a flute on the ground. "
         },
         {
-            "name": "invisibility cloak",
+            "name": "cloak",
             "room": "Room",
             "weight": 20,
             "isOpenable": false

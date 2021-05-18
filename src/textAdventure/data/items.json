@@ -7,13 +7,13 @@
             "isOpenable": true
         },
         {
-            "name": "Charm",
+            "name": "charm",
             "room": "CharmsClass",
             "weight": 2,
             "isOpenable": false
         },
         {
-            "name": "Gillyweed",
+            "name": "gillyweed",
             "room": "PotionsStorage",
             "weight": 2,
             "isOpenable": false,
@@ -27,7 +27,7 @@
             "itemRoomDescription": "There is a flute on the ground. "
         },
         {
-            "name": "Invisibility Cloak",
+            "name": "invisibility cloak",
             "room": "Room",
             "weight": 20,
             "isOpenable": false

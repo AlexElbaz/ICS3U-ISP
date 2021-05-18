@@ -383,6 +383,7 @@
       "id": "MusicRoom",
       "name": "Music Room",
       "description": "You are in an empty music room. Instruments surround you. ",
+      "shortDescription": "You are in an empty music room. Instruments surround you. ",
       "exits": [
         {
           "isLocked": false,

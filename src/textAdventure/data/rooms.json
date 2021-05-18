@@ -360,6 +360,11 @@
         },
         {
           "isLocked": false,
+          "direction": "East",
+          "adjacentRoom": "Gym"
+        },
+        {
+          "isLocked": false,
           "direction": "South",
           "adjacentRoom": "MusicRoom"
         },
@@ -367,6 +372,18 @@
           "isLocked": false,
           "direction": "West",
           "adjacentRoom": "Kitchen"
+        }
+      ]
+    },
+    {
+      "id": "Gym",
+      "name": "Gym",
+      "description": "You walk into a gym filled with bodybuilders. You see workout equipment every where. ",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "West",
+          "adjacentRoom": "Hallway11"
         }
       ]
     },
@@ -828,8 +845,7 @@
           "direction": "South",
           "adjacentRoom": "GillyWeedRoom"
         }
-      ],
-      "charm": "charm... "
+      ]
     },
     {
       "id": "MirrorRoom",

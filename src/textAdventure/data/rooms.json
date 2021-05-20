@@ -811,11 +811,6 @@
       "shortDescription": "You are in an empty room and see a magical plant in the middle. It sways in the wind. A fly flies by and the plant aggresively strangles it to death. ",
       "exits": [
         {
-          "isLocked": true,
-          "direction": "North",
-          "adjacentRoom": "FlyingWingsGame"
-        },
-        {
           "isLocked": false,
           "direction": "South",
           "adjacentRoom": "3HeadedDog"

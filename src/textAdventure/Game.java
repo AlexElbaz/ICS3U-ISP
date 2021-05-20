@@ -103,6 +103,15 @@ public class Game {
       item.setItemRoomDescription(itemRoomDescription);
       System.out.println(roomId); // delete this
       roomMap.get(roomId).getInventory().addItem(item);
+
+      if (((JSONObject) roomObj).get("spells") != null) {
+        JSONArray jsonSpells = (JSONArray) ((JSONObject) roomObj).get("spells");
+        ArrayList<String> spells = new ArrayList<String>();
+        for (Object spell : jsonSpells) {
+          spells.add((String) spell);
+        }
+        item.setSpells(spells);
+      }
     }
   }
 
@@ -144,9 +153,9 @@ public class Game {
   private boolean processCommand(ArrayList<String> command) {
     if (command.size() < 1)
       System.out.println("I don't know what you mean...");
-    else {
+    if (command.size() <= 3) {
       if (command.get(0).equals("inventory"))
-        player.getInventory().viewInventory();
+        System.out.println(player.getInventory().viewInventory());
       else if (command.get(0).equals("help"))
         printHelp(command);
       else if (command.get(0).equals("go"))
@@ -160,42 +169,52 @@ public class Game {
         System.out.println("Do you really think you should be eating at a time like this?");
       else if (command.get(0).equals("board"))
         boardTrain(command);
-      else if (command.size() <= 3 && command.get(0).equals("take")) {
+      else if (command.get(0).equals("take")) {
         if (command.size() == 1) // no second word
           System.out.println("Take what?");
         else
           takeItem(command.get(1));
-      } else if (command.get(0).equals("drop"))
-          if (command.size() < 2) {
-            System.out.println("Drop what?");
-            return false;
-          } else
-            dropItem(command.get(1));
-      else if (command.get(0).equals("run"))
+      } else if (command.get(0).equals("drop")) {
+        if (command.size() < 2)
+          System.out.println("Drop what?");
+        else
+          dropItem(command.get(1));
+      } else if (command.get(0).equals("open")) {
+        openContainer(command);
+      } else if (command.get(0).equals("run"))
         runWall(command);
-      else if (command.get(0).equals("put") || command.get(0).equals("place"))
+      else if(command.get(0).equals("workout"))
+        workout();
+      else if(command.get(0).equals("cast")) {
+        if (player.getInventory().viewInventory().indexOf("book") > -1) {
+          if (command.get(1).equals("rictusempra"))
+            System.out.println("Haha you're tickling yourself!");
+          else if (command.get(1).equals("furnunculu"))
+            System.out.println("That just backfired, you covered yourself in boils!");
+          else if (command.get(1).equals("densaugeo"))
+            System.out.println("Ahhh now you have bunny like teeth! ");
+          else if (command.get(1).equals("incendio")) {
+            if (currentRoom.getRoomName().equals("Death Snare Plant")) {
+              System.out.println("You set the death snare on fire, shrinking its size down considerably. You burned a hole through the wall and you walked through it. ");
+              currentRoom = roomMap.get("FlyingWingsGame");
+              System.out.println(currentRoom.longDescription());
+            } else 
+              System.out.println("You consider lighting the room on fire, but you've decided not to. ");
+          }
+        } else
+          System.out.println("You don't have the book of spells so you can't cast any spells. ");
+        } else
+          System.out.println("You can't do that.");
+    } else if (command.size() > 3) {
+      if (command.get(0).equals("put") || command.get(0).equals("place"))
         putItemInContainer(command.get(1), command.get(3));
-      else if (command.size() > 2 && command.get(0).equals("take")) {
+      else if (command.get(0).equals("take")) {
         if (command.get(2).equals("from"))
           takeItemFromContainer(command.get(1), command.get(3));
         else 
           takeItemFromContainer(command.get(1), command.get(4));
-      }else if(command.get(0).equals("workout")){
-        if (currentRoom.getRoomName().equals("Gym")){
-          if(countWorkout != 0)
-            System.out.println("As you make your way over to the weights and look at the " + countWorkout + " empty protein shake bottle(s), the body builders applaud you.");
-          carryingCapacity += 10;
-          System.out.println("You lift with all your might as you realize youre getting stronger. You down a protein shake because you earned the extra 10 pounds you can hold in your inventory.");
-          countWorkout++;
-          player.getInventory().updateMaxWeight(carryingCapacity);
-        } else {
-          System.out.println("Make your way to the gym to get jacked!");
-        }
-
-      }
-       else {
+      } else
         System.out.println("You can't do that.");
-      }
     }
     return false;
   }
@@ -391,7 +410,7 @@ public class Game {
    * @param item the item they want to put in the container
    * @param container the place to store that item
    */
-  private void putItemInContainer(String item, String container) { // FIX SO THAT YOU ADD ITEM TO CONTAINER INVENTORY BEFORE REMOVING IT FROM PLAYER INVENTORY
+  private void putItemInContainer(String item, String container) {
     boolean itemExists = false;
     boolean containerExists = false;
     boolean containerOpenable = false;
@@ -420,7 +439,7 @@ public class Game {
       System.out.println("You can't open " + container + ".");
   }
 
-  private void takeItemFromContainer(String item, String container) { // FIX SO THAT YOU ADD ITEM TO CONTAINER INVENTORY BEFORE REMOVING IT FROM PLAYER INVENTORY
+  private void takeItemFromContainer(String item, String container) {
     boolean itemExists = false;
     boolean containerExists = false;
     boolean containerOpenable = false;
@@ -453,5 +472,44 @@ public class Game {
     else if (!itemExists)
       System.out.println("You don't have " + item + " in the " + container + ".");
   }
+
+  private void workout() {
+    if (currentRoom.getRoomName().equals("Gym")) {
+      if (countWorkout != 0)
+        System.out.println("As you make your way over to the weights yet again and look at the " + countWorkout + " empty protein shake bottle(s), the body builders applaud you.");
+      System.out.println("You lift with all your might and realize you're getting stronger. You down a protein shake. You earned that extra 10 pounds you can hold.");
+      carryingCapacity += 10;
+      player.getInventory().updateMaxWeight(carryingCapacity);
+      countWorkout++;
+    } else
+      System.out.println("You can't workout here. Make your way to the gym to get jacked!");
+  }
   
+  private void openContainer(ArrayList<String> command) {
+    for (int i = 0; i < player.getItems().size(); i++) {
+      if (player.getItems().get(i).getName().equals(command.get(1))) {
+        if (player.getItems().get(i).isOpenable())
+          player.getItems().get(i).open();
+      }
+    }
+  }
+
+  private boolean checkItem(String item) {
+    for (int i = 0; i < player.getItems().size(); i++) {
+      if (player.getItems().get(i).getName().equals(item)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  private boolean checkContainer(String container) {
+    for (int i = 0; i < player.getItems().size(); i++) {
+      if (player.getItems().get(i).getName().equals(container)) {
+        if (player.getItems().get(i).isOpenable())
+          return true;
+      }
+    }
+    return false;
+  }
 }

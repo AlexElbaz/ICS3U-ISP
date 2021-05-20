@@ -4,6 +4,7 @@
       "id": "TrainStation",
       "name": "Train Station",
       "description": "Hagrid leaves you all alone in a busy train station. You watch as the Weasleys run into the brick wall to the east. ",
+      "shortDescription": "Hagrid leaves you all alone in a busy train station. You watch as the Weasleys run into the brick wall to the east. ",
       "exits": [
         {
           "isLocked": false,
@@ -16,6 +17,7 @@
       "id": "TrainPlatform",
       "name": "Platform 9 3/4",
       "description": "You see the Hogwarts Express train and watch people board the train with their owls and luggage. ",
+      "shortDescription": "You see the Hogwarts Express train and watch people board the train with their owls and luggage.",
       "exits": [
         {
           "isLocked": false,
@@ -28,6 +30,7 @@
       "id": "DininghallTopLeft",
       "name": "Great Hall",
       "description": "You are in the Great Hall just after supper. Feel free to explore Hogwarts for the next few hours. ",
+      "shortDescription": "You are in the Great Hall just after supper. Feel free to explore Hogwarts for the next few hours. ",
       "exits": [
         {
           "isLocked": false,
@@ -46,6 +49,7 @@
       "id": "DininghallTopRight",
       "name": "Great Hall",
       "description": "You are still in the Great Hall. To the east, you see a door to the kitchen. It is unlocked. ",
+      "shortDescription": "You are still in the Great Hall. To the east, you see a door to the kitchen. It is unlocked. ",
       "exits": [
         {
           "isLocked": false,
@@ -68,6 +72,7 @@
       "id": "DininghallBottomLeft",
       "name": "Great Hall",
       "description": "Still in the Great Hall, you walk by Ron and Hermione. ",
+      "shortDescription": "Still in the Great Hall, you walk by Ron and Hermione. ",
       "exits": [
         {
           "isLocked": false,
@@ -85,6 +90,7 @@
       "id": "DininghallBottomRight",
       "name": "Great Hall",
       "description": "You are still in the Great Hall. To the south, you see a small sitting area. ",
+      "shortDescription": "You are still in the Great Hall. To the south, you see a small sitting area. ",
       "exits": [
         {
           "isLocked": false,
@@ -108,6 +114,7 @@
       "id": "SittingArea",
       "name": "Sitting Area",
       "description": "You are in a small sitting area, surrounded by plush chairs and couches. ",
+      "shortDescription": "You are in a small sitting area, surrounded by plush chairs and couches. ",
       "exits": [
         {
           "isLocked": false,
@@ -135,6 +142,7 @@
       "id": "Hallway13",
       "name": "Hallway",
       "description": "You are in a cramped hallway. ",
+      "shortDescription": "You are in a cramped hallway. ",
       "exits": [
         {
           "isLocked": true,
@@ -185,6 +193,7 @@
       "id": "Hallway12",
       "name": "Hallway",
       "description": "You are in a short hallway with plush chairs identical to the ones in the sitting area. ",
+      "shortDescription": "You are in a short hallway with plush chairs identical to the ones in the sitting area. ",
       "exits": [
         {
           "isLocked": false,
@@ -202,6 +211,7 @@
       "id": "Chapel",
       "name": "Chapel",
       "description": "You are in a chapel with high ceilings and rows of chairs. Sitting down in one, you look around more. You notice stained glass windows, interesting designs on the walls and what looks like a super cool bakery to the south. Thinking more about the bakery, you begin to notice the sweet smell of baking pastries and fall asleep by mistake... Oops!",
+      "shortDescription": "You are in a chapel with high ceilings and rows of chairs. Sitting down in one, you look around more. You notice stained glass windows, interesting designs on the walls and what looks like a super cool bakery to the south. Thinking more about the bakery, you begin to notice the sweet smell of baking pastries and fall asleep by mistake... Oops!",
       "exits": [
         {
           "isLocked": false,
@@ -219,6 +229,7 @@
       "id": "Stairs1",
       "name": "Staircase",
       "description": "You are at the bottom of a tall a staircase. ",
+      "shortDescription": "You are at the bottom of a tall a staircase. ",
       "exits": [
         {
           "isLocked": false,
@@ -236,6 +247,7 @@
       "id": "BakeHouse",
       "name": "Bake House",
       "description": "You are surrounded by ovens and more importantly pastries. Unfortunately, the pastries are not for you and are probably poisoned. Taking a bite of one anyway, you realize it is inedible and are very sad. So the real question is: what produced the sweet scent you enjoyed in the chapel?",
+      "shortDescription": "You are surrounded by ovens and more importantly pastries. Unfortunately, the pastries are not for you and are probably poisoned. Taking a bite of one anyway, you realize it is inedible and are very sad. So the real question is: what produced the sweet scent you enjoyed in the chapel?",
       "exits": [
         {
           "isLocked": false,
@@ -248,6 +260,7 @@
       "id": "Hallway12",
       "name": "Hallway",
       "description": "You are in a short hallway with plush chairs identical to the ones in the sitting area. ",
+      "shortDescription": "You are in a short hallway with plush chairs identical to the ones in the sitting area. ",
       "exits": [
         {
           "isLocked": false,
@@ -283,6 +296,7 @@
       "id": "Hallway11",
       "name": "Hallway",
       "description": "You are in a long hallway. ",
+      "shortDescription": "You are in a long hallway. ",
       "exits": [
         {
           "isLocked": false,
@@ -305,6 +319,7 @@
       "id": "Outside",
       "name": "Outside",
       "description": "You step outside. The grey sky, dull field and lack of anything fun is catching your eyes. You are having such a great time looking at nothing, watching the grass grow and the paint on the side of the building dry. You are relaxed, recharged, refreshed. You have decided that going outside made this day the best day of your life. Wait... why am I here again? To your surprise, going outside got old fast. You are now bored beyond belief, and want to go inside so badly, but it's almost as if a magical force is holding you here.. ",
+      "shortDescription": "You step outside. The grey sky, dull field and lack of anything fun is catching your eyes. You are having such a great time looking at nothing, watching the grass grow and the paint on the side of the building dry. You are relaxed, recharged, refreshed. You have decided that going outside made this day the best day of your life. Wait... why am I here again? To your surprise, going outside got old fast. You are now bored beyond belief, and want to go inside so badly, but it's almost as if a magical force is holding you here.. ",
       "exits": [
         {
           "isLocked": false,
@@ -317,6 +332,7 @@
       "id": "MusicRoom",
       "name": "Music Room",
       "description": "You are in an empty music room. Instruments surround you. ",
+      "shortDescription": "You are in an empty music room. Instruments surround you. ",
       "exits": [
         {
           "isLocked": false,
@@ -335,6 +351,7 @@
       "id": "Kitchen",
       "name": "Kitchen",
       "description": "You are in a large kitchen, surrounded by pots and pans. ",
+      "shortDescription": "You are in a large kitchen. ",
       "exits": [
         {
           "isLocked": false,
@@ -352,6 +369,7 @@
       "id": "Hallway11",
       "name": "Hallway",
       "description": "You are in a long hallway. ",
+      "shortDescription": "You are in a long hallway. ",
       "exits": [
         {
           "isLocked": false,
@@ -379,6 +397,7 @@
       "id": "Gym",
       "name": "Gym",
       "description": "You walk into a gym filled with bodybuilders. You see workout equipment every where. ",
+      "shortDescription": "You walk into a gym filled with bodybuilders. You see workout equipment every where. ",
       "exits": [
         {
           "isLocked": false,
@@ -391,6 +410,7 @@
       "id": "Outside",
       "name": "Outside",
       "description": "You step outside. The grey sky, dull field and lack of anything fun is catching your eyes. You are having such a great time looking at nothing, watching the grass grow and the paint on the side of the building dry. You are relaxed, recharged, refreshed. You have decided that going outside made this day the best day of your life. Wait... why am I here again? To your supprise, going outside got old fast. You are now bored beyond belief, and want to go inside so badly, but it's almost as if a magical force is holding you here. ",
+      "shortDescription": "You step outside. The grey sky, dull field and lack of anything fun is catching your eyes. You are having such a great time looking at nothing, watching the grass grow and the paint on the side of the building dry. You are relaxed, recharged, refreshed. You have decided that going outside made this day the best day of your life. Wait... why am I here again? To your supprise, going outside got old fast. You are now bored beyond belief, and want to go inside so badly, but it's almost as if a magical force is holding you here. ",
       "exits": [
         {
           "isLocked": false,
@@ -436,6 +456,7 @@
       "id": "Stairs2",
       "name": "Stairs",
       "description": "You are in the stairway. The walls are filled with portraits from the olden days. There's a stair landing up ahead. ",
+      "shortDescription": "You are in the stairway. The walls are filled with portraits from the olden days. There's a stair landing up ahead. ",
       "exits": [
         {
           "isLocked": false,
@@ -453,6 +474,7 @@
       "id": "StairLanding",
       "name": "Stair Landing",
       "description": "You are standing in the stair landing. You see dark mysterious hallways to your east and west. ",
+      "shortDescription": "You are standing in the stair landing. You see dark mysterious hallways to your east and west. ",
       "exits": [
         {
           "isLocked": false,
@@ -475,6 +497,7 @@
       "id": "Hallway20",
       "name": "Hallway",
       "description": "The hallway is awfully long. The light shines through the north facing windows and shines directly onto the door to the Charms class. The door is creeked open. ",
+      "shortDescription": "The hallway is awfully long. The light shines through the north facing windows and shines directly onto the door to the Charms class. The door is creeked open. ",
       "exits": [
         {
           "isLocked": false,
@@ -515,6 +538,7 @@
       "id": "AstronomyClassBottomRight",
       "name": "Astronomy Classroom",
       "description": "The room is dimly lit. You see a dusty globe that looks untouched. ",
+      "shortDescription": "The room is dimly lit.",
       "exits": [
         {
           "isLocked": false,
@@ -532,6 +556,7 @@
       "id": "AstronomyClassBottomLeft",
       "name": "Astronomy Classroom",
       "description": "You see a model of the solar system in front of you. The center of the sun is glowing. ",
+      "shortDescription": "You see a model of the solar system in front of you. The center of the sun is glowing. ",
       "exits": [
         {
           "isLocked": false,
@@ -549,6 +574,7 @@
       "id": "AstronomyClassTopLeft",
       "name": "Astronomy Classroom",
       "description": "Nothing much to see here. Just a few bookshelves filled with astronomy books. ",
+      "shortDescription": "Nothing much to see here. Just a few bookshelves filled with astronomy books. ",
       "exits": [
         {
           "isLocked": false,
@@ -566,6 +592,7 @@
       "id": "AstronomyClassTopRight",
       "name": "Astronomy Class",
       "description": "There's a golden telescope in front of you. It points towards the direction of the Gryffindor Dormitory. ",
+      "shortDescription": "You look out the window looking at the Gryffindor Dormitory. ",
       "exits": [
         {
           "isLocked": false,
@@ -596,6 +623,7 @@
       "id": "FunnyDeathRoom",
       "name": "Funny Death Room",
       "description": "[description] You died. ",
+      "shortDescription": "[description] You died. ",
       "exits": [
         {
           "isLocked": false,
@@ -608,6 +636,7 @@
       "id": "Hallway21",
       "name": "Hallway",
       "description": "Walking in a hallway. ",
+      "shortDescription": "Walking in a hallway. ",
       "exits": [
         {
           "isLocked": false,
@@ -653,6 +682,7 @@
       "id": "Tunnel",
       "name": "Tunnel",
       "description": "You are in a very dark tunnel with a few lights that flicker. ",
+      "shortDescription": "You are in a very dark tunnel with a few lights that flicker. ",
       "exits": [
         {
           "isLocked": false,
@@ -670,6 +700,7 @@
       "id": "RoomOfWisdom",
       "name": "Room of Wisdom",
       "description": "",
+      "shortDescription": "",
       "exits": [
         {
           "isLocked": false,
@@ -680,13 +711,15 @@
       "hints": [
         "As you walk into this mysterious room, everything seems normal at first until you hear many voices arguing over each other. Suddenly, the room fills with loud voices. You pick up a few things they are saying, I had an apple for lunch, the flute puts the three headed dog to sleep, and search in the music closet. ",
         "You walk into this boring room until you come face to face with a... thing. It tells you that hogwarts is a dangerous place, and to not enter the tunnel until you are ready. ",
-        "DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. "
+        "DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. DON'T. FORGET. THE. GILLYWEED. ", 
+        "As you walk into the room, a lovely fellow in the newspaper on the wall catches your attention and says, \"The incendio spell shrinks the death snare by a considerable size for a few seconds. If you are ever faced with it, think fast and follow your gut.\" What a silly man!"
       ]
     },
     {
       "id": "Hallway22",
       "name": "Hallway",
       "description": "You see a small door, but looks like it's all boarded up. At the end of the hallway you see a glass door leading to the outside. ",
+      "shortDescription": "You see a small door, but looks like it's all boarded up. At the end of the hallway you see a glass door leading to the outside. ",
       "exits": [
         {
           "isLocked": true,
@@ -709,18 +742,7 @@
       "id": "Balcony",
       "name": "Balcony",
       "description": "Ooh its chilly outside. You better go back inside before the wind picks up. ",
-      "exits": [
-        {
-          "isLocked": false,
-          "direction": "West",
-          "adjacentRoom": "Hallway22"
-        }
-      ]
-    },
-    {
-      "id": "Balcony",
-      "name": "Balcony",
-      "description": "Ooh its chilly outside. You better go back inside before the wind picks up. ",
+      "shortDescription": "Ooh its chilly outside. You better go back inside before the wind picks up. ",
       "exits": [
         {
           "isLocked": false,
@@ -733,6 +755,7 @@
       "id": "StorageRoom",
       "name": "Storage Room",
       "description": "You are in a cob-webby storage room. You see a shiny key ring in the corner of your eye. ",
+      "shortDescription": "You are in a cob-webby storage room. You see a shiny key ring in the corner of your eye. ",
       "exits": [
         {
           "isLocked": false,
@@ -750,6 +773,7 @@
       "id": "Tunnel2",
       "name": "Tunnel2",
       "description": "You are in a torch-lit tunnel. It looks abandoned and it feels like the walls are closing in on you. ",
+      "shortDescription": "You are in a torch-lit tunnel. It looks abandoned and it feels like the walls are closing in on you. ",
       "exits": [
         {
           "isLocked": true,
@@ -766,7 +790,8 @@
     {
       "id": "3HeadedDog",
       "name": "3 Headed Dog",
-      "description": "You hear the dogs snoring peacefully. YOu walk closer and the snoring intensifies. The ground greeks and the dog starts to growl at you. It's barking viciously in your face. ",
+      "description": "You hear the dogs snoring peacefully. You walk closer and the snoring intensifies. The ground greeks and the dog starts to growl at you. It's barking viciously in your face. ",
+      "shortDescription": "You hear the dogs snoring peacefully. You walk closer and the snoring intensifies. The ground greeks and the dog starts to growl at you. It's barking viciously in your face. ",
       "exits": [
         {
           "isLocked": true,
@@ -784,12 +809,8 @@
       "id": "DeathSnarePlant",
       "name": "Death Snare Plant",
       "description": "You are in an empty room and see a magical plant in the middle. It sways in the wind. A fly flies by and the plant aggresively strangles it to death. ",
+      "shortDescription": "You are in an empty room and see a magical plant in the middle. It sways in the wind. A fly flies by and the plant aggresively strangles it to death. ",
       "exits": [
-        {
-          "isLocked": true,
-          "direction": "North",
-          "adjacentRoom": "FlyingWingsGame"
-        },
         {
           "isLocked": false,
           "direction": "South",
@@ -801,6 +822,7 @@
       "id": "FlyingWingsGame",
       "name": "Flying Wings Game",
       "description": "You are in an empty room and see a magical plant in the middle. A fly flies by and the plant aggresively strangles it to death. You're going to need something to disguise yourself in. ",
+      "shortDescription": "You are in an empty room and see a magical plant in the middle. A fly flies by and the plant aggresively strangles it to death. You're going to need something to disguise yourself in. ",
       "exits": [
         {
           "isLocked": true,
@@ -818,6 +840,7 @@
       "id": "GillyWeedRoom",
       "name": "Room",
       "description": "The room is small and windowless. A stream of water from the faucet on the wall starts to pick up speed. Looks like water is going to fill up the room soon!",
+      "shortDescription": "The room is small and windowless. A stream of water from the faucet on the wall starts to pick up speed. Looks like water is going to fill up the room soon!",
       "exits": [
         {
           "isLocked": true,
@@ -835,6 +858,7 @@
       "id": "BoggartRoom",
       "name": "Room",
       "description": "You see a tall wooden chest. The door swings open violently and the spirit lurks around the room. The spirit whips around the corner and is coming to attack your face. ",
+      "shortDescription": "You see a tall wooden chest. The door swings open violently and the spirit lurks around the room. The spirit whips around the corner and is coming to attack your face. ",
       "exits": [
         {
           "isLocked": true,
@@ -852,6 +876,7 @@
       "id": "MirrorRoom",
       "name": "Room",
       "description": "[end of game] Congradulations! You made it to the end of the game without dying. You're a wizard!",
+      "shortDescription": "[end of game] Congradulations! You made it to the end of the game without dying. You're a wizard!",
       "exits": [
         {
           "isLocked": false,

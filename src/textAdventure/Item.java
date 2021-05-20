@@ -8,6 +8,7 @@ public class Item extends OpenableObject {
   private boolean isOpenable;
   private Inventory inventory;
   private String itemRoomDescription;
+  private ArrayList<String> spells;
 
   public Item(int weight, String name) {
     this.weight = weight;
@@ -83,4 +84,7 @@ public class Item extends OpenableObject {
     this.isOpenable = isOpenable;
   }
 
+  public void setSpells(ArrayList<String> spells) {
+    this.spells = spells;
+  }
 }

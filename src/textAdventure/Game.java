@@ -141,7 +141,7 @@ public class Game {
       System.out.println("I don't know what you mean...");
     else {
       if (command.get(0).equals("inventory"))
-        player.getInventory().viewInventory();
+        System.out.println(player.getInventory().viewInventory());
       else if (command.get(0).equals("help"))
         printHelp(command);
       else if (command.get(0).equals("go"))

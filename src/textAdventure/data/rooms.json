@@ -4,6 +4,7 @@
       "id": "TrainStation",
       "name": "Train Station",
       "description": "Hagrid leaves you all alone in a busy train station. You watch as the Weasleys run into the brick wall to the east. ",
+      "shortDescription": "Hagrid leaves you all alone in a busy train station. You watch as the Weasleys run into the brick wall to the east. ",
       "exits": [
         {
           "isLocked": false,
@@ -16,6 +17,7 @@
       "id": "TrainPlatform",
       "name": "Platform 9 3/4",
       "description": "You see the Hogwarts Express train and watch people board the train with their owls and luggage. ",
+      "shortDescription": "You see the Hogwarts Express train and watch people board the train with their owls and luggage.",
       "exits": [
         {
           "isLocked": false,
@@ -28,6 +30,7 @@
       "id": "DininghallTopLeft",
       "name": "Great Hall",
       "description": "You are in the Great Hall just after supper. Feel free to explore Hogwarts for the next few hours. ",
+      "shortDescription": "You are in the Great Hall just after supper. Feel free to explore Hogwarts for the next few hours. ",
       "exits": [
         {
           "isLocked": false,
@@ -46,6 +49,7 @@
       "id": "DininghallTopRight",
       "name": "Great Hall",
       "description": "You are still in the Great Hall. To the east, you see a door to the kitchen. It is unlocked. ",
+      "shortDescription": "You are still in the Great Hall. To the east, you see a door to the kitchen. It is unlocked. ",
       "exits": [
         {
           "isLocked": false,
@@ -68,6 +72,7 @@
       "id": "DininghallBottomLeft",
       "name": "Great Hall",
       "description": "Still in the Great Hall, you walk by Ron and Hermione. ",
+      "shortDescription": "Still in the Great Hall, you walk by Ron and Hermione. ",
       "exits": [
         {
           "isLocked": false,
@@ -85,6 +90,7 @@
       "id": "DininghallBottomRight",
       "name": "Great Hall",
       "description": "You are still in the Great Hall. To the south, you see a small sitting area. ",
+      "shortDescription": "You are still in the Great Hall. To the south, you see a small sitting area. ",
       "exits": [
         {
           "isLocked": false,
@@ -108,6 +114,7 @@
       "id": "SittingArea",
       "name": "Sitting Area",
       "description": "You are in a small sitting area, surrounded by plush chairs and couches. ",
+      "shortDescription": "You are in a small sitting area, surrounded by plush chairs and couches. ",
       "exits": [
         {
           "isLocked": false,
@@ -135,6 +142,7 @@
       "id": "Hallway13",
       "name": "Hallway",
       "description": "You are in a cramped hallway. ",
+      "shortDescription": "You are in a cramped hallway. ",
       "exits": [
         {
           "isLocked": true,
@@ -185,6 +193,7 @@
       "id": "Hallway12",
       "name": "Hallway",
       "description": "You are in a short hallway with plush chairs identical to the ones in the sitting area. ",
+      "shortDescription": "You are in a short hallway with plush chairs identical to the ones in the sitting area. ",
       "exits": [
         {
           "isLocked": false,
@@ -202,6 +211,7 @@
       "id": "Chapel",
       "name": "Chapel",
       "description": "You are in a chapel with high ceilings and rows of chairs. Sitting down in one, you look around more. You notice stained glass windows, interesting designs on the walls and what looks like a super cool bakery to the south. Thinking more about the bakery, you begin to notice the sweet smell of baking pastries and fall asleep by mistake... Oops!",
+      "shortDescription": "You are in a chapel with high ceilings and rows of chairs. Sitting down in one, you look around more. You notice stained glass windows, interesting designs on the walls and what looks like a super cool bakery to the south. Thinking more about the bakery, you begin to notice the sweet smell of baking pastries and fall asleep by mistake... Oops!",
       "exits": [
         {
           "isLocked": false,
@@ -219,6 +229,7 @@
       "id": "Stairs1",
       "name": "Staircase",
       "description": "You are at the bottom of a tall a staircase. ",
+      "shortDescription": "You are at the bottom of a tall a staircase. ",
       "exits": [
         {
           "isLocked": false,
@@ -236,6 +247,7 @@
       "id": "BakeHouse",
       "name": "Bake House",
       "description": "You are surrounded by ovens and more importantly pastries. Unfortunately, the pastries are not for you and are probably poisoned. Taking a bite of one anyway, you realize it is inedible and are very sad. So the real question is: what produced the sweet scent you enjoyed in the chapel?",
+      "shortDescription": "You are surrounded by ovens and more importantly pastries. Unfortunately, the pastries are not for you and are probably poisoned. Taking a bite of one anyway, you realize it is inedible and are very sad. So the real question is: what produced the sweet scent you enjoyed in the chapel?",
       "exits": [
         {
           "isLocked": false,
@@ -248,6 +260,7 @@
       "id": "Hallway12",
       "name": "Hallway",
       "description": "You are in a short hallway with plush chairs identical to the ones in the sitting area. ",
+      "shortDescription": "You are in a short hallway with plush chairs identical to the ones in the sitting area. ",
       "exits": [
         {
           "isLocked": false,
@@ -283,6 +296,7 @@
       "id": "Hallway11",
       "name": "Hallway",
       "description": "You are in a long hallway. ",
+      "shortDescription": "You are in a long hallway. ",
       "exits": [
         {
           "isLocked": false,
@@ -305,6 +319,7 @@
       "id": "Outside",
       "name": "Outside",
       "description": "You step outside. The grey sky, dull field and lack of anything fun is catching your eyes. You are having such a great time looking at nothing, watching the grass grow and the paint on the side of the building dry. You are relaxed, recharged, refreshed. You have decided that going outside made this day the best day of your life. Wait... why am I here again? To your surprise, going outside got old fast. You are now bored beyond belief, and want to go inside so badly, but it's almost as if a magical force is holding you here.. ",
+      "shortDescription": "You step outside. The grey sky, dull field and lack of anything fun is catching your eyes. You are having such a great time looking at nothing, watching the grass grow and the paint on the side of the building dry. You are relaxed, recharged, refreshed. You have decided that going outside made this day the best day of your life. Wait... why am I here again? To your surprise, going outside got old fast. You are now bored beyond belief, and want to go inside so badly, but it's almost as if a magical force is holding you here.. ",
       "exits": [
         {
           "isLocked": false,
@@ -317,6 +332,7 @@
       "id": "MusicRoom",
       "name": "Music Room",
       "description": "You are in an empty music room. Instruments surround you. ",
+      "shortDescription": "You are in an empty music room. Instruments surround you. ",
       "exits": [
         {
           "isLocked": false,
@@ -335,6 +351,7 @@
       "id": "Kitchen",
       "name": "Kitchen",
       "description": "You are in a large kitchen, surrounded by pots and pans. ",
+      "shortDescription": "You are in a large kitchen. ",
       "exits": [
         {
           "isLocked": false,
@@ -352,6 +369,7 @@
       "id": "Hallway11",
       "name": "Hallway",
       "description": "You are in a long hallway. ",
+      "shortDescription": "You are in a long hallway. ",
       "exits": [
         {
           "isLocked": false,
@@ -379,6 +397,7 @@
       "id": "Gym",
       "name": "Gym",
       "description": "You walk into a gym filled with bodybuilders. You see workout equipment every where. ",
+      "shortDescription": "You walk into a gym filled with bodybuilders. You see workout equipment every where. ",
       "exits": [
         {
           "isLocked": false,
@@ -391,6 +410,7 @@
       "id": "Outside",
       "name": "Outside",
       "description": "You step outside. The grey sky, dull field and lack of anything fun is catching your eyes. You are having such a great time looking at nothing, watching the grass grow and the paint on the side of the building dry. You are relaxed, recharged, refreshed. You have decided that going outside made this day the best day of your life. Wait... why am I here again? To your supprise, going outside got old fast. You are now bored beyond belief, and want to go inside so badly, but it's almost as if a magical force is holding you here. ",
+      "shortDescription": "You step outside. The grey sky, dull field and lack of anything fun is catching your eyes. You are having such a great time looking at nothing, watching the grass grow and the paint on the side of the building dry. You are relaxed, recharged, refreshed. You have decided that going outside made this day the best day of your life. Wait... why am I here again? To your supprise, going outside got old fast. You are now bored beyond belief, and want to go inside so badly, but it's almost as if a magical force is holding you here. ",
       "exits": [
         {
           "isLocked": false,

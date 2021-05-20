@@ -29,7 +29,7 @@ public class Game {
       player = new Character(new Inventory(carryingCapacity));
       initRooms("src\\textAdventure\\data\\rooms.json");
       initItems("src\\textAdventure\\data\\items.json");
-      currentRoom = roomMap.get("TrainStation");
+      currentRoom = roomMap.get("DarkMatterClass");
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -98,6 +98,15 @@ public class Game {
       item.setItemRoomDescription(itemRoomDescription);
       System.out.println(roomId); // delete this
       roomMap.get(roomId).getInventory().addItem(item);
+
+      if (((JSONObject) roomObj).get("spells") != null) {
+        JSONArray jsonSpells = (JSONArray) ((JSONObject) roomObj).get("spells");
+        ArrayList<String> spells = new ArrayList<String>();
+        for (Object spell : jsonSpells) {
+          spells.add((String) spell);
+        }
+        item.setSpells(spells);
+      }
     }
   }
 
@@ -187,6 +196,10 @@ public class Game {
           System.out.println("Make your way to the gym to get jacked!");
         }
 
+      }else if(command.get(0).equals("Rictusempra")){
+        if(player.getInventory().indexOf("book") > -1){
+          System.out.println("Haha you're tickling yourself!");
+        }
       }
        else {
         System.out.println("You can't do that.");

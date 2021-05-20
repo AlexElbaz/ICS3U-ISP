@@ -4,7 +4,15 @@
             "name": "book",
             "room": "DarkMatterClass",
             "weight": 10,
-            "isOpenable": true
+            "isOpenable": false,           
+            "spells": [ 
+            
+                "Fire making spell: 'Incendio' ",
+                "Covers target in boils: 'Furnunculu's ",
+                "Makes teeth grow quickly: 'Densaugeo' ",
+                "Tickle spell: 'Rictusempra' "
+              
+            ]
         },
         {
             "name": "pot",

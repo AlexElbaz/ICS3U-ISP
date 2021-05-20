@@ -160,7 +160,7 @@ public class Game {
         printHelp(command);
       else if (command.get(0).equals("go"))
         goRoom(command);
-      else if (command.get(0).equals("quit")) {
+      else if (command.get(0).equals("quit") || command.get(0).equals("exit")) {
         if (command.size() > 1)
           System.out.println("Quit what?");
         else
@@ -256,7 +256,7 @@ public class Game {
       System.out.println("Allows you to whack things around you.");
     } else if (command.get(1).equals("open")){
       System.out.println("Allows you to see what is inside of an object");
-    } else if (command.get(1).equals("quit")){
+    } else if (command.get(1).equals("quit") || command.get(1).equals("exit")){
       System.out.println("Ends the game. That's one way to go out!");
     } else if (command.get(1).equals("help")){
       System.out.println("Prints the help message.");

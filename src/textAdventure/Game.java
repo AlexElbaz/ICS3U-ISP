@@ -362,18 +362,18 @@ public class Game {
     for (int i = 0; i < currentRoom.getItems().size(); i++) {
       if (currentRoom.getItems().size() > 2) {
         if (i == 0)
-          items += "There is a " + currentRoom.getItems().get(i).getName() + ", ";
+          items += "You can see a " + currentRoom.getItems().get(i).getName() + ", ";
         else if (i < currentRoom.getItems().size() - 1)
           items += "a " + currentRoom.getItems().get(i).getName() + ", ";
         else
-          items += "and a " + currentRoom.getItems().get(i).getName() + " on the ground. ";
+          items += "and a " + currentRoom.getItems().get(i).getName() + " in the room. ";
       } else if (currentRoom.getItems().size() == 2) {
         if (i == 0)
-          items += "There is a " + currentRoom.getItems().get(i).getName() + " ";
+          items += "You can see a " + currentRoom.getItems().get(i).getName() + " ";
         else
-          items += "and a " + currentRoom.getItems().get(i).getName() + " on the ground. ";
+          items += "and a " + currentRoom.getItems().get(i).getName() + " in the room. ";
       } else if (currentRoom.getItems().size() == 1)
-        items += "There is a " + currentRoom.getItems().get(i).getName() + " on the ground. ";
+        items += "You can see a " + currentRoom.getItems().get(i).getName() + " in the room. ";
       
     }
     return items;

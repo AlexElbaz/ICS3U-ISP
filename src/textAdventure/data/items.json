@@ -45,6 +45,12 @@
             "room": "Room",
             "weight": 20,
             "isOpenable": false
+        },
+        {
+            "name": "globe",
+            "room": "AstronomyClassBottomRight",
+            "weight": 10,
+            "isOpenable": false
         }
     ]
 }

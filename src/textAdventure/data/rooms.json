@@ -423,6 +423,7 @@
       "id": "MusicRoom",
       "name": "Music Room",
       "description": "You are in an empty music room. Instruments surround you. ",
+      "shortDescription": "You are in an empty music room. Instruments surround you. ",
       "exits": [
         {
           "isLocked": false,
@@ -455,6 +456,7 @@
       "id": "Stairs2",
       "name": "Stairs",
       "description": "You are in the stairway. The walls are filled with portraits from the olden days. There's a stair landing up ahead. ",
+      "shortDescription": "You are in the stairway. The walls are filled with portraits from the olden days. There's a stair landing up ahead. ",
       "exits": [
         {
           "isLocked": false,
@@ -472,6 +474,7 @@
       "id": "StairLanding",
       "name": "Stair Landing",
       "description": "You are standing in the stair landing. You see dark mysterious hallways to your east and west. ",
+      "shortDescription": "You are standing in the stair landing. You see dark mysterious hallways to your east and west. ",
       "exits": [
         {
           "isLocked": false,
@@ -494,6 +497,7 @@
       "id": "Hallway20",
       "name": "Hallway",
       "description": "The hallway is awfully long. The light shines through the north facing windows and shines directly onto the door to the Charms class. The door is creeked open. ",
+      "shortDescription": "The hallway is awfully long. The light shines through the north facing windows and shines directly onto the door to the Charms class. The door is creeked open. ",
       "exits": [
         {
           "isLocked": false,
@@ -534,6 +538,7 @@
       "id": "AstronomyClassBottomRight",
       "name": "Astronomy Classroom",
       "description": "The room is dimly lit. You see a dusty globe that looks untouched. ",
+      "shortDescription": "The room is dimly lit.",
       "exits": [
         {
           "isLocked": false,
@@ -551,6 +556,7 @@
       "id": "AstronomyClassBottomLeft",
       "name": "Astronomy Classroom",
       "description": "You see a model of the solar system in front of you. The center of the sun is glowing. ",
+      "shortDescription": "You see a model of the solar system in front of you. The center of the sun is glowing. ",
       "exits": [
         {
           "isLocked": false,
@@ -568,6 +574,7 @@
       "id": "AstronomyClassTopLeft",
       "name": "Astronomy Classroom",
       "description": "Nothing much to see here. Just a few bookshelves filled with astronomy books. ",
+      "shortDescription": "Nothing much to see here. Just a few bookshelves filled with astronomy books. ",
       "exits": [
         {
           "isLocked": false,
@@ -585,6 +592,7 @@
       "id": "AstronomyClassTopRight",
       "name": "Astronomy Class",
       "description": "There's a golden telescope in front of you. It points towards the direction of the Gryffindor Dormitory. ",
+      "shortDescription": "You look out the window looking at the Gryffindor Dormitory. ",
       "exits": [
         {
           "isLocked": false,
@@ -615,6 +623,7 @@
       "id": "FunnyDeathRoom",
       "name": "Funny Death Room",
       "description": "[description] You died. ",
+      "shortDescription": "[description] You died. ",
       "exits": [
         {
           "isLocked": false,
@@ -627,6 +636,7 @@
       "id": "Hallway21",
       "name": "Hallway",
       "description": "Walking in a hallway. ",
+      "shortDescription": "Walking in a hallway. ",
       "exits": [
         {
           "isLocked": false,
@@ -672,6 +682,7 @@
       "id": "Tunnel",
       "name": "Tunnel",
       "description": "You are in a very dark tunnel with a few lights that flicker. ",
+      "shortDescription": "You are in a very dark tunnel with a few lights that flicker. ",
       "exits": [
         {
           "isLocked": false,
@@ -689,6 +700,7 @@
       "id": "RoomOfWisdom",
       "name": "Room of Wisdom",
       "description": "",
+      "shortDescription": "",
       "exits": [
         {
           "isLocked": false,
@@ -706,6 +718,7 @@
       "id": "Hallway22",
       "name": "Hallway",
       "description": "You see a small door, but looks like it's all boarded up. At the end of the hallway you see a glass door leading to the outside. ",
+      "shortDescription": "You see a small door, but looks like it's all boarded up. At the end of the hallway you see a glass door leading to the outside. ",
       "exits": [
         {
           "isLocked": true,
@@ -728,18 +741,7 @@
       "id": "Balcony",
       "name": "Balcony",
       "description": "Ooh its chilly outside. You better go back inside before the wind picks up. ",
-      "exits": [
-        {
-          "isLocked": false,
-          "direction": "West",
-          "adjacentRoom": "Hallway22"
-        }
-      ]
-    },
-    {
-      "id": "Balcony",
-      "name": "Balcony",
-      "description": "Ooh its chilly outside. You better go back inside before the wind picks up. ",
+      "shortDescription": "Ooh its chilly outside. You better go back inside before the wind picks up. ",
       "exits": [
         {
           "isLocked": false,
@@ -752,6 +754,7 @@
       "id": "StorageRoom",
       "name": "Storage Room",
       "description": "You are in a cob-webby storage room. You see a shiny key ring in the corner of your eye. ",
+      "shortDescription": "You are in a cob-webby storage room. You see a shiny key ring in the corner of your eye. ",
       "exits": [
         {
           "isLocked": false,
@@ -769,6 +772,7 @@
       "id": "Tunnel2",
       "name": "Tunnel2",
       "description": "You are in a torch-lit tunnel. It looks abandoned and it feels like the walls are closing in on you. ",
+      "shortDescription": "You are in a torch-lit tunnel. It looks abandoned and it feels like the walls are closing in on you. ",
       "exits": [
         {
           "isLocked": true,
@@ -785,7 +789,8 @@
     {
       "id": "3HeadedDog",
       "name": "3 Headed Dog",
-      "description": "You hear the dogs snoring peacefully. YOu walk closer and the snoring intensifies. The ground greeks and the dog starts to growl at you. It's barking viciously in your face. ",
+      "description": "You hear the dogs snoring peacefully. You walk closer and the snoring intensifies. The ground greeks and the dog starts to growl at you. It's barking viciously in your face. ",
+      "shortDescription": "You hear the dogs snoring peacefully. You walk closer and the snoring intensifies. The ground greeks and the dog starts to growl at you. It's barking viciously in your face. ",
       "exits": [
         {
           "isLocked": true,
@@ -803,6 +808,7 @@
       "id": "DeathSnarePlant",
       "name": "Death Snare Plant",
       "description": "You are in an empty room and see a magical plant in the middle. It sways in the wind. A fly flies by and the plant aggresively strangles it to death. ",
+      "shortDescription": "You are in an empty room and see a magical plant in the middle. It sways in the wind. A fly flies by and the plant aggresively strangles it to death. ",
       "exits": [
         {
           "isLocked": true,
@@ -820,6 +826,7 @@
       "id": "FlyingWingsGame",
       "name": "Flying Wings Game",
       "description": "You are in an empty room and see a magical plant in the middle. A fly flies by and the plant aggresively strangles it to death. You're going to need something to disguise yourself in. ",
+      "shortDescription": "You are in an empty room and see a magical plant in the middle. A fly flies by and the plant aggresively strangles it to death. You're going to need something to disguise yourself in. ",
       "exits": [
         {
           "isLocked": true,
@@ -837,6 +844,7 @@
       "id": "GillyWeedRoom",
       "name": "Room",
       "description": "The room is small and windowless. A stream of water from the faucet on the wall starts to pick up speed. Looks like water is going to fill up the room soon!",
+      "shortDescription": "The room is small and windowless. A stream of water from the faucet on the wall starts to pick up speed. Looks like water is going to fill up the room soon!",
       "exits": [
         {
           "isLocked": true,
@@ -854,6 +862,7 @@
       "id": "BoggartRoom",
       "name": "Room",
       "description": "You see a tall wooden chest. The door swings open violently and the spirit lurks around the room. The spirit whips around the corner and is coming to attack your face. ",
+      "shortDescription": "You see a tall wooden chest. The door swings open violently and the spirit lurks around the room. The spirit whips around the corner and is coming to attack your face. ",
       "exits": [
         {
           "isLocked": true,
@@ -871,6 +880,7 @@
       "id": "MirrorRoom",
       "name": "Room",
       "description": "[end of game] Congradulations! You made it to the end of the game without dying. You're a wizard!",
+      "shortDescription": "[end of game] Congradulations! You made it to the end of the game without dying. You're a wizard!",
       "exits": [
         {
           "isLocked": false,

@@ -16,19 +16,20 @@
         },
         {
             "name": "pot",
-            "room": "Kitchen",
+            "room": "MusicCloset",
             "weight": 99,
-            "isOpenable": true
+            "isOpenable": true,
+            "maxWeight": 10
         },
         {
             "name": "charm",
-            "room": "CharmsClass",
+            "room": "MusicCloset",
             "weight": 2,
             "isOpenable": false
         },
         {
             "name": "gillyweed",
-            "room": "PotionsStorage",
+            "room": "MusicCloset",
             "weight": 2,
             "isOpenable": false,
             "itemRoomDescription": "There is gillyweed on the ground. "

@@ -49,10 +49,15 @@ public class Inventory {
   }
 
   public String viewInventory() {
-    String output = "You see: ";
-    for (Item item : items) {
-      output += item.getName() + " ";
-    }
-    return output;
+    String output;
+    if (items.size() != 0){
+      output = "You see: ";
+      for (Item item : items) {
+        output += item.getName() + " ";
+      }
+  } else{
+    output = "There is nothing in your inventory.";
+  }
+    return output + "\nYou can hold " + maxWeight + " total pounds of items, or " + (maxWeight - currentWeight) + " more pound(s) of items.";
   }
 }

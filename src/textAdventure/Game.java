@@ -324,15 +324,11 @@ public class Game {
         if (currentRoom.getItems().get(i).getName().equals(item)) {
           player.getInventory().addItem(currentRoom.getItems().get(i));
           currentRoom.getInventory().removeItem(currentRoom.getItems().get(i));
-          if (currentRoom.getShortDescription() == null)
-            currentRoom.setDescription(currentRoom.getDescription());
-          else
-            currentRoom.setDescription(currentRoom.getShortDescription());
-          System.out.println("Taken.");
-
           itemExists = true;
         }
       }
+      currentRoom.setDescription(currentRoom.getShortDescription() + setRoomDescription());
+      System.out.println("Taken.");
       if (!itemExists)
         System.out.println("You can't see " + item + " anywhere.");
           // Maybe make it so that if the item exists in the game then it says the above, otherwise say something else.
@@ -351,17 +347,36 @@ public class Game {
       if (player.getItems().get(i).getName().equals(item)) {
         currentRoom.getInventory().addItem(player.getItems().get(i));
         player.getInventory().removeItem(player.getItems().get(i));
-        if (currentRoom.getShortDescription() == null)
-          currentRoom.setDescription(currentRoom.getDescription() + currentRoom.getItems().get(i).getItemRoomDescription());
-        else
-          currentRoom.setDescription(currentRoom.getShortDescription() + currentRoom.getItems().get(i).getItemRoomDescription());
-        System.out.println("You dropped your " + item + " in the " + currentRoom.getRoomName());
         itemExists = true;
       }
     }
+    currentRoom.setDescription(currentRoom.getShortDescription() + setRoomDescription());
+    System.out.println("You dropped your " + item + " in the " + currentRoom.getRoomName());
     if (!itemExists)
-      System.out.println("You can't see " + item + " anywhere.");
+      System.out.println("You don't have a " + item + ".");
         // Maybe make it so that if the item exists in the game then it says the above, otherwise say something else.
+  }
+
+  private String setRoomDescription() {
+    String items = "";
+    for (int i = 0; i < currentRoom.getItems().size(); i++) {
+      if (currentRoom.getItems().size() > 2) {
+        if (i == 0)
+          items += "You can see a " + currentRoom.getItems().get(i).getName() + ", ";
+        else if (i < currentRoom.getItems().size() - 1)
+          items += "a " + currentRoom.getItems().get(i).getName() + ", ";
+        else
+          items += "and a " + currentRoom.getItems().get(i).getName() + " in the room. ";
+      } else if (currentRoom.getItems().size() == 2) {
+        if (i == 0)
+          items += "You can see a " + currentRoom.getItems().get(i).getName() + " ";
+        else
+          items += "and a " + currentRoom.getItems().get(i).getName() + " in the room. ";
+      } else if (currentRoom.getItems().size() == 1)
+        items += "You can see a " + currentRoom.getItems().get(i).getName() + " in the room. ";
+      
+    }
+    return items;
   }
 
   /**

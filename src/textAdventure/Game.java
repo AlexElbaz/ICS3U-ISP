@@ -66,6 +66,7 @@ public class Game {
         exits.add(exit);
       }
       room.setExits(exits);
+
       if (((JSONObject) roomObj).get("hints") != null) {
         JSONArray jsonHints = (JSONArray) ((JSONObject) roomObj).get("hints");
         ArrayList<String> hints = new ArrayList<String>();
@@ -94,6 +95,10 @@ public class Game {
       item.setWeight(weight);
       Boolean isOpenable = (Boolean) ((JSONObject) roomObj).get("isOpenable");
       item.setOpenable(isOpenable);
+      if (((JSONObject) roomObj).get("maxWeight") != null) {
+        long maxWeight = (long) ((JSONObject) roomObj).get("maxWeight");
+        item.setInventory(new Inventory(maxWeight));
+      }
       String itemRoomDescription = (String) ((JSONObject) roomObj).get("itemRoomDescription");
       item.setItemRoomDescription(itemRoomDescription);
       System.out.println(roomId); // delete this
@@ -161,11 +166,11 @@ public class Game {
         else
           takeItem(command.get(1));
       } else if (command.get(0).equals("drop"))
-      if (command.size() < 2) {
-        System.out.println("Drop what?");
-        return false;
-      } else
-        dropItem(command.get(1));
+          if (command.size() < 2) {
+            System.out.println("Drop what?");
+            return false;
+          } else
+            dropItem(command.get(1));
       else if (command.get(0).equals("run"))
         runWall(command);
       else if (command.get(0).equals("put") || command.get(0).equals("place"))
@@ -183,7 +188,7 @@ public class Game {
           System.out.println("You lift with all your might as you realize youre getting stronger. You down a protein shake because you earned the extra 10 pounds you can hold in your inventory.");
           countWorkout++;
           player.getInventory().updateMaxWeight(carryingCapacity);
-        } else{
+        } else {
           System.out.println("Make your way to the gym to get jacked!");
         }
 
@@ -322,13 +327,14 @@ public class Game {
     boolean itemExists = false;
       for (int i = 0; i < currentRoom.getItems().size(); i++) {
         if (currentRoom.getItems().get(i).getName().equals(item)) {
-          player.getInventory().addItem(currentRoom.getItems().get(i));
-          currentRoom.getInventory().removeItem(currentRoom.getItems().get(i));
+          if (player.getInventory().addItem(currentRoom.getItems().get(i))) {
+            currentRoom.getInventory().removeItem(currentRoom.getItems().get(i));
+            currentRoom.setDescription(currentRoom.getShortDescription() + setRoomDescription());
+            System.out.println("Taken.");
+          }
           itemExists = true;
         }
       }
-      currentRoom.setDescription(currentRoom.getShortDescription() + setRoomDescription());
-      System.out.println("Taken.");
       if (!itemExists)
         System.out.println("You can't see " + item + " anywhere.");
           // Maybe make it so that if the item exists in the game then it says the above, otherwise say something else.
@@ -348,10 +354,10 @@ public class Game {
         currentRoom.getInventory().addItem(player.getItems().get(i));
         player.getInventory().removeItem(player.getItems().get(i));
         itemExists = true;
+        currentRoom.setDescription(currentRoom.getShortDescription() + setRoomDescription());
+        System.out.println("You dropped your " + item + " in the " + currentRoom.getRoomName());
       }
     }
-    currentRoom.setDescription(currentRoom.getShortDescription() + setRoomDescription());
-    System.out.println("You dropped your " + item + " in the " + currentRoom.getRoomName());
     if (!itemExists)
       System.out.println("You don't have a " + item + ".");
         // Maybe make it so that if the item exists in the game then it says the above, otherwise say something else.
@@ -394,9 +400,10 @@ public class Game {
         for (int j = 0; j < player.getItems().size(); j++) {
           if (player.getItems().get(j).getName().equals(container)) {
             if (player.getItems().get(j).isOpenable()) {
-              player.getItems().get(j).getInventory().addItem(player.getItems().get(i));
-              player.getInventory().removeItem(player.getItems().get(i));
-              System.out.println("You put your " + item + " in the " + container + ".");
+              if (player.getItems().get(j).getInventory().addItem(player.getItems().get(i))) {
+                player.getInventory().removeItem(player.getItems().get(i));
+                System.out.println("You put your " + item + " in the " + container + ".");
+              }
               containerOpenable = true;
             }
             containerExists = true;
@@ -422,13 +429,15 @@ public class Game {
         if (player.getItems().get(i).isOpenable()) {
           for (int j = 0; j < player.getItems().get(i).getItems().size(); j++) {
             if (player.getItems().get(i).getItems().get(j).getName().equals(item)) {
-              boolean addItem = player.getInventory().addItem(player.getItems().get(j)); // maybe need to automatically drop the item if there is no room
-              if (!addItem) {
+              if (player.getInventory().addItem(player.getItems().get(i).getItems().get(j))) { // maybe need to automatically drop the item if there is no room
+                player.getItems().get(i).getInventory().removeItem(player.getItems().get(i).getItems().get(j));
+                System.out.println("You took the " + item + " out of the " + container + ".");
+              }/* else { 
                 System.out.println("The " + item + " was too heavy for you to hold.");
                 dropItem(item);
-              } else
-                System.out.println("You took the " + item + " out of the " + container + ".");
-              player.getItems().get(i).getInventory().removeItem(player.getItems().get(j));
+                // can't drop the item because the item will never make it to the player's inventory
+                // might need to make separate method to drop item from container directly into room
+              }*/
               itemExists = true;
             }
           }
@@ -444,4 +453,5 @@ public class Game {
     else if (!itemExists)
       System.out.println("You don't have " + item + " in the " + container + ".");
   }
+  
 }

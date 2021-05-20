@@ -16,19 +16,22 @@ public class Item extends OpenableObject {
     inventory = null;
   }
 
+  /*public Item(int weight, String name, int maxWeight) {
+    this.weight = weight;
+    this.name = name;
+    this.isOpenable = true;
+    this.inventory = new Inventory(maxWeight);
+  }*/
+  
+  public Item() {
+  }
+
   public String getItemRoomDescription() {
     return itemRoomDescription;
   }
 
   public void setItemRoomDescription(String roomDescription) {
     this.itemRoomDescription = roomDescription;
-  }
-
-  public Item(int weight, String name, int maxWeight) {
-    this.weight = weight;
-    this.name = name;
-    this.isOpenable = true;
-    this.inventory = new Inventory(maxWeight);
   }
 
   public ArrayList<Item> getItems() {
@@ -46,9 +49,6 @@ public class Item extends OpenableObject {
 
   public void setInventory(Inventory inventory) {
     this.inventory = inventory;
-  }
-
-  public Item() {
   }
 
   public void open() {

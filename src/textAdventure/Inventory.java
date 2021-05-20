@@ -48,11 +48,11 @@ public class Inventory {
     return items.remove(item);
   }
 
-  public void viewInventory() {
-    System.out.print("You see: ");
+  public String viewInventory() {
+    String output = "You see: ";
     for (Item item : items) {
-      System.out.print(item.getName() + " ");
+      output += item.getName() + " ";
     }
-    System.out.println();
+    return output;
   }
 }

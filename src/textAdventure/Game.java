@@ -98,6 +98,15 @@ public class Game {
       item.setItemRoomDescription(itemRoomDescription);
       System.out.println(roomId); // delete this
       roomMap.get(roomId).getInventory().addItem(item);
+
+      if (((JSONObject) roomObj).get("spells") != null) {
+        JSONArray jsonSpells = (JSONArray) ((JSONObject) roomObj).get("spells");
+        ArrayList<String> spells = new ArrayList<String>();
+        for (Object spell : jsonSpells) {
+          spells.add((String) spell);
+        }
+        item.setSpells(spells);
+      }
     }
   }
 
@@ -141,7 +150,7 @@ public class Game {
       System.out.println("I don't know what you mean...");
     if (command.size() <= 3) {
       if (command.get(0).equals("inventory"))
-        player.getInventory().viewInventory();
+        System.out.println(player.getInventory().viewInventory());
       else if (command.get(0).equals("help"))
         printHelp(command);
       else if (command.get(0).equals("go"))
@@ -171,21 +180,37 @@ public class Game {
         runWall(command);
       else if(command.get(0).equals("workout"))
         workout();
-      else 
-        System.out.println("You can't do that.");
+      else if(command.get(0).equals("cast")) {
+        if (player.getInventory().viewInventory().indexOf("book") > -1) {
+          if (command.get(1).equals("rictusempra"))
+            System.out.println("Haha you're tickling yourself!");
+          else if (command.get(1).equals("furnunculu"))
+            System.out.println("That just backfired, you covered yourself in boils!");
+          else if (command.get(1).equals("densaugeo"))
+            System.out.println("Ahhh now you have bunny like teeth! ");
+          else if (command.get(1).equals("incendio")) {
+            if (currentRoom.getRoomName().equals("Death Snare Plant")) {
+              System.out.println("You set the death snare on fire, shrinking its size down considerably. You burned a hole through the wall and you walked through it. ");
+              currentRoom = roomMap.get("FlyingWingsGame");
+              System.out.println(currentRoom.longDescription());
+            } else 
+              System.out.println("You consider lighting the room on fire, but you've decided not to. ");
+          }
+        } else
+          System.out.println("You don't have the book of spells so you can't cast any spells. ");
+        } else
+          System.out.println("You can't do that.");
     } else if (command.size() > 3) {
       if (command.get(0).equals("put") || command.get(0).equals("place"))
         putItemInContainer(command.get(1), command.get(3));
-      else if (command.size() > 2 && command.get(0).equals("take")) {
+      else if (command.get(0).equals("take")) {
         if (command.get(2).equals("from"))
           takeItemFromContainer(command.get(1), command.get(3));
         else 
           takeItemFromContainer(command.get(1), command.get(4));
-      } else 
-          System.out.println("You can't do that.");
-    } else 
+      } else
         System.out.println("You can't do that.");
-  
+    }
     return false;
   }
 

@@ -4,7 +4,15 @@
             "name": "book",
             "room": "DarkMatterClass",
             "weight": 10,
-            "isOpenable": true
+            "isOpenable": false,           
+            "spells": [ 
+            
+                "Fire making spell: 'Incendio' ",
+                "Covers target in boils: 'Furnunculu' ",
+                "Makes teeth grow quickly: 'Densaugeo' ",
+                "Tickle spell: 'Rictusempra' "
+              
+            ]
         },
         {
             "name": "pot",
@@ -36,6 +44,12 @@
             "name": "cloak",
             "room": "Room",
             "weight": 20,
+            "isOpenable": false
+        },
+        {
+            "name": "globe",
+            "room": "AstronomyClassBottomRight",
+            "weight": 10,
             "isOpenable": false
         }
     ]

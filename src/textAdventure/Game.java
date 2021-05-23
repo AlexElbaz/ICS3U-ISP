@@ -66,6 +66,7 @@ public class Game {
         exits.add(exit);
       }
       room.setExits(exits);
+
       if (((JSONObject) roomObj).get("hints") != null) {
         JSONArray jsonHints = (JSONArray) ((JSONObject) roomObj).get("hints");
         ArrayList<String> hints = new ArrayList<String>();
@@ -94,6 +95,10 @@ public class Game {
       item.setWeight(weight);
       Boolean isOpenable = (Boolean) ((JSONObject) roomObj).get("isOpenable");
       item.setOpenable(isOpenable);
+      if (((JSONObject) roomObj).get("maxWeight") != null) {
+        long maxWeight = (long) ((JSONObject) roomObj).get("maxWeight");
+        item.setInventory(new Inventory(maxWeight));
+      }
       String itemRoomDescription = (String) ((JSONObject) roomObj).get("itemRoomDescription");
       item.setItemRoomDescription(itemRoomDescription);
       System.out.println(roomId); // delete this
@@ -153,7 +158,7 @@ public class Game {
         printHelp(command);
       else if (command.get(0).equals("go"))
         goRoom(command);
-      else if (command.get(0).equals("quit")) {
+      else if (command.get(0).equals("quit") || command.get(0).equals("exit")) {
         if (command.size() > 1)
           System.out.println("Quit what?");
         else
@@ -249,7 +254,7 @@ public class Game {
       System.out.println("Allows you to whack things around you.");
     } else if (command.get(1).equals("open")){
       System.out.println("Allows you to see what is inside of an object");
-    } else if (command.get(1).equals("quit")){
+    } else if (command.get(1).equals("quit") || command.get(1).equals("exit")){
       System.out.println("Ends the game. That's one way to go out!");
     } else if (command.get(1).equals("help")){
       System.out.println("Prints the help message.");
@@ -339,13 +344,14 @@ public class Game {
     boolean itemExists = false;
       for (int i = 0; i < currentRoom.getItems().size(); i++) {
         if (currentRoom.getItems().get(i).getName().equals(item)) {
-          player.getInventory().addItem(currentRoom.getItems().get(i));
-          currentRoom.getInventory().removeItem(currentRoom.getItems().get(i));
+          if (player.getInventory().addItem(currentRoom.getItems().get(i))) {
+            currentRoom.getInventory().removeItem(currentRoom.getItems().get(i));
+            currentRoom.setDescription(currentRoom.getShortDescription() + setRoomDescription());
+            System.out.println("Taken.");
+          }
           itemExists = true;
         }
       }
-      currentRoom.setDescription(currentRoom.getShortDescription() + setRoomDescription());
-      System.out.println("Taken.");
       if (!itemExists)
         System.out.println("You can't see " + item + " anywhere.");
           // Maybe make it so that if the item exists in the game then it says the above, otherwise say something else.
@@ -362,9 +368,9 @@ public class Game {
     if (checkItem(item) >= 0) {
       currentRoom.getInventory().addItem(player.getItems().get(checkItem(item)));
       player.getInventory().removeItem(player.getItems().get(checkItem(item)));
+      currentRoom.setDescription(currentRoom.getShortDescription() + setRoomDescription());
+      System.out.println("You dropped your " + item + " in the " + currentRoom.getRoomName());
     }
-    currentRoom.setDescription(currentRoom.getShortDescription() + setRoomDescription());
-    System.out.println("You dropped your " + item + " in the " + currentRoom.getRoomName());
     if (checkItem(item) == -1)
       System.out.println("You don't have a " + item + ".");
         // Maybe make it so that if the item exists in the game then it says the above, otherwise say something else.
@@ -425,13 +431,17 @@ public class Game {
     if (j >= 0) {
       if (player.getItems().get(j).isOpenable()) {
         if (i >= 0) {
-          boolean addItem = player.getInventory().addItem(player.getItems().get(i)); // maybe need to automatically drop the item if there is no room
-          if (!addItem) {
-            System.out.println("The " + item + " was too heavy for you to hold.");
-            dropItem(item);
-          } else
+          if (player.getInventory().addItem(player.getItems().get(j).getItems().get(i))) { // maybe need to automatically drop the item if there is no room
+            player.getItems().get(i).getInventory().removeItem(player.getItems().get(j).getItems().get(i));
             System.out.println("You took the " + item + " out of the " + container + ".");
-          player.getItems().get(j).getInventory().removeItem(player.getItems().get(i));
+          } else { 
+            System.out.println("You are carrying too much to pick up the " + item + ".");
+            
+            //System.out.println("The " + item + " was too heavy for you to hold.");
+            //dropItem(item);
+              // can't drop the item because the item will never make it to the player's inventory
+              // might need to make separate method to drop item from container directly into room
+          }
         }
       }
     } else {

@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 public class Inventory {
   private ArrayList<Item> items;
-  private int maxWeight;
-  private int currentWeight;
+  private long maxWeight;
+  private long currentWeight;
 
-  public Inventory(int maxWeight) {
+  public Inventory(long maxWeight) {
     this.items = new ArrayList<Item>();
     this.maxWeight = maxWeight;
     this.currentWeight = 0;
   }
 
-  public int getMaxWeight() {
+  public long getMaxWeight() {
     return maxWeight;
   }
 
@@ -21,7 +21,7 @@ public class Inventory {
     this.maxWeight = maxWeight;
   }
 
-  public int getCurrentWeight() {
+  public long getCurrentWeight() {
     return currentWeight;
   }
 
@@ -30,9 +30,10 @@ public class Inventory {
   }
 
   public boolean addItem(Item item) {
-    if (item.getWeight() + currentWeight <= maxWeight)
+    if (item.getWeight() + currentWeight <= maxWeight) {
+      currentWeight += item.getWeight();
       return items.add(item);
-    else {
+    } else {
       System.out.println("There is no room to add the item.");
       return false;
     }
@@ -45,14 +46,20 @@ public class Inventory {
       System.out.println("You do not have this item.");
       return false;
     }*/
+    currentWeight -= item.getWeight();
     return items.remove(item);
   }
 
   public String viewInventory() {
-    String output = "You see: ";
-    for (Item item : items) {
-      output += item.getName() + " ";
-    }
-    return output;
+    String output;
+    if (items.size() != 0){
+      output = "You see: ";
+      for (Item item : items) {
+        output += item.getName() + " ";
+      }
+  } else{
+    output = "There is nothing in your inventory.";
+  }
+    return output + "\nYou can hold " + maxWeight + " total pounds of items, or " + (maxWeight - currentWeight) + " more pound(s) of items.";
   }
 }

@@ -56,7 +56,7 @@ public class Item extends OpenableObject {
     if (!isOpenable)
       System.out.println("The " + name + " cannot be opened.");
     else {
-      inventory.viewInventory();
+      System.out.println(inventory.viewInventory());
     }
   }
 

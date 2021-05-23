@@ -57,9 +57,9 @@ public class Inventory {
       for (Item item : items) {
         output += item.getName() + " ";
       }
-  } else{
+  } else {
     output = "There is nothing in your inventory.";
   }
-    return output + "\nYou can hold " + maxWeight + " total pounds of items, or " + (maxWeight - currentWeight) + " more pound(s) of items.";
+    return output + "\nYou can hold " + maxWeight + " pounds worth of items, or " + (maxWeight - currentWeight) + " more pound(s) worth of items.";
   }
 }

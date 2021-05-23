@@ -78,6 +78,7 @@ public class Game {
       roomMap.put(roomId, room);
     }
   }
+  
   private void initItems(String fileName) throws Exception {
     Path path = Path.of(fileName);
     String jsonString = Files.readString(path);
@@ -139,9 +140,9 @@ public class Game {
    */
   private void printWelcome() {
     System.out.println();
-    System.out.println("Welcome to Zork!");
-    System.out.println("Zork is a new, incredibly boring adventure game.");
-    System.out.println("Type 'help' if you need help.");
+    System.out.println("Welcome  player to the wonderous Wizarding World!");
+    System.out.println("This is a place for adventure, heroism, and spirit!");
+    System.out.println("If you ever get stuck or need a hand, type 'help'.");
     System.out.println();
     System.out.println(currentRoom.longDescription());
   }
@@ -236,7 +237,6 @@ public class Game {
 
     }
   }
-
 
   private void commandHelp(ArrayList<String> command) {
 
@@ -333,6 +333,21 @@ public class Game {
         System.out.println("You can't board that.");
     }
   }
+
+  private int checkItem(String item) {
+    for (int i = 0; i < player.getItems().size(); i++) {
+      if (player.getItems().get(i).getName().equals(item))
+        return i;
+      else if (player.getItems().get(i).isOpenable()) {
+        for (int j = 0; j < player.getItems().get(i).getItems().size(); j++) {
+          if (player.getItems().get(i).getItems().get(j).getName().equals(item))
+            return i;
+        }
+      }
+    }
+    return -1;
+  }
+
   /**
    * The player takes an item from the room.
    * This checks if the item is actually in the room or not.
@@ -370,32 +385,9 @@ public class Game {
       player.getInventory().removeItem(player.getItems().get(checkItem(item)));
       currentRoom.setDescription(currentRoom.getShortDescription() + setRoomDescription());
       System.out.println("You dropped your " + item + " in the " + currentRoom.getRoomName());
-    }
-    if (checkItem(item) == -1)
+    } else
       System.out.println("You don't have a " + item + ".");
         // Maybe make it so that if the item exists in the game then it says the above, otherwise say something else.
-  }
-
-  private String setRoomDescription() {
-    String items = "";
-    for (int i = 0; i < currentRoom.getItems().size(); i++) {
-      if (currentRoom.getItems().size() > 2) {
-        if (i == 0)
-          items += "You can see a " + currentRoom.getItems().get(i).getName() + ", ";
-        else if (i < currentRoom.getItems().size() - 1)
-          items += "a " + currentRoom.getItems().get(i).getName() + ", ";
-        else
-          items += "and a " + currentRoom.getItems().get(i).getName() + " in the room. ";
-      } else if (currentRoom.getItems().size() == 2) {
-        if (i == 0)
-          items += "You can see a " + currentRoom.getItems().get(i).getName() + " ";
-        else
-          items += "and a " + currentRoom.getItems().get(i).getName() + " in the room. ";
-      } else if (currentRoom.getItems().size() == 1)
-        items += "You can see a " + currentRoom.getItems().get(i).getName() + " in the room. ";
-      
-    }
-    return items;
   }
 
   /**
@@ -453,6 +445,36 @@ public class Game {
         System.out.println("You don't have " + item + " in the " + container + ".");
     }
   }
+  
+  private void openContainer(String container) {
+    int j = checkItem(container);
+    if (j >= 0) {
+      if (player.getItems().get(j).isOpenable())
+        player.getItems().get(j).open();
+    }
+  }
+
+  private String setRoomDescription() {
+    String items = "";
+    for (int i = 0; i < currentRoom.getItems().size(); i++) {
+      if (currentRoom.getItems().size() > 2) {
+        if (i == 0)
+          items += "You can see a " + currentRoom.getItems().get(i).getName() + ", ";
+        else if (i < currentRoom.getItems().size() - 1)
+          items += "a " + currentRoom.getItems().get(i).getName() + ", ";
+        else
+          items += "and a " + currentRoom.getItems().get(i).getName() + " in the room. ";
+      } else if (currentRoom.getItems().size() == 2) {
+        if (i == 0)
+          items += "You can see a " + currentRoom.getItems().get(i).getName() + " ";
+        else
+          items += "and a " + currentRoom.getItems().get(i).getName() + " in the room. ";
+      } else if (currentRoom.getItems().size() == 1)
+        items += "You can see a " + currentRoom.getItems().get(i).getName() + " in the room. ";
+      
+    }
+    return items;
+  }
 
   private void workout() {
     if (currentRoom.getRoomName().equals("Gym")) {
@@ -464,21 +486,5 @@ public class Game {
       countWorkout++;
     } else
       System.out.println("You can't workout here. Make your way to the gym to get jacked!");
-  }
-  
-  private void openContainer(String container) {
-    int j = checkItem(container);
-    if (j >= 0) {
-      if (player.getItems().get(j).isOpenable())
-        player.getItems().get(j).open();
-    }
-  }
-
-  private int checkItem(String item) {
-    for (int i = 0; i < player.getItems().size(); i++) {
-      if (player.getItems().get(i).getName().equals(item))
-        return i;
-    }
-    return -1;
   }
 }

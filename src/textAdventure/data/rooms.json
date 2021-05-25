@@ -789,15 +789,10 @@
     },
     {
       "id": "3HeadedDog",
-      "name": "3 Headed Dog",
+      "name": "A Cold Room",
       "description": "You hear the dogs snoring peacefully. You walk closer and the snoring intensifies. The ground greeks and the dog starts to growl at you. It's barking viciously in your face. ",
       "shortDescription": "You hear the dogs snoring peacefully. You walk closer and the snoring intensifies. The ground greeks and the dog starts to growl at you. It's barking viciously in your face. ",
       "exits": [
-        {
-          "isLocked": true,
-          "direction": "North",
-          "adjacentRoom": "DeathSnarePlant"
-        },
         {
           "isLocked": false,
           "direction": "South",
@@ -807,7 +802,7 @@
     },
     {
       "id": "DeathSnarePlant",
-      "name": "Death Snare Plant",
+      "name": "Overgrown Plant House",
       "description": "You are in an empty room and see a magical plant in the middle. It sways in the wind. A fly flies by and the plant aggresively strangles it to death. ",
       "shortDescription": "You are in an empty room and see a magical plant in the middle. It sways in the wind. A fly flies by and the plant aggresively strangles it to death. ",
       "exits": [
@@ -820,15 +815,10 @@
     },
     {
       "id": "FlyingWingsGame",
-      "name": "Flying Wings Game",
-      "description": "You are in an empty room and see a magical plant in the middle. A fly flies by and the plant aggresively strangles it to death. You're going to need something to disguise yourself in. ",
-      "shortDescription": "You are in an empty room and see a magical plant in the middle. A fly flies by and the plant aggresively strangles it to death. You're going to need something to disguise yourself in. ",
+      "name": "Quidditch Field",
+      "description": "As you walk into the room, a strange man named Balthazar is trying to get you to play Quidditch. You decide this is NOT the time for Quidditch, so you need to equip SOMETHING to disguise yourself with! You decide you are either doing this or heading back to your room. ",
+      "shortDescription": "As you walk into the room, a strange man named Balthazar is trying to get you to play Quidditch. You decide this is NOT the time for Quidditch, so you need to equip SOMETHING to disguise yourself with! You decide you are either doing this or heading back to your room. ",
       "exits": [
-        {
-          "isLocked": true,
-          "direction": "North",
-          "adjacentRoom": "FlyingWingsGame"
-        },
         {
           "isLocked": false,
           "direction": "South",
@@ -838,15 +828,10 @@
     },
     {
       "id": "GillyWeedRoom",
-      "name": "Room",
-      "description": "The room is small and windowless. A stream of water from the faucet on the wall starts to pick up speed. Looks like water is going to fill up the room soon!",
-      "shortDescription": "The room is small and windowless. A stream of water from the faucet on the wall starts to pick up speed. Looks like water is going to fill up the room soon!",
+      "name": "Tiny Room",
+      "description": "The room is small and windowless. A stream of water from the faucet on the wall starts to pick up speed. Looks like water is going to fill up the room soon! ",
+      "shortDescription": "The room is small and windowless. A stream of water from the faucet on the wall starts to pick up speed. Looks like water is going to fill up the room soon! ",
       "exits": [
-        {
-          "isLocked": true,
-          "direction": "North",
-          "adjacentRoom": "BoggartRoom"
-        },
         {
           "isLocked": false,
           "direction": "South",
@@ -856,15 +841,10 @@
     },
     {
       "id": "BoggartRoom",
-      "name": "Room",
+      "name": "Long Room",
       "description": "You see a tall wooden chest. The door swings open violently and the spirit lurks around the room. The spirit whips around the corner and is coming to attack your face. ",
       "shortDescription": "You see a tall wooden chest. The door swings open violently and the spirit lurks around the room. The spirit whips around the corner and is coming to attack your face. ",
       "exits": [
-        {
-          "isLocked": true,
-          "direction": "North",
-          "adjacentRoom": "MirrorRoom"
-        },
         {
           "isLocked": false,
           "direction": "South",
@@ -875,8 +855,8 @@
     {
       "id": "MirrorRoom",
       "name": "Room",
-      "description": "[end of game] Congradulations! You made it to the end of the game without dying. You're a wizard!",
-      "shortDescription": "[end of game] Congradulations! You made it to the end of the game without dying. You're a wizard!",
+      "description": "Congratulations! You made it to the end of the game without dying. You're a wizard!",
+      "shortDescription": "Congratulations! You made it to the end of the game without dying. You're a wizard!",
       "exits": [
         {
           "isLocked": false,

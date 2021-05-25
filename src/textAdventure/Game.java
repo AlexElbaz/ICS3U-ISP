@@ -29,7 +29,7 @@ public class Game {
       player = new Character(new Inventory(carryingCapacity));
       initRooms("src\\textAdventure\\data\\rooms.json");
       initItems("src\\textAdventure\\data\\items.json");
-      currentRoom = roomMap.get("DeathSnarePlant");
+      currentRoom = roomMap.get("Room");
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -164,7 +164,14 @@ public class Game {
       else
         return true; // signal that we want to quit
     } else if (command.get(0).equals("eat")) 
-      System.out.println("Do you really think you should be eating at a time like this?");
+        if(command.get(1).equals("gillyweed")){
+          if (player.getInventory().viewInventory().indexOf("gillyweed") > -1) {
+            eatGillyweed(command);
+          } else
+          System.out.println("You ate gillyweed, but nothing happened. ");
+        }
+      else
+        System.out.println("Do you really think you should be eating at a time like this?");
     else if (command.get(0).equals("board"))
       boardTrain(command);
     else if (command.get(0).equals("take")) {
@@ -204,12 +211,30 @@ public class Game {
     else if(command.get(0).equals("workout"))
       workout();
     else if(command.get(0).equals("play")){
-      if (player.getInventory().viewInventory().indexOf("flute") > -1) {
-        playFlute(command);
-      } else{
-        System.out.println("You don't have the flute, so you can't play it!");
+      if(command.get(1).equals("flute")){
+        if (player.getInventory().viewInventory().indexOf("flute") > -1) {
+          playFlute(command);
+        } else{
+          System.out.println("You don't have the flute, so you can't use it!");
+        }
       }
-        
+    
+    }else if(command.get(0).equals("equip")){
+      if(command.get(1).equals("cloak")){
+        if (player.getInventory().viewInventory().indexOf("cloak") > -1) {
+          equipCloak(command);
+        } else{
+        System.out.println("You don't have the cloak, so you can't play it!");
+        }
+      }
+    }else if(command.get(0).equals("use")){
+      if(command.get(1).equals("charm")){
+        if (player.getInventory().viewInventory().indexOf("charm") > -1) {
+          useCharm(command);
+        } else{
+        System.out.println("You don't have the charm, so you can't use it!");
+        }
+      }
     }
       
     else if(command.get(0).equals("cast")) {
@@ -221,9 +246,10 @@ public class Game {
         else if (command.get(1).equals("densaugeo"))
           System.out.println("Ahhh now you have bunny like teeth! ");
         else if (command.get(1).equals("incendio")) {
-          if (currentRoom.getRoomName().equals("Death Snare Plant")) {
+          if (currentRoom.getRoomName().equals("Overgrown Plant House")) {
             System.out.println("You set the death snare on fire, shrinking its size down considerably. You burned a hole through the wall and you walked through it. ");
-            currentRoom = roomMap.get("FlyingWingsGame");
+            System.out.println();
+            currentRoom = roomMap.get("FlyingWingsGame"); 
             System.out.println(currentRoom.longDescription());
           } else 
             System.out.println("You consider lighting the room on fire, but you've decided not to. ");
@@ -242,15 +268,42 @@ public class Game {
 
   // implementations of user commands:
 
-  private void playFlute(ArrayList<String> command) {
-    if(command.get(1).equals("flute"))
-          if (currentRoom.getRoomName().equals("3 Headed Dog")) {
-            System.out.println("You use the flute and now the 3 Headed Dog has fallen asleep. Success!");
-            System.out.println();
-            currentRoom = roomMap.get("DeathSnarePlant");
-            System.out.println(currentRoom.longDescription());
-        } else 
-          System.out.println("You play the flute, but nothing happens. ");
+  private void useCharm(ArrayList<String> command) {
+    if (currentRoom.getRoomName().equals("Long Room")) {
+      System.out.println("As you use the charm, you notice the boggart starting to transform into spongebob, telling you about his day. He lets you into the next room and congratulates you on beating the game. ");
+      System.out.println();
+      currentRoom = roomMap.get("MirrorRoom");
+      System.out.println(currentRoom.longDescription());
+    }
+  }
+
+  private void eatGillyweed(ArrayList<String> command) {
+    if (currentRoom.getRoomName().equals("Tiny Room")) {
+      System.out.println("You eat the gillyweed and you watch in amazement as you start to grow gills. Your feet become webbed and you easily swim in teh water to the door above. ");
+      System.out.println();
+      currentRoom = roomMap.get("BoggartRoom");
+      System.out.println(currentRoom.longDescription());
+    }
+  }
+
+  private void equipCloak(ArrayList<String> command) {
+    if (currentRoom.getRoomName().equals("Quidditch Field")) {
+      System.out.println("You wait till Balthazar turns his head and pull the cloak over yourself. He tries to find you but you are long gone in the next room. ");
+      System.out.println();
+      currentRoom = roomMap.get("GillyWeedRoom");
+      System.out.println(currentRoom.longDescription());
+  } else 
+    System.out.println("You use the cloak, but nothing happens. ");
+  }
+
+  private void playFlute(ArrayList<String> command) { 
+    if (currentRoom.getRoomName().equals("A Cold Room")) {
+      System.out.println("You use the flute and now the 3 Headed Dog has fallen asleep. Success! This flute has magical powers afterall since you got teleported to the Death Snare Plant Room. ");
+      System.out.println();
+      currentRoom = roomMap.get("DeathSnarePlant");
+      System.out.println(currentRoom.longDescription());
+    } else 
+      System.out.println("You play the flute, but nothing happens. ");
   }
 
   /**

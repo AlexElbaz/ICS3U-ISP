@@ -1,7 +1,7 @@
 {
     "items": [
         {
-            "name": "book",
+            "name": "spellbook",
             "room": "DarkMatterClass",
             "weight": 10,
             "isOpenable": false,           
@@ -42,7 +42,7 @@
             "itemRoomDescription": "There is a flute on the ground. "
         },
         {
-            "name": "cloak",
+            "name": "invisibility cloak",
             "room": "Room",
             "weight": 20,
             "isOpenable": false

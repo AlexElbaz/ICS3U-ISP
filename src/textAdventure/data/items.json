@@ -2,7 +2,7 @@
     "items": [
         {
             "name": "spellbook",
-            "room": "DarkMatterClass",
+            "room": "DeathSnarePlant",
             "weight": 10,
             "isOpenable": false,           
             "spells": [ 

@@ -29,7 +29,7 @@ public class Game {
       player = new Character(new Inventory(carryingCapacity));
       initRooms("src\\textAdventure\\data\\rooms.json");
       initItems("src\\textAdventure\\data\\items.json");
-      currentRoom = roomMap.get("TrainStation");
+      currentRoom = roomMap.get("DeathSnarePlant");
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -203,6 +203,15 @@ public class Game {
       runWall(command);
     else if(command.get(0).equals("workout"))
       workout();
+    else if(command.get(0).equals("play")){
+      if (player.getInventory().viewInventory().indexOf("flute") > -1) {
+        playFlute(command);
+      } else{
+        System.out.println("You don't have the flute, so you can't play it!");
+      }
+        
+    }
+      
     else if(command.get(0).equals("cast")) {
       if (player.getInventory().viewInventory().indexOf("book") > -1) {
         if (command.get(1).equals("rictusempra"))
@@ -225,11 +234,23 @@ public class Game {
         putItemInContainer(command.get(1), command.get(3));
       else
         System.out.println("You can't do that.");
+    
     return false;
     }
 
 
   // implementations of user commands:
+
+  private void playFlute(ArrayList<String> command) {
+    if(command.get(1).equals("flute"))
+          if (currentRoom.getRoomName().equals("3 Headed Dog")) {
+            System.out.println("You use the flute and now the 3 Headed Dog has fallen asleep. Success!");
+            System.out.println();
+            currentRoom = roomMap.get("DeathSnarePlant");
+            System.out.println(currentRoom.longDescription());
+        } else 
+          System.out.println("You play the flute, but nothing happens. ");
+  }
 
   /**
    * Print out some help information. Here we print some stupid, cryptic message

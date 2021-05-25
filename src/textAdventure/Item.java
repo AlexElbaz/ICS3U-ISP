@@ -84,6 +84,10 @@ public class Item extends OpenableObject {
     this.isOpenable = isOpenable;
   }
 
+  public ArrayList<String> getSpells() {
+    return spells;
+  }
+
   public void setSpells(ArrayList<String> spells) {
     this.spells = spells;
   }

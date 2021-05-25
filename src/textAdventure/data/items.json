@@ -42,7 +42,7 @@
             "itemRoomDescription": "There is a flute on the ground. "
         },
         {
-            "name": "invisibility cloak",
+            "name": "cloak",
             "room": "Room",
             "weight": 20,
             "isOpenable": false

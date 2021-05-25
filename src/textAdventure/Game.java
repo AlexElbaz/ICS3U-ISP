@@ -168,11 +168,11 @@ public class Game {
     else if (command.get(0).equals("board"))
       boardTrain(command);
     else if (command.get(0).equals("take")) {
-      if (command.size() <= 3) {
+      if (command.size() < 3) {
         if (command.size() == 1) // no second word
           System.out.println("Take what?");
         else
-          takeItem(command.get(1)); // THIS ONLY WORKS FOR 1 WORD ITEMS FIX!!!!
+          takeItem(command.get(1));
       } else {
         boolean hasFound = false;
         int countForItem = 1; // command.get(0) MUST be "take" for this line to occur.
@@ -221,10 +221,10 @@ public class Game {
         }
       } else
         System.out.println("You don't have the book of spells so you can't cast any spells. ");
-      } else if (command.get(0).equals("put") || command.get(0).equals("place"))
-        putItemInContainer(command.get(1), command.get(3));
-      else
-        System.out.println("You can't do that.");
+    } else if (command.get(0).equals("put") || command.get(0).equals("place"))
+      putItemInContainer(command.get(1), command.get(3));
+    else
+      System.out.println("You can't do that.");
     return false;
     }
 

@@ -152,71 +152,82 @@ public class Game {
    * the game, true is returned, otherwise false is returned.
    */
   private boolean processCommand(ArrayList<String> command) {
-    if (command.size() <= 3) {
-      if (command.get(0).equals("inventory"))
-        System.out.println(player.getInventory().viewInventory());
-      else if (command.get(0).equals("help"))
-        printHelp(command);
-      else if (command.get(0).equals("go"))
-        goRoom(command);
-      else if (command.get(0).equals("quit") || command.get(0).equals("exit")) {
-        if (command.size() > 1)
-          System.out.println("Quit what?");
-        else
-          return true; // signal that we want to quit
-      } else if (command.get(0).equals("eat")) 
-        System.out.println("Do you really think you should be eating at a time like this?");
-      else if (command.get(0).equals("board"))
-        boardTrain(command);
-      else if (command.get(0).equals("take")) {
+    if (command.get(0).equals("inventory"))
+      System.out.println(player.getInventory().viewInventory());
+    else if (command.get(0).equals("help"))
+      printHelp(command);
+    else if (command.get(0).equals("go"))
+      goRoom(command);
+    else if (command.get(0).equals("quit") || command.get(0).equals("exit")) {
+      if (command.size() > 1)
+        System.out.println("Quit what?");
+      else
+        return true; // signal that we want to quit
+    } else if (command.get(0).equals("eat")) 
+      System.out.println("Do you really think you should be eating at a time like this?");
+    else if (command.get(0).equals("board"))
+      boardTrain(command);
+    else if (command.get(0).equals("take")) {
+      if (command.size() <= 3) {
         if (command.size() == 1) // no second word
           System.out.println("Take what?");
         else
-          takeItem(command.get(1));
-      } else if (command.get(0).equals("drop")) {
-        if (command.size() < 2)
-          System.out.println("Drop what?");
-        else
-          dropItem(command.get(1));
-      } else if (command.get(0).equals("open")) {
-        openContainer(command.get(1));
-      } else if (command.get(0).equals("run"))
-        runWall(command);
-      else if(command.get(0).equals("workout"))
-        workout();
-      else if(command.get(0).equals("cast")) {
-        if (player.getInventory().viewInventory().indexOf("book") > -1) {
-          if (command.get(1).equals("rictusempra"))
-            System.out.println("Haha you're tickling yourself!");
-          else if (command.get(1).equals("furnunculu"))
-            System.out.println("That just backfired, you covered yourself in boils!");
-          else if (command.get(1).equals("densaugeo"))
-            System.out.println("Ahhh now you have bunny like teeth! ");
-          else if (command.get(1).equals("incendio")) {
-            if (currentRoom.getRoomName().equals("Death Snare Plant")) {
-              System.out.println("You set the death snare on fire, shrinking its size down considerably. You burned a hole through the wall and you walked through it. ");
-              currentRoom = roomMap.get("FlyingWingsGame");
-              System.out.println(currentRoom.longDescription());
-            } else 
-              System.out.println("You consider lighting the room on fire, but you've decided not to. ");
-          }
-        } else
-          System.out.println("You don't have the book of spells so you can't cast any spells. ");
-        } else
-          System.out.println("You can't do that.");
-    } else {
-      if (command.get(0).equals("put") || command.get(0).equals("place"))
-        putItemInContainer(command.get(1), command.get(3));
-      else if (command.get(0).equals("take")) {
-        if (command.get(2).equals("from"))
-          takeItemFromContainer(command.get(1), command.get(3));
-        else 
-          takeItemFromContainer(command.get(1), command.get(4));
+          takeItem(command.get(1)); // THIS ONLY WORKS FOR 1 WORD ITEMS FIX!!!!
+      } else {
+        boolean hasFound = false;
+        int countForItem = 1; // command.get(0) MUST be "take" for this line to occur.
+        while (!hasFound) {
+          if (checkForItem(command.get(countForItem)) >= 0)
+            hasFound = true;
+          else 
+            countForItem++;
+        }
+        hasFound = false;
+        int countForContainer = countForItem + 1; // Container cannot appear before or at the same index as item in the InputLine.
+        while (!hasFound) {
+          if (checkForItem(command.get(countForContainer)) >= 0)
+            hasFound = true;
+          else 
+            countForContainer++;
+        }
+        takeItemFromContainer(command.get(countForItem), command.get(countForContainer));
+      }
+    } else if (command.get(0).equals("drop")) {
+      if (command.size() < 2)
+        System.out.println("Drop what?");
+      else
+        dropItem(command.get(1));
+    } else if (command.get(0).equals("open")) {
+      openContainer(command.get(1));
+    } else if (command.get(0).equals("run"))
+      runWall(command);
+    else if(command.get(0).equals("workout"))
+      workout();
+    else if(command.get(0).equals("cast")) {
+      if (player.getInventory().viewInventory().indexOf("book") > -1) {
+        if (command.get(1).equals("rictusempra"))
+          System.out.println("Haha you're tickling yourself!");
+        else if (command.get(1).equals("furnunculu"))
+          System.out.println("That just backfired, you covered yourself in boils!");
+        else if (command.get(1).equals("densaugeo"))
+          System.out.println("Ahhh now you have bunny like teeth! ");
+        else if (command.get(1).equals("incendio")) {
+          if (currentRoom.getRoomName().equals("Death Snare Plant")) {
+            System.out.println("You set the death snare on fire, shrinking its size down considerably. You burned a hole through the wall and you walked through it. ");
+            currentRoom = roomMap.get("FlyingWingsGame");
+            System.out.println(currentRoom.longDescription());
+          } else 
+            System.out.println("You consider lighting the room on fire, but you've decided not to. ");
+        }
       } else
+        System.out.println("You don't have the book of spells so you can't cast any spells. ");
+      } else if (command.get(0).equals("put") || command.get(0).equals("place"))
+        putItemInContainer(command.get(1), command.get(3));
+      else
         System.out.println("You can't do that.");
-    }
     return false;
-  }
+    }
+
 
   // implementations of user commands:
 
@@ -334,14 +345,14 @@ public class Game {
     }
   }
 
-  private int checkItem(String item) {
+  private int checkForItem(String item) {
     for (int i = 0; i < player.getItems().size(); i++) {
       if (player.getItems().get(i).getName().equals(item))
         return i;
       else if (player.getItems().get(i).isOpenable()) {
         for (int j = 0; j < player.getItems().get(i).getItems().size(); j++) {
           if (player.getItems().get(i).getItems().get(j).getName().equals(item))
-            return i;
+            return j;
         }
       }
     }
@@ -372,54 +383,9 @@ public class Game {
           // Maybe make it so that if the item exists in the game then it says the above, otherwise say something else.
   }
 
-  /**
-   * The player drops an item into the room.
-   * This checks if the item is actually in the player's inventory or not.
-   * The item leaves the player's inventory and goes into the room's inventory.
-   * If the item is not in the player's inventory, there is an error message and nothing happens.
-   * @param item the name of the item the player wants to drop
-   */
-  private void dropItem(String item) {
-    if (checkItem(item) >= 0) {
-      currentRoom.getInventory().addItem(player.getItems().get(checkItem(item)));
-      player.getInventory().removeItem(player.getItems().get(checkItem(item)));
-      currentRoom.setDescription(currentRoom.getShortDescription() + setRoomDescription());
-      System.out.println("You dropped your " + item + " in the " + currentRoom.getRoomName());
-    } else
-      System.out.println("You don't have a " + item + ".");
-        // Maybe make it so that if the item exists in the game then it says the above, otherwise say something else.
-  }
-
-  /**
-   * The player puts an item from their inventory into a container (ex. backpack) in their inventory
-   * If the item or container do not exist or are not in the player's inventory, then there is an error message
-   * @param item the item they want to put in the container
-   * @param container the place to store that item
-   */
-  private void putItemInContainer(String item, String container) {
-    int i = checkItem(item);
-    int j = checkItem(container);
-    if (i >= 0) {
-      if (j >= 0) {
-        if (player.getItems().get(j).isOpenable()) {
-          player.getItems().get(j).getInventory().addItem(player.getItems().get(i));
-          player.getInventory().removeItem(player.getItems().get(i));
-          System.out.println("You put your " + item + " in the " + container + ".");
-        }
-      }
-    } else {
-      if (i == -1)
-        System.out.println("You don't have " + item + ".");
-      else if (j == -1)
-        System.out.println("You don't have " + container + ".");
-      else
-        System.out.println("You can't open " + container + ".");
-    }
-  }
-
   private void takeItemFromContainer(String item, String container) {
-    int i = checkItem(item);
-    int j = checkItem(container);
+    int i = checkForItem(item);
+    int j = checkForItem(container);
     if (j >= 0) {
       if (player.getItems().get(j).isOpenable()) {
         if (i >= 0) {
@@ -445,9 +411,54 @@ public class Game {
         System.out.println("You don't have " + item + " in the " + container + ".");
     }
   }
+
+  /**
+   * The player drops an item into the room.
+   * This checks if the item is actually in the player's inventory or not.
+   * The item leaves the player's inventory and goes into the room's inventory.
+   * If the item is not in the player's inventory, there is an error message and nothing happens.
+   * @param item the name of the item the player wants to drop
+   */
+  private void dropItem(String item) {
+    if (checkForItem(item) >= 0) {
+      currentRoom.getInventory().addItem(player.getItems().get(checkForItem(item)));
+      player.getInventory().removeItem(player.getItems().get(checkForItem(item)));
+      currentRoom.setDescription(currentRoom.getShortDescription() + setRoomDescription());
+      System.out.println("You dropped your " + item + " in the " + currentRoom.getRoomName());
+    } else
+      System.out.println("You don't have a " + item + ".");
+        // Maybe make it so that if the item exists in the game then it says the above, otherwise say something else.
+  }
+
+  /**
+   * The player puts an item from their inventory into a container (ex. backpack) in their inventory
+   * If the item or container do not exist or are not in the player's inventory, then there is an error message
+   * @param item the item they want to put in the container
+   * @param container the place to store that item
+   */
+  private void putItemInContainer(String item, String container) {
+    int i = checkForItem(item);
+    int j = checkForItem(container);
+    if (i >= 0) {
+      if (j >= 0) {
+        if (player.getItems().get(j).isOpenable()) {
+          player.getItems().get(j).getInventory().addItem(player.getItems().get(i));
+          player.getInventory().removeItem(player.getItems().get(i));
+          System.out.println("You put your " + item + " in the " + container + ".");
+        }
+      }
+    } else {
+      if (i == -1)
+        System.out.println("You don't have " + item + ".");
+      else if (j == -1)
+        System.out.println("You don't have " + container + ".");
+      else
+        System.out.println("You can't open " + container + ".");
+    }
+  }
   
   private void openContainer(String container) {
-    int j = checkItem(container);
+    int j = checkForItem(container);
     if (j >= 0) {
       if (player.getItems().get(j).isOpenable())
         player.getItems().get(j).open();

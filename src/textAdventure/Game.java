@@ -238,24 +238,7 @@ public class Game {
     }
       
     else if(command.get(0).equals("cast")) {
-      if (player.getInventory().viewInventory().indexOf("book") > -1) {
-        if (command.get(1).equals("rictusempra"))
-          System.out.println("Haha you're tickling yourself!");
-        else if (command.get(1).equals("furnunculu"))
-          System.out.println("That just backfired, you covered yourself in boils!");
-        else if (command.get(1).equals("densaugeo"))
-          System.out.println("Ahhh now you have bunny like teeth! ");
-        else if (command.get(1).equals("incendio")) {
-          if (currentRoom.getRoomName().equals("Overgrown Plant House")) {
-            System.out.println("You set the death snare on fire, shrinking its size down considerably. You burned a hole through the wall and you walked through it. ");
-            System.out.println();
-            currentRoom = roomMap.get("FlyingWingsGame"); 
-            System.out.println(currentRoom.longDescription());
-          } else 
-            System.out.println("You consider lighting the room on fire, but you've decided not to. ");
-        }
-      } else
-        System.out.println("You don't have the book of spells so you can't cast any spells. ");
+      spellsCast(command);
     } else if (command.get(0).equals("put") || command.get(0).equals("place"))
       putItemInContainer(command.get(1), command.get(3));
     else if(command.get(0).equals("read"))
@@ -304,6 +287,26 @@ public class Game {
       System.out.println(currentRoom.longDescription());
     } else 
       System.out.println("You play the flute, but nothing happens. ");
+  }
+
+  private void spellsCast(ArrayList<String> command) {
+    if (player.getInventory().viewInventory().indexOf("book") > -1) {
+      if (command.get(1).equals("rictusempra"))
+        System.out.println("Haha you're tickling yourself!");
+      else if (command.get(1).equals("furnunculu"))
+        System.out.println("That just backfired, you covered yourself in boils!");
+      else if (command.get(1).equals("densaugeo"))
+        System.out.println("Ahhh now you have bunny like teeth! ");
+      else if (command.get(1).equals("incendio")) {
+        if (currentRoom.getRoomName().equals("Death Snare Plant")) {
+          System.out.println("You set the death snare on fire, shrinking its size down considerably. You burned a hole through the wall and you walked through it. ");
+          currentRoom = roomMap.get("FlyingWingsGame");
+          System.out.println(currentRoom.longDescription());
+        } else 
+          System.out.println("You consider lighting the room on fire, but you've decided not to. ");
+      }
+    } else
+      System.out.println("You don't have the book of spells so you can't cast any spells. ");
   }
 
   /**

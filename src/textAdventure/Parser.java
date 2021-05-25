@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Parser {
   //private static final int NUM_COMMANDS = 14;
   //private ArrayList<String> validWords = new ArrayList<String>(Arrays.asList("go", "quit", "help", "eat", "run", "board", "take", "drop", "cast", "open", "put", "place", "workout", "inventory", "spellbook", "charm", "gillyweed", "flute", "invisibility cloak", "globe", "pot", "incendio", "furnunculu", "densaugeo", "rictusempra", "north", "east", "south", "west", "train", ""));
-  private ArrayList<String> validCommands = new ArrayList<String>(Arrays.asList("go", "quit", "help", "eat", "run", "board", "take", "drop", "cast", "open", "put", "place", "workout", "inventory"));
+  private ArrayList<String> validCommands = new ArrayList<String>(Arrays.asList("go", "quit", "help", "eat", "run", "board", "take", "drop", "cast", "open", "put", "place", "workout", "inventory", "read"));
   private Scanner in;
 
   public Parser() {

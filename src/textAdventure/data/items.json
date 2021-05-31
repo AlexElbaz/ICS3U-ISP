@@ -2,7 +2,7 @@
     "items": [
         {
             "name": "spellbook",
-            "room": "DarkMatterClass",
+            "room": "Room",
             "weight": 10,
             "isOpenable": false,           
             "spells": [ 
@@ -23,20 +23,20 @@
         },
         {
             "name": "charm",
-            "room": "MusicCloset",
+            "room": "Room",
             "weight": 2,
             "isOpenable": false
         },
         {
             "name": "gillyweed",
-            "room": "MusicCloset",
+            "room": "Room",
             "weight": 2,
             "isOpenable": false,
             "itemRoomDescription": "There is gillyweed on the ground. "
         },
         {
             "name": "flute",
-            "room": "MusicCloset",
+            "room": "Room", 
             "weight": 5,
             "isOpenable": false,
             "itemRoomDescription": "There is a flute on the ground. "

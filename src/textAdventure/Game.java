@@ -29,7 +29,7 @@ public class Game {
       player = new Character(new Inventory(carryingCapacity));
       initRooms("src\\textAdventure\\data\\rooms.json");
       initItems("src\\textAdventure\\data\\items.json");
-      currentRoom = roomMap.get("TrainStation");
+      currentRoom = roomMap.get("Room");
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -164,7 +164,14 @@ public class Game {
       else
         return true; // signal that we want to quit
     } else if (command.get(0).equals("eat")) 
-      System.out.println("Do you really think you should be eating at a time like this?");
+        if(command.get(1).equals("gillyweed")){
+          if (player.getInventory().viewInventory().indexOf("gillyweed") > -1) {
+            eatGillyweed(command);
+          } else
+          System.out.println("You ate gillyweed, but nothing happened. ");
+        }
+      else
+        System.out.println("Do you really think you should be eating at a time like this?");
     else if (command.get(0).equals("board"))
       boardTrain(command);
     else if (command.get(0).equals("take")) {
@@ -203,24 +210,35 @@ public class Game {
       runWall(command);
     else if(command.get(0).equals("workout"))
       workout();
-    else if(command.get(0).equals("cast")) {
-      if (player.getInventory().viewInventory().indexOf("book") > -1) {
-        if (command.get(1).equals("rictusempra"))
-          System.out.println("Haha you're tickling yourself!");
-        else if (command.get(1).equals("furnunculu"))
-          System.out.println("That just backfired, you covered yourself in boils!");
-        else if (command.get(1).equals("densaugeo"))
-          System.out.println("Ahhh now you have bunny like teeth! ");
-        else if (command.get(1).equals("incendio")) {
-          if (currentRoom.getRoomName().equals("Death Snare Plant")) {
-            System.out.println("You set the death snare on fire, shrinking its size down considerably. You burned a hole through the wall and you walked through it. ");
-            currentRoom = roomMap.get("FlyingWingsGame");
-            System.out.println(currentRoom.longDescription());
-          } else 
-            System.out.println("You consider lighting the room on fire, but you've decided not to. ");
+    else if(command.get(0).equals("play")){
+      if(command.get(1).equals("flute")){
+        if (player.getInventory().viewInventory().indexOf("flute") > -1) {
+          playFlute(command);
+        } else{
+          System.out.println("You don't have the flute, so you can't use it!");
         }
-      } else
-        System.out.println("You don't have the book of spells so you can't cast any spells. ");
+      }
+    
+    }else if(command.get(0).equals("equip")){
+      if(command.get(1).equals("cloak")){
+        if (player.getInventory().viewInventory().indexOf("cloak") > -1) {
+          equipCloak(command);
+        } else{
+        System.out.println("You don't have the cloak, so you can't play it!");
+        }
+      }
+    }else if(command.get(0).equals("use")){
+      if(command.get(1).equals("charm")){
+        if (player.getInventory().viewInventory().indexOf("charm") > -1) {
+          useCharm(command);
+        } else{
+        System.out.println("You don't have the charm, so you can't use it!");
+        }
+      }
+    }
+      
+    else if(command.get(0).equals("cast")) {
+      spellsCast(command);
     } else if (command.get(0).equals("put") || command.get(0).equals("place"))
       putItemInContainer(command.get(1), command.get(3));
     else if(command.get(0).equals("read"))
@@ -232,6 +250,64 @@ public class Game {
 
 
   // implementations of user commands:
+
+  private void useCharm(ArrayList<String> command) {
+    if (currentRoom.getRoomName().equals("Long Room")) {
+      System.out.println("As you use the charm, you notice the boggart starting to transform into spongebob, telling you about his day. He lets you into the next room and congratulates you on beating the game. ");
+      System.out.println();
+      currentRoom = roomMap.get("MirrorRoom");
+      System.out.println(currentRoom.longDescription());
+    }
+  }
+
+  private void eatGillyweed(ArrayList<String> command) {
+    if (currentRoom.getRoomName().equals("Tiny Room")) {
+      System.out.println("You eat the gillyweed and you watch in amazement as you start to grow gills. Your feet become webbed and you easily swim in teh water to the door above. ");
+      System.out.println();
+      currentRoom = roomMap.get("BoggartRoom");
+      System.out.println(currentRoom.longDescription());
+    }
+  }
+
+  private void equipCloak(ArrayList<String> command) {
+    if (currentRoom.getRoomName().equals("Quidditch Field")) {
+      System.out.println("You wait till Balthazar turns his head and pull the cloak over yourself. He tries to find you but you are long gone in the next room. ");
+      System.out.println();
+      currentRoom = roomMap.get("GillyWeedRoom");
+      System.out.println(currentRoom.longDescription());
+  } else 
+    System.out.println("You use the cloak, but nothing happens. ");
+  }
+
+  private void playFlute(ArrayList<String> command) { 
+    if (currentRoom.getRoomName().equals("A Cold Room")) {
+      System.out.println("You use the flute and now the 3 Headed Dog has fallen asleep. Success! This flute has magical powers afterall since you got teleported to the Death Snare Plant Room. ");
+      System.out.println();
+      currentRoom = roomMap.get("DeathSnarePlant");
+      System.out.println(currentRoom.longDescription());
+    } else 
+      System.out.println("You play the flute, but nothing happens. ");
+  }
+
+  private void spellsCast(ArrayList<String> command) {
+    if (player.getInventory().viewInventory().indexOf("book") > -1) {
+      if (command.get(1).equals("rictusempra"))
+        System.out.println("Haha you're tickling yourself!");
+      else if (command.get(1).equals("furnunculu"))
+        System.out.println("That just backfired, you covered yourself in boils!");
+      else if (command.get(1).equals("densaugeo"))
+        System.out.println("Ahhh now you have bunny like teeth! ");
+      else if (command.get(1).equals("incendio")) {
+        if (currentRoom.getRoomName().equals("Death Snare Plant")) {
+          System.out.println("You set the death snare on fire, shrinking its size down considerably. You burned a hole through the wall and you walked through it. ");
+          currentRoom = roomMap.get("FlyingWingsGame");
+          System.out.println(currentRoom.longDescription());
+        } else 
+          System.out.println("You consider lighting the room on fire, but you've decided not to. ");
+      }
+    } else
+      System.out.println("You don't have the book of spells so you can't cast any spells. ");
+  }
 
   /**
    * Print out some help information. Here we print some stupid, cryptic message
@@ -259,7 +335,7 @@ public class Game {
       System.out.println("Helps you get onto a train.");
     } else if (command.get(1).equals("take")){
       System.out.println("Allows you to pick up items that you can use later.");
-    }  else if (command.get(1).equals("drop")){
+    }  else if (command.get(1).equals("drop")) {
       System.out.println("Allows you to release items that you do not wish to hold onto anymore.");
     } else if (command.get(1).equals("cast")){
       System.out.println("Helps you make magical spells with your wand.");
@@ -269,7 +345,7 @@ public class Game {
       System.out.println("Allows you to see what is inside of an object");
     } else if (command.get(1).equals("quit") || command.get(1).equals("exit")){
       System.out.println("Ends the game. That's one way to go out!");
-    } else if (command.get(1).equals("help")){
+    } else if (command.get(1).equals("help")) {
       System.out.println("Prints the help message.");
     } else if (command.get(1).equals("eat")){
       System.out.println("Allows you to fuel up before a very cool adventure in Hogwarts!");

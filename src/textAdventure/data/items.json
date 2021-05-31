@@ -22,6 +22,20 @@
             "maxWeight": 10
         },
         {
+            "name": "pot",
+            "room": "MusicCloset",
+            "weight": 99,
+            "isOpenable": true,
+            "maxWeight": 10
+        },
+        {
+            "name": "backpack",
+            "room": "PotionsStorage",
+            "weight": 20,
+            "isOpenable": true,
+            "maxWeight": 40
+        },
+        {
             "name": "charm",
             "room": "Room",
             "weight": 2,

@@ -164,14 +164,7 @@ public class Game {
       else
         return true; // signal that we want to quit
     } else if (command.get(0).equals("eat")) 
-        if(command.get(1).equals("gillyweed")){
-          if (player.getInventory().viewInventory().indexOf("gillyweed") > -1) {
-            eatGillyweed(command);
-          } else
-          System.out.println("You ate gillyweed, but nothing happened. ");
-        }
-      else
-        System.out.println("Do you really think you should be eating at a time like this?");
+        eatItem(command);    
     else if (command.get(0).equals("board"))
       boardTrain(command);
     else if (command.get(0).equals("take")) {
@@ -218,7 +211,6 @@ public class Game {
           System.out.println("You don't have the flute, so you can't use it!");
         }
       }
-    
     }else if(command.get(0).equals("equip")){
       if(command.get(1).equals("cloak")){
         if (player.getInventory().viewInventory().indexOf("cloak") > -1) {
@@ -235,8 +227,7 @@ public class Game {
         System.out.println("You don't have the charm, so you can't use it!");
         }
       }
-    }
-      
+    } 
     else if(command.get(0).equals("cast")) {
       spellsCast(command);
     } else if (command.get(0).equals("put") || command.get(0).equals("place"))
@@ -246,10 +237,19 @@ public class Game {
     else
       System.out.println("You can't do that.");
     return false;
-    }
-
-
+  }
   // implementations of user commands:
+
+  private void eatItem(ArrayList<String> command) {
+    if(command.get(1).equals("gillyweed")){
+      if (player.getInventory().viewInventory().indexOf("gillyweed") > -1) {
+        eatGillyweed(command);
+      } else
+      System.out.println("You ate gillyweed, but nothing happened. ");
+    }
+    else
+      System.out.println("Do you really think you should be eating at a time like this?");
+  }
 
   private void useCharm(ArrayList<String> command) {
     if (currentRoom.getRoomName().equals("Long Room")) {
@@ -323,7 +323,6 @@ public class Game {
       System.out.println("If you want to learn more about each command, type 'help' [command word]");
     } else{
       commandHelp(command);
-
     }
   }
 
@@ -353,7 +352,13 @@ public class Game {
       System.out.println("Makes you sprint as fast as you can in the direction you choose. You do however risk losing your dignity if you trip and fall.");
     } else if (command.get(1).equals("workout")){
       System.out.println("Allows you to carry more weight by working out and becoming buff. Self improvement is key.");
-    } 
+    } else if (command.get(1).equals("inventory")){
+      System.out.println("Tells you what you are currently carrying in your inventory.");
+    } else if (command.get(1).equals("read")){
+      System.out.println("Allows you to read the contents of a book, and maybe gain some knowledge to help you in the game!");
+    } else if (command.get(1).equals("equip")){
+      System.out.println("Allows you to wear a piece of clothing.");
+    }
   }
 
   /**

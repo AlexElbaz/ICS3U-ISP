@@ -7,8 +7,7 @@ import java.util.Scanner;
 
 
 public class Parser {
-  //private static final int NUM_COMMANDS = 14;
-  //private ArrayList<String> validWords = new ArrayList<String>(Arrays.asList("go", "quit", "help", "eat", "run", "board", "take", "drop", "cast", "open", "put", "place", "workout", "inventory", "spellbook", "charm", "gillyweed", "flute", "invisibility cloak", "globe", "pot", "incendio", "furnunculu", "densaugeo", "rictusempra", "north", "east", "south", "west", "train", ""));
+  private ArrayList<String> invalidWords = new ArrayList<String>(Arrays.asList("PUTADJECTIVESHERE")); // Implement!!!!!
   private ArrayList<String> validCommands = new ArrayList<String>(Arrays.asList("go", "quit", "help", "eat", "run", "board", "take", "drop", "cast", "open", "put", "place", "workout", "inventory", "read"));
   private Scanner in;
 
@@ -25,17 +24,19 @@ public class Parser {
 
     inputLine = in.nextLine().toLowerCase();
 
-    while (!moreWords) {
-      if (inputLine.indexOf(" ") >= 0)
-        words.add(inputLine.substring(0, inputLine.indexOf(" ")));
+    words = (ArrayList<String>) Arrays.asList(inputLine.split(" "));
 
-      if (inputLine.indexOf(" ") == -1) {
-        words.add(inputLine);
-        moreWords = true;
-      }
+    // while (!moreWords) {
+    //   if (inputLine.indexOf(" ") >= 0)
+    //     words.add(inputLine.substring(0, inputLine.indexOf(" ")));
 
-      inputLine = inputLine.substring(inputLine.indexOf(" ") + 1);
-    }
+    //   if (inputLine.indexOf(" ") == -1) {
+    //     words.add(inputLine);
+    //     moreWords = true;
+    //   }
+
+    //   inputLine = inputLine.substring(inputLine.indexOf(" ") + 1);
+    // }
 
     /*
     for (int i = 0; i < words.size(); i++) {

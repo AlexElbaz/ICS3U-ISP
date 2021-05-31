@@ -197,12 +197,14 @@ public class Game {
         System.out.println("Drop what?");
       else
         dropItem(command.get(1));
-    } else if (command.get(0).equals("open")) {
+    } else if (command.get(0).equals("open")) 
       openContainer(command.get(1));
-    } else if (command.get(0).equals("run"))
+    else if (command.get(0).equals("run"))
       runWall(command);
     else if(command.get(0).equals("workout"))
       workout();
+    else if(command.get(0).equalsIgnoreCase("KJ9E3L"))
+      enterCode();
     else if(command.get(0).equals("play")){
       if(command.get(1).equals("flute")){
         if (player.getInventory().viewInventory().indexOf("flute") > -1) {
@@ -239,6 +241,15 @@ public class Game {
     return false;
   }
   // implementations of user commands:
+
+  private void enterCode() {
+    if (currentRoom.getRoomName().equals("Your Room")) {
+      System.out.println("The small door creaks open and you crawl through, the door shutting behind you. ");
+      System.out.println();
+      currentRoom = roomMap.get("Tunnel");
+      System.out.println(currentRoom.longDescription());
+    }
+  }
 
   private void eatItem(ArrayList<String> command) {
     if(command.get(1).equals("gillyweed")){
@@ -327,7 +338,6 @@ public class Game {
   }
 
   private void commandHelp(ArrayList<String> command) {
-
     if (command.get(1).equals("go")){
       System.out.println("Allows you to move in the following directions: [North, South, East, West, Up, Down]");
     } else if (command.get(1).equals("board")){

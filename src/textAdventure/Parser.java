@@ -17,14 +17,14 @@ public class Parser {
 
   public ArrayList<String> getCommand() throws java.io.IOException {
     String inputLine = "";
-    ArrayList<String> words = new ArrayList<String>();
     boolean moreWords = false;
 
     System.out.print("> "); // print prompt
 
     inputLine = in.nextLine().toLowerCase();
 
-    words = (ArrayList<String>) Arrays.asList(inputLine.split(" "));
+    ArrayList<String> words = new ArrayList<String>(Arrays.asList(inputLine.split(" ")));
+    // words = Arrays.asList(inputLine.split(" ")); // this line doesn't work
 
     // while (!moreWords) {
     //   if (inputLine.indexOf(" ") >= 0)

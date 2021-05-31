@@ -228,8 +228,8 @@
     {
       "id": "Stairs1",
       "name": "Staircase",
-      "description": "You are at the bottom of a tall a staircase. ",
-      "shortDescription": "You are at the bottom of a tall a staircase. ",
+      "description": "You are at the bottom of a tall staircase. ",
+      "shortDescription": "You are at the bottom of a tall staircase. ",
       "exits": [
         {
           "isLocked": false,
@@ -664,7 +664,7 @@
       "id": "Room",
       "name": "Your Room",
       "description": "You spot a black cloak sitting in an opened gift box. ",
-      "short description": "Nothing but an empty gift box on the ground. ",
+      "shortDescription": "Nothing but an empty gift box on the ground. ",
       "exits": [
         {
           "isLocked": false,

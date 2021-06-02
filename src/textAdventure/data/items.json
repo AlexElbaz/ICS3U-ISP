@@ -6,20 +6,32 @@
             "weight": 10,
             "isOpenable": false,           
             "spells": [ 
-            
                 "Fire making spell: 'Incendio' ",
                 "Covers target in boils: 'Furnunculu' ",
                 "Makes teeth grow quickly: 'Densaugeo' ",
                 "Tickle spell: 'Rictusempra' "
-              
             ]
         },
         {
             "name": "pot",
-            "room": "MusicCloset",
+            "room": "Room",
             "weight": 99,
             "isOpenable": true,
             "maxWeight": 10
+        },
+        {
+            "name": "vat",
+            "room": "Room",
+            "weight": 99,
+            "isOpenable": true,
+            "maxWeight": 100
+        },
+        {
+            "name": "backpack",
+            "room": "PotionsStorage",
+            "weight": 20,
+            "isOpenable": true,
+            "maxWeight": 40
         },
         {
             "name": "charm",
@@ -36,7 +48,7 @@
         },
         {
             "name": "flute",
-            "room": "Room", 
+            "room": "MusicCloset", 
             "weight": 5,
             "isOpenable": false,
             "itemRoomDescription": "There is a flute on the ground. "

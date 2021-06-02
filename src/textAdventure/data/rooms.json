@@ -228,8 +228,8 @@
     {
       "id": "Stairs1",
       "name": "Staircase",
-      "description": "You are at the bottom of a tall a staircase. ",
-      "shortDescription": "You are at the bottom of a tall a staircase. ",
+      "description": "You are at the bottom of a tall staircase. ",
+      "shortDescription": "You are at the bottom of a tall staircase. ",
       "exits": [
         {
           "isLocked": false,
@@ -622,8 +622,8 @@
     {
       "id": "FunnyDeathRoom",
       "name": "Funny Death Room",
-      "description": "[description] You died. ",
-      "shortDescription": "[description] You died. ",
+      "description": "You see a scary clown holding a red balloon and you begin to focus on the small amount of deep-red blood dripping from it's mouth. It opens its mouth and you notice about 20 rows of razor sharp teeth smiling back at you. It goes to whisper something in your ear, but your heart goes down faster sending you into certain death. ",
+      "shortDescription": "You see a scary clown holding a red balloon and you begin to focus on the small amount of deep-red blood dripping from it's mouth. It opens its mouth and you notice about 20 rows of razor sharp teeth smiling back at you. It goes to whisper something in your ear, but your heart goes down faster sending you into certain death. ",
       "exits": [
         {
           "isLocked": false,
@@ -664,7 +664,7 @@
       "id": "Room",
       "name": "Your Room",
       "description": "You spot a black cloak sitting in an opened gift box. ",
-      "short description": "Nothing but an empty gift box on the ground. ",
+      "shortDescription": "Nothing but an empty gift box on the ground. ",
       "exits": [
         {
           "isLocked": false,
@@ -718,13 +718,13 @@
     {
       "id": "Hallway22",
       "name": "Hallway",
-      "description": "You see a small door, but looks like it's all boarded up. At the end of the hallway you see a glass door leading to the outside. To the north, you see a mysterious painting. ",
-      "shortDescription": "You see a small door, but looks like it's all boarded up. At the end of the hallway you see a glass door leading to the outside. ",
+      "description": "You see a small door, but looks like it's all boarded up. At the end of the hallway you see a glass door leading to the outside. To the north, you see a mysterious painting. The painting has the letters KJ9E3L catches your eye. You wonder what it's for. ",
+      "shortDescription": "You see a small door, but looks like it's all boarded up. At the end of the hallway you see a glass door leading to the outside. To the north, you see a mysterious painting. The painting has the letters KJ9E3L catches your eye. You wonder what that is for. ",
       "exits": [
         {
           "isLocked": true,
           "direction": "North",
-          "adjacentRoom": "Painting"
+          "adjacentRoom": "StorageRoom"
         },
         {
           "isLocked": false,
@@ -735,19 +735,6 @@
           "isLocked": false,
           "direction": "West",
           "adjacentRoom": "Hallway21"
-        }
-      ]
-    },
-    {
-      "id": "Painting",
-      "name": "Painting",
-      "description": "The painting has the letters KJ9E3L catches your eye. You wonder what that is for. ",
-      "shortDescription": "The painting has the letters KJ9E3L catches your eye. You wonder what that is for. ",
-      "exits": [
-        {
-          "isLocked": true,
-          "direction": "South",
-          "adjacentRoom": "Hallway22"
         }
       ]
     },
@@ -767,8 +754,8 @@
     {
       "id": "StorageRoom",
       "name": "Storage Room",
-      "description": "You are in a cob-webby storage room. You see a shiny key ring in the corner of your eye. ",
-      "shortDescription": "You are in a cob-webby storage room. You see a shiny key ring in the corner of your eye. ",
+      "description": "It's locked. You have to use a different way to get in. Maybe a code perhaps? ",
+      "shortDescription": "It's locked. You have to use a different way to get in. Maybe a code perhaps? ",
       "exits": [
         {
           "isLocked": false,
@@ -803,8 +790,8 @@
     {
       "id": "3HeadedDog",
       "name": "A Cold Room",
-      "description": "You hear the dogs snoring peacefully. You walk closer and the snoring intensifies. The ground greeks and the dog starts to growl at you. It's barking viciously in your face. ",
-      "shortDescription": "You hear the dogs snoring peacefully. You walk closer and the snoring intensifies. The ground greeks and the dog starts to growl at you. It's barking viciously in your face. ",
+      "description": "You hear the dogs snoring peacefully. You walk closer and the snoring intensifies. The ground creaks and the dog starts to growl at you. It's barking viciously in your face. ",
+      "shortDescription": "You hear the dogs snoring peacefully. You walk closer and the snoring intensifies. The ground creaks and the dog starts to growl at you. It's barking viciously in your face. ",
       "exits": [
         {
           "isLocked": false,
@@ -875,6 +862,19 @@
           "isLocked": false,
           "direction": "South",
           "adjacentRoom": "BoggartRoom"
+        }
+      ]
+    },
+    {
+      "id": "UndergroundCellar",
+      "name": "Underground Cellar",
+      "description": "You wake up in a cold damp cellar, with runes of death on the walls. While you wonder how you didn't die you notice a ladder to your left leading to the light. Is this your trip to heaven?",
+      "shortDescription": "You wake up in a cold damp cellar, with runes of death on the walls. While you wonder how you didn't die you notice a ladder to your left leading to the light. Is this your trip to heaven?",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "Up",
+          "adjacentRoom": "DininghallTopLeft"
         }
       ]
     }

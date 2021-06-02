@@ -175,10 +175,13 @@ public class Game {
         System.out.println("Drop what?");
       else
         dropItem(command.get(1));
-    } else if (command.get(0).equals("open")) 
-      openContainer(command.get(1));
-    else if (command.get(0).equals("run"))
-      runWall(command);
+    } else if (command.get(0).equals("open")) {
+      if (command.size() < 2)
+        System.out.println("Open what?");
+      else
+        openContainer(command.get(1));
+    } else if (command.get(0).equals("run"))
+        runWall(command);
     else if(command.get(0).equals("workout"))
       workout();
     else if(command.get(0).equalsIgnoreCase("KJ9E3L"))
@@ -212,9 +215,12 @@ public class Game {
       spellsCast(command);
     } else if (command.get(0).equals("put") || command.get(0).equals("place"))
       putItemInContainer(command.get(1), command.get(3));
-    else if(command.get(0).equals("read"))
-      readSpellbook(command.get(1));
+    else if(command.get(0).equals("read")) {
+    if (command.size() < 2)
+      System.out.println("Read what?");
     else
+      readSpellbook(command.get(1));
+    } else
       System.out.println("You can't do that.");
     return false;
   }
@@ -477,7 +483,6 @@ public class Game {
     int[] result = {-1, -1};
     for (int i = 0; i < player.getItems().size(); i++) {
       Item tempItem = player.getItems().get(i);
-
       if (tempItem.getName().equals(item)) {
         result[0] = i;
         return result;
@@ -504,9 +509,10 @@ public class Game {
   private void takeItem(String item) {
     boolean itemExists = false;
       for (int i = 0; i < currentRoom.getItems().size(); i++) {
+        Item tempItem = currentRoom.getItems().get(i);
         if (currentRoom.getItems().get(i).getName().equals(item)) {
-          if (player.getInventory().addItem(currentRoom.getItems().get(i))) {
-            currentRoom.getInventory().removeItem(currentRoom.getItems().get(i));
+          if (player.getInventory().addItem(tempItem)) {
+            currentRoom.getInventory().removeItem(tempItem);
             currentRoom.setDescription(currentRoom.getShortDescription() + setRoomDescription());
             System.out.println("Taken.");
           }
@@ -519,14 +525,16 @@ public class Game {
   }
 
   private void takeItemFromContainer(String item, String container) {
-    int containerIndex = checkForItem(container)[0];
-    int itemInContainerIndex = checkForItem(item)[0];
-    int containerOfItemIndex = checkForItem(item)[1];
+    int containerIndex = checkForItem(container)[0]; // the index of the container that is specified by the player in the player's inventory 
+    int itemInContainerIndex = checkForItem(item)[0]; // the index of the item that is specified by the player in its container 
+    int containerOfItemIndex = checkForItem(item)[1]; // the index of the container that the specified item is actually in
     if (containerIndex >= 0) {
-      if (player.getItems().get(containerIndex).isOpenable()) {
+      Item tempContainer = player.getItems().get(containerIndex); // the container that is specified by the player
+      if (tempContainer.isOpenable()) {
         if (itemInContainerIndex >= 0 && containerOfItemIndex == containerIndex) {
-          if (player.getInventory().addItem(player.getItems().get(containerIndex).getItems().get(itemInContainerIndex))) { // maybe need to automatically drop the item if there is no room
-            player.getItems().get(itemInContainerIndex).getInventory().removeItem(player.getItems().get(containerIndex).getItems().get(itemInContainerIndex));
+          Item tempItemInContainer = tempContainer.getItems().get(itemInContainerIndex); // the item that is specified by the player that they want to remove from the specified container
+          if (player.getInventory().addItem(tempItemInContainer)) { // maybe need to automatically drop the item if there is no room
+            tempContainer.getInventory().removeItem(tempItemInContainer); // changed the start of the line
             System.out.println("You took the " + item + " out of the " + container + ".");
           } else { 
             System.out.println("You are carrying too much to pick up the " + item + ".");
@@ -554,8 +562,9 @@ public class Game {
   private void dropItem(String item) {  // This needs to be modified to account for items in containers
     int i = checkForItem(item)[0];
     if (i >= 0) {
-      currentRoom.getInventory().addItem(player.getItems().get(i));
-      player.getInventory().removeItem(player.getItems().get(i));
+      Item tempItem = player.getItems().get(i);
+      currentRoom.getInventory().addItem(tempItem);
+      player.getInventory().removeItem(tempItem);
       currentRoom.setDescription(currentRoom.getShortDescription() + setRoomDescription());
       System.out.println("You dropped your " + item + " in the " + currentRoom.getRoomName());
     } else
@@ -574,12 +583,15 @@ public class Game {
     int containerOfItemIndex = checkForItem(item)[1];
     int containerIndex = checkForItem(container)[0];
     if (itemIndex >= 0) {
+      Item tempItem = player.getItems().get(itemIndex);
       if (containerOfItemIndex < 0) {
         if (containerIndex >= 0) {
-          if (player.getItems().get(containerIndex).isOpenable()) {
-            player.getItems().get(containerIndex).getInventory().addItem(player.getItems().get(itemIndex));
-            player.getInventory().removeItem(player.getItems().get(itemIndex));
-            System.out.println("You put your " + item + " in the " + container + ".");
+          Item tempContainer = player.getItems().get(containerIndex);
+          if (tempContainer.isOpenable()) {
+            if (tempContainer.getInventory().addItem(tempItem)) {
+              player.getInventory().removeItem(tempItem);
+              System.out.println("You put your " + item + " in the " + container + ".");
+            }
           } else
             System.out.println("You can't open " + container + ".");
         } else
@@ -595,8 +607,9 @@ public class Game {
     int containerOfContainerIndex = checkForItem(container)[1];
     if (containerOfContainerIndex < 0) {
       if (containerIndex >= 0) {
-        if (player.getItems().get(containerIndex).isOpenable())
-          player.getItems().get(containerIndex).open();
+        Item tempContainer = player.getItems().get(containerIndex); // the container that is specified by the player
+        if (tempContainer.isOpenable())
+          tempContainer.open();
         else 
           System.out.println("You can't open " + container + ".");
       } else 
@@ -642,8 +655,9 @@ public class Game {
   private void readSpellbook(String spellbook) {
     int spellbookIndex = checkForItem(spellbook)[0];
     if (spellbookIndex >= 0) {
-      if (player.getItems().get(spellbookIndex).getSpells() != null) {
-        for (String spell : player.getItems().get(spellbookIndex).getSpells()) {
+      Item tempSpellbook = player.getItems().get(spellbookIndex);
+      if (tempSpellbook.getSpells() != null) {
+        for (String spell : tempSpellbook.getSpells()) {
           System.out.println(spell);
         }
       } else

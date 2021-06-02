@@ -14,17 +14,17 @@
         },
         {
             "name": "pot",
-            "room": "MusicCloset",
+            "room": "Room",
             "weight": 99,
             "isOpenable": true,
             "maxWeight": 10
         },
         {
-            "name": "pot",
-            "room": "MusicCloset",
+            "name": "vat",
+            "room": "Room",
             "weight": 99,
             "isOpenable": true,
-            "maxWeight": 10
+            "maxWeight": 100
         },
         {
             "name": "backpack",
@@ -48,7 +48,7 @@
         },
         {
             "name": "flute",
-            "room": "Room", 
+            "room": "MusicCloset", 
             "weight": 5,
             "isOpenable": false,
             "itemRoomDescription": "There is a flute on the ground. "

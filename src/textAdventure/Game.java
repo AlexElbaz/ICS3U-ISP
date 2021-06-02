@@ -336,15 +336,23 @@ public class Game {
       System.out.println("Do you really think you should be eating at a time like this?");
   }
 
+  /**
+   * Handles everything regarding using the charm item.
+   * @param command user input
+   */
   private void useCharm(ArrayList<String> command) {
-    if (currentRoom.getRoomName().equals("Long Room")) {
+    if (currentRoom.getRoomName().equals("Long Room")) { //checks the name of the room, since you can only use the charm in one of the challenge rooms
       System.out.println("As you use the charm, you notice the boggart starting to transform into spongebob, telling you about his day. He lets you into the next room and congratulates you on beating the game. ");
       System.out.println();
-      currentRoom = roomMap.get("MirrorRoom");
+      currentRoom = roomMap.get("MirrorRoom"); //once you use the charm in the correct room, the game teleports you into the next challenge room
       System.out.println(currentRoom.longDescription());
     }
   }
 
+  /**
+   * Handles everything regarding using the gillyweed item.
+   * @param command user input
+   */
   private void eatGillyweed(ArrayList<String> command) {
     if (currentRoom.getRoomName().equals("Tiny Room")) {
       System.out.println("You eat the gillyweed and you watch in amazement as you start to grow gills. Your feet become webbed and you easily swim in teh water to the door above. ");
@@ -354,6 +362,10 @@ public class Game {
     }
   }
 
+  /**
+   * Handles everything regarding using the cloak item.
+   * @param command user input
+   */
   private void equipCloak(ArrayList<String> command) {
     if (currentRoom.getRoomName().equals("Quidditch Field")) {
       System.out.println("You wait till Balthazar turns his head and pull the cloak over yourself. He tries to find you but you are long gone in the next room. ");
@@ -363,7 +375,11 @@ public class Game {
   } else 
     System.out.println("You use the cloak, but nothing happens. ");
   }
-
+  
+  /**
+   * Handles everything regarding using the flute item. 
+   * @param command user input
+   */
   private void playFlute(ArrayList<String> command) { 
     if (currentRoom.getRoomName().equals("A Cold Room")) {
       System.out.println("You use the flute and now the 3 Headed Dog has fallen asleep. Success! This flute has magical powers afterall since you got teleported to the Death Snare Plant Room. ");
@@ -373,7 +389,12 @@ public class Game {
     } else 
       System.out.println("You play the flute, but nothing happens. ");
   }
-
+  
+  /**
+   * Allows the user to cast spells. Has each specific spell and the funny message that comes with it. Additionally, one of the final challenges requires
+   * a spell so we cover that.
+   * @param command user input
+   */
   private void spellsCast(ArrayList<String> command) {
     if (player.getInventory().viewInventory().indexOf("book") > -1) {
       if (command.get(1).equals("rictusempra"))
@@ -411,6 +432,10 @@ public class Game {
     }
   }
 
+  /**
+   * specific command help for the user, just in case they get stuck or are wondering what a command does
+   * @param command the input from the user, at index 0 is help, and at index 1 is the command they want to learn about
+   */
   private void commandHelp(ArrayList<String> command) {
     if (command.get(1).equals("go")){
       System.out.println("Allows you to move in the following directions: [North, South, East, West, Up, Down]");

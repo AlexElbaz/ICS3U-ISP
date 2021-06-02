@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 
 public class Parser {
-  private ArrayList<String> invalidWords = new ArrayList<String>(Arrays.asList("PUTADJECTIVESHERE")); // Implement!!!!!
+  private ArrayList<String> invalidWords = new ArrayList<String>(Arrays.asList("the", "a", "as", "from", "of"));  // Add "in" and other stuff once while loop functionality stuff from takeItemFromContainer() is added everywhere
   private ArrayList<String> validCommands = new ArrayList<String>(Arrays.asList("go", "quit", "help", "eat", "run", "board", "take", "drop", "cast", "open", "put", "place", "workout", "inventory", "read"));
   private Scanner in;
 
@@ -24,31 +24,8 @@ public class Parser {
     inputLine = in.nextLine().toLowerCase();
 
     ArrayList<String> words = new ArrayList<String>(Arrays.asList(inputLine.split(" ")));
-    // words = Arrays.asList(inputLine.split(" ")); // this line doesn't work
-
-    // while (!moreWords) {
-    //   if (inputLine.indexOf(" ") >= 0)
-    //     words.add(inputLine.substring(0, inputLine.indexOf(" ")));
-
-    //   if (inputLine.indexOf(" ") == -1) {
-    //     words.add(inputLine);
-    //     moreWords = true;
-    //   }
-
-    //   inputLine = inputLine.substring(inputLine.indexOf(" ") + 1);
-    // }
-
-    /*
-    for (int i = 0; i < words.size(); i++) {
-      if (!validWords.contains(words.get(i))) {
-        words.remove(i);
-        i--;
-      }
-    }
-
-    System.out.println(words);
-    */
-
+    words.removeAll(invalidWords);
+    
     return words;
   }
 
@@ -56,11 +33,6 @@ public class Parser {
    * Print out a list of valid command words.
   */
   public void showCommands() {
-    /*
-    for (int i = 0; i < NUM_COMMANDS; i++) {
-      System.out.println(validWords.get(i));
-    }
-    */
    System.out.println(validCommands);
   }
 }

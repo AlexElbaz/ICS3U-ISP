@@ -18,8 +18,8 @@ public class Game {
   private Character player;
   private boolean hasRunAtWall = false;
   private boolean hasBoardedTrain = false;
-  private int carryingCapacity = 5000;
-  private int countWorkout = 0;
+  private long carryingCapacity = 5000;
+  private long countWorkout = 0;
 
   /**
    * Create the game and initialise its internal map.
@@ -88,30 +88,36 @@ public class Game {
     JSONArray jsonItems = (JSONArray) json.get("items");
 
     for (Object roomObj : jsonItems) {
-      Item item = new Item();
       String itemName = (String) ((JSONObject) roomObj).get("name");
-      item.setName(itemName);
       String roomId = (String) ((JSONObject) roomObj).get("room");
       long weight = (long) ((JSONObject) roomObj).get("weight");
-      item.setWeight(weight);
       Boolean isOpenable = (Boolean) ((JSONObject) roomObj).get("isOpenable");
-      item.setOpenable(isOpenable);
-      if (((JSONObject) roomObj).get("maxWeight") != null) {
-        long maxWeight = (long) ((JSONObject) roomObj).get("maxWeight");
-        item.setInventory(new Inventory(maxWeight));
-      }
-      String itemRoomDescription = (String) ((JSONObject) roomObj).get("itemRoomDescription");
-      item.setItemRoomDescription(itemRoomDescription);
-      System.out.println(roomId); // delete this
-      roomMap.get(roomId).getInventory().addItem(item);
-
-      if (((JSONObject) roomObj).get("spells") != null) {
-        JSONArray jsonSpells = (JSONArray) ((JSONObject) roomObj).get("spells");
-        ArrayList<String> spells = new ArrayList<String>();
-        for (Object spell : jsonSpells) {
-          spells.add((String) spell);
+      if (((JSONObject) roomObj).get("keyId") != null) {
+        String keyId = (String) ((JSONObject) roomObj).get("keyId");
+        Item key = new Key(keyId, itemName, weight);
+        roomMap.get(roomId).getInventory().addItem(key);
+      } else {
+        Item item = new Item();
+        item.setName(itemName);
+        item.setWeight(weight);
+        item.setOpenable(isOpenable);
+        if (((JSONObject) roomObj).get("maxWeight") != null) {
+          long maxWeight = (long) ((JSONObject) roomObj).get("maxWeight");
+          item.setInventory(new Inventory(maxWeight));
         }
-        item.setSpells(spells);
+        String itemRoomDescription = (String) ((JSONObject) roomObj).get("itemRoomDescription");
+        item.setItemRoomDescription(itemRoomDescription);
+        System.out.println(roomId); // delete this
+        roomMap.get(roomId).getInventory().addItem(item);
+
+        if (((JSONObject) roomObj).get("spells") != null) {
+          JSONArray jsonSpells = (JSONArray) ((JSONObject) roomObj).get("spells");
+          ArrayList<String> spells = new ArrayList<String>();
+          for (Object spell : jsonSpells) {
+            spells.add((String) spell);
+          }
+          item.setSpells(spells);
+        }
       }
     }
   }
@@ -399,14 +405,28 @@ public class Game {
       Room nextRoom = currentRoom.nextRoom(direction);
 
       if (nextRoom == null) {
-        if ("west east north south up down".indexOf(direction) >= 0)  
+        if ("west-east-north-south-up-down".indexOf(direction) >= 0)  
           System.out.println("You can't go that way.");
       } else {
-        currentRoom = nextRoom;
-        System.out.println(currentRoom.longDescription());
+        for (int e = 0; e < currentRoom.getExits().size(); e++) {
+          if (currentRoom.getExits().get(e).getDirection().equalsIgnoreCase(direction)) {
+            if (currentRoom.getExits().get(e).isLocked()) {
+              for (Item item : player.getItems()) {
+                if (item.getKeyId().equals(currentRoom.getExits().get(e).getKeyId())) {
+                  currentRoom.getExits().get(e).setLocked(false);
+                  currentRoom = nextRoom;
+                  System.out.println(currentRoom.longDescription());
+                }
+              }
+              if (currentRoom.getExits().get(e).isLocked())
+                System.out.println("This door is locked. You need the right key to enter. ");
+            } else {
+              currentRoom = nextRoom;
+              System.out.println(currentRoom.longDescription());
+            }
+          }
+        }
       }
-    } else {
-      System.out.println("You can only go one way at a time.");
     }
   }
 
@@ -423,7 +443,7 @@ public class Game {
         currentRoom = nextRoom;
         System.out.println(currentRoom.longDescription());
     } else {
-      if ("west east north south up down".indexOf(command.get(1)) >= 0)
+      if ("west-east-north-south-up-down".indexOf(command.get(1)) >= 0)
         System.out.println("Try using the go command.");
       else
         System.out.println("You can't do that.");

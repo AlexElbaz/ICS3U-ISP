@@ -99,21 +99,18 @@ public class Room {
   public Room nextRoom(String direction) {
     try {
       for (Exit exit : exits) {
-
         if (exit.getDirection().equalsIgnoreCase(direction)) {
-          String adjacentRoom = exit.getAdjacentRoom();
-
-          return Game.roomMap.get(adjacentRoom);
+            String adjacentRoom = exit.getAdjacentRoom();
+            return Game.roomMap.get(adjacentRoom);
         }
-
       }
     } catch (IllegalArgumentException ex) {
-      if ("west east north south up down".indexOf(direction) == -1)
+      if ("west-east-north-south-up-down".indexOf(direction) == -1)
         System.out.println(direction + " is not a valid direction.");
       return null;
     }
 
-    if ("west east north south up down".indexOf(direction) == -1)
+    if ("west-east-north-south-up-down".indexOf(direction) == -1)
       System.out.println(direction + " is not a valid direction.");
     return null;
   }

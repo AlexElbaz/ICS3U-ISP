@@ -66,6 +66,13 @@
             "room": "AstronomyClassBottomRight",
             "weight": 10,
             "isOpenable": false
+        },
+        {
+            "name": "key",
+            "room": "Room",
+            "weight": 1,
+            "isOpenable": false,
+            "keyId": "1"
         }
     ]
 }

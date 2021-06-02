@@ -17,7 +17,7 @@ public class Inventory {
     return maxWeight;
   }
 
-  public void updateMaxWeight(int maxWeight){
+  public void updateMaxWeight(long maxWeight){
     this.maxWeight = maxWeight;
   }
 

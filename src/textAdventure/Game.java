@@ -20,6 +20,7 @@ public class Game {
   private boolean hasBoardedTrain = false;
   private int carryingCapacity = 5000;
   private int countWorkout = 0;
+  private boolean hasPrinted = false;
 
   /**
    * Create the game and initialise its internal map.
@@ -29,7 +30,7 @@ public class Game {
       player = new Character(new Inventory(carryingCapacity));
       initRooms("src\\textAdventure\\data\\rooms.json");
       initItems("src\\textAdventure\\data\\items.json");
-      currentRoom = roomMap.get("Room");
+      currentRoom = roomMap.get("MirrorRoom");
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -127,7 +128,8 @@ public class Game {
       try {
         ArrayList<String> command = parser.getCommand();
         finished = processCommand(command);
-        processDeath();
+        processWin();
+        processDeath();      
       } catch (IOException e) {
         e.printStackTrace();
       }
@@ -141,7 +143,7 @@ public class Game {
    */
   private void printWelcome() {
     System.out.println();
-    System.out.println("Welcome  player to the wonderous Wizarding World!");
+    System.out.println("Welcome player to the wonderous Wizarding World!");
     System.out.println("This is a place for adventure, heroism, and spirit!");
     System.out.println("If you ever get stuck or need a hand, type 'help'.");
     System.out.println();
@@ -224,7 +226,27 @@ public class Game {
       System.out.println("You can't do that.");
     return false;
   }
-
+  private void processWin(){
+    if(currentRoom.getRoomName().equals("Final Room") && !hasPrinted) {
+      System.out.println("                                                                                     ,---,    ,---,    ,---,  ");
+      System.out.println("                                                                                  ,`--.' | ,`--.' | ,`--.' |  ");
+      System.out.println("                                                        .---.                     |   :  : |   :  : |   :  :  ");
+      System.out.println("        ,---,                                          /. ./|  ,--,               '   '  ; '   '  ; '   '  ; ");
+      System.out.println("       /_ ./|   ,---.           ,--,               .--'.  ' ;,--.'|         ,---, |   |  | |   |  | |   |  |  ");
+      System.out.println(" ,---, |  ' :  '   ,'\\        ,'_ /|              /__./ \\ : ||  |,      ,-+-. /  |'   :  ; '   :  ; '   :  ;  ");
+      System.out.println("/___/ \\.  : | /   /   |  .--. |  | :          .--'.  '   \\' .`--'_     ,--.'|'   ||   |  ' |   |  ' |   |  '  ");
+      System.out.println(" .  \\  \\ ,' '.   ; ,. :,'_ /| :  . |         /___/ \\ |    ' ',' ,'|   |   |  ,\"' |'   :  | '   :  | '   :  |  ");
+      System.out.println("  \\  ;  `  ,''   | |: :|  ' | |  . .         ;   \\  \\;      :'  | |   |   | /  | |;   |  ; ;   |  ; ;   |  ;  ");
+      System.out.println("   \\  \\    ' '   | .; :|  | ' |  | |          \\   ;  `      ||  | :   |   | |  | |`---'. | `---'. | `---'. |  ");
+      System.out.println("    '  \\   | |   :    |:  | : ;  ; |           .   \\    .\\  ;'  : |__ |   | |  |/  `--..`;  `--..`;  `--..`;  ");
+      System.out.println("     \\  ;  ;  \\   \\  / '  :  `--'   \\           \\   \\   ' \\ ||  | '.'||   | |--'  .--,_    .--,_    .--,_     ");
+      System.out.println("      :  \\  \\  `----'  :  ,      .-./            :   '  |--\" ;  :    ;|   |/      |    |`. |    |`. |    |`.  ");
+      System.out.println("       \\  ' ;           `--`----'                 \\   \\ ;    |  ,   / '---'       `-- -`, ;`-- -`, ;`-- -`, ; ");
+      System.out.println("        `--`                                       '---\"      ---`-'                '---`\"   '---`\"   '---`\"  ");
+      System.out.println("                                                                                                              ");
+      hasPrinted = true;
+    }
+  }
   private void processDeath(){
     if(currentRoom.getRoomName().equals("Funny Death Room") ) {
       killPlayer();

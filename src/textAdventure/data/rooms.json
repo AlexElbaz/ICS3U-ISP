@@ -844,7 +844,7 @@
     },
     {
       "id": "MirrorRoom",
-      "name": "Room",
+      "name": "Final Room",
       "description": "Congratulations! You made it to the end of the game without dying. You're a wizard!",
       "shortDescription": "Congratulations! You made it to the end of the game without dying. You're a wizard!",
       "exits": [

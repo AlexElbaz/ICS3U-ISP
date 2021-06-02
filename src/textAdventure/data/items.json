@@ -35,7 +35,7 @@
         },
         {
             "name": "charm",
-            "room": "CharmsClass",
+            "room": "MirrorRoom",
             "weight": 2,
             "isOpenable": false
         },

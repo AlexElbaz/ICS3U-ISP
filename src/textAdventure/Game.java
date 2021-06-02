@@ -20,6 +20,7 @@ public class Game {
   private boolean hasBoardedTrain = false;
   private long carryingCapacity = 5000;
   private long countWorkout = 0;
+  private boolean hasPrinted = false;
 
   /**
    * Create the game and initialise its internal map.
@@ -29,7 +30,7 @@ public class Game {
       player = new Character(new Inventory(carryingCapacity));
       initRooms("src\\textAdventure\\data\\rooms.json");
       initItems("src\\textAdventure\\data\\items.json");
-      currentRoom = roomMap.get("Room");
+      currentRoom = roomMap.get("MirrorRoom");
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -133,6 +134,8 @@ public class Game {
       try {
         ArrayList<String> command = parser.getCommand();
         finished = processCommand(command);
+        processWin();
+        processDeath();      
       } catch (IOException e) {
         e.printStackTrace();
       }
@@ -146,7 +149,7 @@ public class Game {
    */
   private void printWelcome() {
     System.out.println();
-    System.out.println("Welcome  player to the wonderous Wizarding World!");
+    System.out.println("Welcome player to the wonderous Wizarding World!");
     System.out.println("This is a place for adventure, heroism, and spirit!");
     System.out.println("If you ever get stuck or need a hand, type 'help'.");
     System.out.println();
@@ -174,36 +177,7 @@ public class Game {
     else if (command.get(0).equals("board"))
       boardTrain(command);
     else if (command.get(0).equals("take")) {
-      if (command.size() < 3) {
-        if (command.size() == 1) // no second word
-          System.out.println("Take what?");
-        else
-          takeItem(command.get(1));
-      } else {
-        boolean hasFound = false;
-        int countForItem = 1; // command.get(0) MUST be "take" for this line to occur.
-        while (!hasFound && countForItem < command.size() - 1) {   // This will run an infinite loop if the item in the inputLine is not in the inventory
-          if (checkForItem(command.get(countForItem))[0] >= 0)
-            hasFound = true;
-          else 
-            countForItem++;
-        }
-        if (hasFound) {
-          hasFound = false;
-          int countForContainer = countForItem + 1; // Container cannot appear before or at the same index as item in the InputLine.
-          while (!hasFound && countForContainer < command.size()) {
-            if (checkForItem(command.get(countForContainer))[0] >= 0) // it crashes here when the player misspells the item when doing "take item from container"
-              hasFound = true;
-            else 
-              countForContainer++;
-          }
-          if (hasFound)
-            takeItemFromContainer(command.get(countForItem), command.get(countForContainer));
-          else
-            takeItemFromContainer(command.get(countForItem), command.get(countForContainer - 1));
-        } else
-          System.out.println("You don't have " + command.get(1));
-      }
+      takeCommand(command);    
     } else if (command.get(0).equals("drop")) {
       if (command.size() < 2)
         System.out.println("Drop what?");
@@ -258,7 +232,89 @@ public class Game {
       System.out.println("You can't do that.");
     return false;
   }
+  private void processWin(){
+    if(currentRoom.getRoomName().equals("Final Room") && !hasPrinted) {
+      System.out.println("                                                                                     ,---,    ,---,    ,---,  ");
+      System.out.println("                                                                                  ,`--.' | ,`--.' | ,`--.' |  ");
+      System.out.println("                                                        .---.                     |   :  : |   :  : |   :  :  ");
+      System.out.println("        ,---,                                          /. ./|  ,--,               '   '  ; '   '  ; '   '  ; ");
+      System.out.println("       /_ ./|   ,---.           ,--,               .--'.  ' ;,--.'|         ,---, |   |  | |   |  | |   |  |  ");
+      System.out.println(" ,---, |  ' :  '   ,'\\        ,'_ /|              /__./ \\ : ||  |,      ,-+-. /  |'   :  ; '   :  ; '   :  ;  ");
+      System.out.println("/___/ \\.  : | /   /   |  .--. |  | :          .--'.  '   \\' .`--'_     ,--.'|'   ||   |  ' |   |  ' |   |  '  ");
+      System.out.println(" .  \\  \\ ,' '.   ; ,. :,'_ /| :  . |         /___/ \\ |    ' ',' ,'|   |   |  ,\"' |'   :  | '   :  | '   :  |  ");
+      System.out.println("  \\  ;  `  ,''   | |: :|  ' | |  . .         ;   \\  \\;      :'  | |   |   | /  | |;   |  ; ;   |  ; ;   |  ;  ");
+      System.out.println("   \\  \\    ' '   | .; :|  | ' |  | |          \\   ;  `      ||  | :   |   | |  | |`---'. | `---'. | `---'. |  ");
+      System.out.println("    '  \\   | |   :    |:  | : ;  ; |           .   \\    .\\  ;'  : |__ |   | |  |/  `--..`;  `--..`;  `--..`;  ");
+      System.out.println("     \\  ;  ;  \\   \\  / '  :  `--'   \\           \\   \\   ' \\ ||  | '.'||   | |--'  .--,_    .--,_    .--,_     ");
+      System.out.println("      :  \\  \\  `----'  :  ,      .-./            :   '  |--\" ;  :    ;|   |/      |    |`. |    |`. |    |`.  ");
+      System.out.println("       \\  ' ;           `--`----'                 \\   \\ ;    |  ,   / '---'       `-- -`, ;`-- -`, ;`-- -`, ; ");
+      System.out.println("        `--`                                       '---\"      ---`-'                '---`\"   '---`\"   '---`\"  ");
+      System.out.println("                                                                                                              ");
+      hasPrinted = true;
+    }
+  }
+  private void processDeath(){
+    if(currentRoom.getRoomName().equals("Funny Death Room") ) {
+      killPlayer();
+    } else if(currentRoom.getRoomName().equals("A Cold Room") ) { 
+        if (player.getInventory().viewInventory().indexOf("flute") < 0) {
+          System.out.println("As you tried to go into the cold room without calming the dog down, the dog got angry and bit your head off. You died. \n\n\n\n\n ");
+          killPlayer();
+        }
+    } else if(currentRoom.getRoomName().equals("Overgrown Plant House") ) { 
+      if (player.getInventory().viewInventory().indexOf("spellbook") < 0) {
+        System.out.println("As you tried to go into the overgrown plant house, you weren't able to control the plant and it ate you like how a venus fly trap eats a fly. You died. \n\n\n\n\n ");
+        killPlayer();
+      }
+    } else if(currentRoom.getRoomName().equals("Quidditch Field") ) { 
+      if (player.getInventory().viewInventory().indexOf("cloak") < 0) {
+        System.out.println("As you tried to go into the quidditch field, Balthazar forced you to play quidditch for three days straight. You died from exhaustion. \n\n\n\n\n ");
+        killPlayer();
+      }
+    } else if(currentRoom.getRoomName().equals("Tiny Room") ) { 
+      if (player.getInventory().viewInventory().indexOf("gillyweed") < 0) {
+        System.out.println("As you tried to go into the tiny room, you weren't able to stop the drip of water. You drowned. \n\n\n\n\n ");
+        killPlayer();
+      }
+    } else if(currentRoom.getRoomName().equals("Long Room") ) { 
+      if (player.getInventory().viewInventory().indexOf("charm") < 0) {
+        System.out.println("As you tried to go into the long room, the spirit turns YOU into a spirit. You died. \n\n\n\n\n ");
+        killPlayer();
+      }
+    } 
+  }
+  private void killPlayer(){
+    currentRoom = roomMap.get("UndergroundCellar");
+    System.out.println(currentRoom.longDescription());
+  }
   // implementations of user commands:
+
+  private void takeCommand(ArrayList<String> command) {
+    if (command.size() < 3) {
+      if (command.size() == 1) // no second word
+        System.out.println("Take what?");
+      else
+        takeItem(command.get(1));
+    } else {
+      boolean hasFound = false;
+      int countForItem = 1; // command.get(0) MUST be "take" for this line to occur.
+      while (!hasFound) {   // This will run an infinite loop if the item in the inputLine is not in the inventory
+        if (checkForItem(command.get(countForItem))[0] >= 0)
+          hasFound = true;
+        else 
+          countForItem++;
+      }
+      hasFound = false;
+      int countForContainer = countForItem + 1; // Container cannot appear before or at the same index as item in the InputLine.
+      while (!hasFound) {
+        if (checkForItem(command.get(countForContainer))[0] >= 0)
+          hasFound = true;
+        else 
+          countForContainer++;
+      }
+      takeItemFromContainer(command.get(countForItem), command.get(countForContainer));
+    }
+  }
 
   private void enterCode() {
     if (currentRoom.getRoomName().equals("Your Room")) {

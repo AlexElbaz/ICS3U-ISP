@@ -2,21 +2,19 @@
     "items": [
         {
             "name": "spellbook",
-            "room": "Room",
+            "room": "DarkMatterClass",
             "weight": 10,
             "isOpenable": false,           
             "spells": [ 
-            
                 "Fire making spell: 'Incendio' ",
                 "Covers target in boils: 'Furnunculu' ",
                 "Makes teeth grow quickly: 'Densaugeo' ",
                 "Tickle spell: 'Rictusempra' "
-              
             ]
         },
         {
             "name": "pot",
-            "room": "Room",
+            "room": "Kitchen",
             "weight": 99,
             "isOpenable": true,
             "maxWeight": 10
@@ -37,13 +35,13 @@
         },
         {
             "name": "charm",
-            "room": "Room",
+            "room": "MirrorRoom",
             "weight": 2,
             "isOpenable": false
         },
         {
             "name": "gillyweed",
-            "room": "Room",
+            "room": "PotionsStorage",
             "weight": 2,
             "isOpenable": false,
             "itemRoomDescription": "There is gillyweed on the ground. "

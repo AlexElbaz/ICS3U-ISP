@@ -6,12 +6,10 @@
             "weight": 10,
             "isOpenable": false,           
             "spells": [ 
-            
                 "Fire making spell: 'Incendio' ",
                 "Covers target in boils: 'Furnunculu' ",
                 "Makes teeth grow quickly: 'Densaugeo' ",
                 "Tickle spell: 'Rictusempra' "
-              
             ]
         },
         {

@@ -622,8 +622,8 @@
     {
       "id": "FunnyDeathRoom",
       "name": "Funny Death Room",
-      "description": "[description] You died. ",
-      "shortDescription": "[description] You died. ",
+      "description": "You see a scary clown holding a red balloon and you begin to focus on the small amount of deep-red blood dripping from it's mouth. It opens its mouth and you notice about 20 rows of razor sharp teeth smiling back at you. It goes to whisper something in your ear, but your heart goes down faster sending you into certain death. ",
+      "shortDescription": "You see a scary clown holding a red balloon and you begin to focus on the small amount of deep-red blood dripping from it's mouth. It opens its mouth and you notice about 20 rows of razor sharp teeth smiling back at you. It goes to whisper something in your ear, but your heart goes down faster sending you into certain death. ",
       "exits": [
         {
           "isLocked": false,
@@ -790,8 +790,8 @@
     {
       "id": "3HeadedDog",
       "name": "A Cold Room",
-      "description": "You hear the dogs snoring peacefully. You walk closer and the snoring intensifies. The ground greeks and the dog starts to growl at you. It's barking viciously in your face. ",
-      "shortDescription": "You hear the dogs snoring peacefully. You walk closer and the snoring intensifies. The ground greeks and the dog starts to growl at you. It's barking viciously in your face. ",
+      "description": "You hear the dogs snoring peacefully. You walk closer and the snoring intensifies. The ground creaks and the dog starts to growl at you. It's barking viciously in your face. ",
+      "shortDescription": "You hear the dogs snoring peacefully. You walk closer and the snoring intensifies. The ground creaks and the dog starts to growl at you. It's barking viciously in your face. ",
       "exits": [
         {
           "isLocked": false,
@@ -862,6 +862,19 @@
           "isLocked": false,
           "direction": "South",
           "adjacentRoom": "BoggartRoom"
+        }
+      ]
+    },
+    {
+      "id": "UndergroundCellar",
+      "name": "Underground Cellar",
+      "description": "You wake up in a cold damp cellar, with runes of death on the walls. While you wonder how you didn't die you notice a ladder to your left leading to the light. Is this your trip to heaven?",
+      "shortDescription": "You wake up in a cold damp cellar, with runes of death on the walls. While you wonder how you didn't die you notice a ladder to your left leading to the light. Is this your trip to heaven?",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "Up",
+          "adjacentRoom": "DininghallTopLeft"
         }
       ]
     }

@@ -127,6 +127,7 @@ public class Game {
       try {
         ArrayList<String> command = parser.getCommand();
         finished = processCommand(command);
+        processDeath();
       } catch (IOException e) {
         e.printStackTrace();
       }
@@ -168,30 +169,7 @@ public class Game {
     else if (command.get(0).equals("board"))
       boardTrain(command);
     else if (command.get(0).equals("take")) {
-      if (command.size() < 3) {
-        if (command.size() == 1) // no second word
-          System.out.println("Take what?");
-        else
-          takeItem(command.get(1));
-      } else {
-        boolean hasFound = false;
-        int countForItem = 1; // command.get(0) MUST be "take" for this line to occur.
-        while (!hasFound) {   // This will run an infinite loop if the item in the inputLine is not in the inventory
-          if (checkForItem(command.get(countForItem))[0] >= 0)
-            hasFound = true;
-          else 
-            countForItem++;
-        }
-        hasFound = false;
-        int countForContainer = countForItem + 1; // Container cannot appear before or at the same index as item in the InputLine.
-        while (!hasFound) {
-          if (checkForItem(command.get(countForContainer))[0] >= 0)
-            hasFound = true;
-          else 
-            countForContainer++;
-        }
-        takeItemFromContainer(command.get(countForItem), command.get(countForContainer));
-      }
+      takeCommand(command);    
     } else if (command.get(0).equals("drop")) {
       if (command.size() < 2)
         System.out.println("Drop what?");
@@ -240,7 +218,64 @@ public class Game {
       System.out.println("You can't do that.");
     return false;
   }
+
+  private void processDeath(){
+    if(currentRoom.getRoomName().equals("Funny Death Room") ) {
+      killPlayer();
+    } else if(currentRoom.getRoomName().equals("A Cold Room") ) { 
+        if (player.getInventory().viewInventory().indexOf("flute") < 0) {
+          killPlayer();
+        }
+    } else if(currentRoom.getRoomName().equals("Overgrown Plant House") ) { 
+      if (player.getInventory().viewInventory().indexOf("spellbook") < 0) {
+        killPlayer();
+      }
+    } else if(currentRoom.getRoomName().equals("Quidditch Field") ) { 
+      if (player.getInventory().viewInventory().indexOf("cloak") < 0) {
+        killPlayer();
+      }
+    } else if(currentRoom.getRoomName().equals("Tiny Room") ) { 
+      if (player.getInventory().viewInventory().indexOf("gillyweed") < 0) {
+        killPlayer();
+      }
+    } else if(currentRoom.getRoomName().equals("Long Room") ) { 
+      if (player.getInventory().viewInventory().indexOf("charm") < 0) {
+        killPlayer();
+      }
+    } 
+  }
+  private void killPlayer(){
+    currentRoom = roomMap.get("Underground");
+    System.out.println(currentRoom.longDescription());
+  }
   // implementations of user commands:
+
+  private void takeCommand(ArrayList<String> command) {
+    if (command.size() < 3) {
+      if (command.size() == 1) // no second word
+        System.out.println("Take what?");
+      else
+        takeItem(command.get(1));
+    } else {
+      boolean hasFound = false;
+      int countForItem = 1; // command.get(0) MUST be "take" for this line to occur.
+      while (!hasFound) {   // This will run an infinite loop if the item in the inputLine is not in the inventory
+        if (checkForItem(command.get(countForItem))[0] >= 0)
+          hasFound = true;
+        else 
+          countForItem++;
+      }
+      hasFound = false;
+      int countForContainer = countForItem + 1; // Container cannot appear before or at the same index as item in the InputLine.
+      while (!hasFound) {
+        if (checkForItem(command.get(countForContainer))[0] >= 0)
+          hasFound = true;
+        else 
+          countForContainer++;
+      }
+      takeItemFromContainer(command.get(countForItem), command.get(countForContainer));
+    }
+  }
 
   private void enterCode() {
     if (currentRoom.getRoomName().equals("Your Room")) {

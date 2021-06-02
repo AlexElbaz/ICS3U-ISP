@@ -230,28 +230,33 @@ public class Game {
       killPlayer();
     } else if(currentRoom.getRoomName().equals("A Cold Room") ) { 
         if (player.getInventory().viewInventory().indexOf("flute") < 0) {
+          System.out.println("As you tried to go into the cold room without calming the dog down, the dog got angry and bit your head off. You died. \n\n\n\n\n ");
           killPlayer();
         }
     } else if(currentRoom.getRoomName().equals("Overgrown Plant House") ) { 
       if (player.getInventory().viewInventory().indexOf("spellbook") < 0) {
+        System.out.println("As you tried to go into the overgrown plant house, you weren't able to control the plant and it ate you like how a venus fly trap eats a fly. You died. \n\n\n\n\n ");
         killPlayer();
       }
     } else if(currentRoom.getRoomName().equals("Quidditch Field") ) { 
       if (player.getInventory().viewInventory().indexOf("cloak") < 0) {
+        System.out.println("As you tried to go into the quidditch field, Balthazar forced you to play quidditch for three days straight. You died from exhaustion. \n\n\n\n\n ");
         killPlayer();
       }
     } else if(currentRoom.getRoomName().equals("Tiny Room") ) { 
       if (player.getInventory().viewInventory().indexOf("gillyweed") < 0) {
+        System.out.println("As you tried to go into the tiny room, you weren't able to stop the drip of water. You drowned. \n\n\n\n\n ");
         killPlayer();
       }
     } else if(currentRoom.getRoomName().equals("Long Room") ) { 
       if (player.getInventory().viewInventory().indexOf("charm") < 0) {
+        System.out.println("As you tried to go into the long room, the spirit turns YOU into a spirit. You died. \n\n\n\n\n ");
         killPlayer();
       }
     } 
   }
   private void killPlayer(){
-    currentRoom = roomMap.get("Underground");
+    currentRoom = roomMap.get("UndergroundCellar");
     System.out.println(currentRoom.longDescription());
   }
   // implementations of user commands:

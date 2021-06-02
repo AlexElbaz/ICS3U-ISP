@@ -663,14 +663,9 @@
     {
       "id": "Room",
       "name": "Your Room",
-      "description": "You spot a black cloak sitting in an opened gift box. ",
-      "shortDescription": "Nothing but an empty gift box on the ground. ",
+      "description": "You spot a black cloak sitting in an opened gift box. The little door in the corner is locked. You have to use a different way to get in. Maybe a code perhaps? ",
+      "shortDescription": "Nothing but an empty gift box on the ground. The little door in the corner is locked. You have to use a different way to get in. Maybe a code perhaps? ",
       "exits": [
-        {
-          "isLocked": false,
-          "direction": "East", 
-          "adjacentRoom": "Tunnel"
-        },
         {
           "isLocked": false,
           "direction": "South",
@@ -754,24 +749,19 @@
     {
       "id": "StorageRoom",
       "name": "Storage Room",
-      "description": "It's locked. You have to use a different way to get in. Maybe a code perhaps? ",
-      "shortDescription": "It's locked. You have to use a different way to get in. Maybe a code perhaps? ",
+      "description": "You are in a storage room with the highest ceiling you have ever seen. You are surrounded by shelves upon shelves of old records filled with history. You get a sick feeling of what is to come, but you know what you must do. There will be many challenges ahead but you feel ready! ",
+      "shortDescription": "You are in a storage room with the highest ceiling you have ever seen. You are surrounded by shelves upon shelves of old records filled with history. You get a sick feeling of what is to come, but you know what you must do. There will be many challenges ahead but you feel ready! ",
       "exits": [
         {
           "isLocked": false,
           "direction": "North",
           "adjacentRoom": "Tunnel2"
-        },
-        {
-          "isLocked": false,
-          "direction": "West",
-          "adjacentRoom": "Tunnel1"
         }
       ]
     },
     {
       "id": "Tunnel2",
-      "name": "Tunnel2",
+      "name": "A Skinny Tunnel",
       "description": "You are in a torch-lit tunnel. It looks abandoned and it feels like the walls are closing in on you. ",
       "shortDescription": "You are in a torch-lit tunnel. It looks abandoned and it feels like the walls are closing in on you. ",
       "exits": [

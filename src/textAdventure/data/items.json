@@ -22,11 +22,11 @@
             "maxWeight": 10
         },
         {
-            "name": "pot",
-            "room": "MusicCloset",
+            "name": "vat",
+            "room": "Room",
             "weight": 99,
             "isOpenable": true,
-            "maxWeight": 10
+            "maxWeight": 100
         },
         {
             "name": "backpack",

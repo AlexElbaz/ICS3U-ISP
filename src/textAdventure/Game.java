@@ -176,21 +176,27 @@ public class Game {
       } else {
         boolean hasFound = false;
         int countForItem = 1; // command.get(0) MUST be "take" for this line to occur.
-        while (!hasFound) {   // This will run an infinite loop if the item in the inputLine is not in the inventory
+        while (!hasFound && countForItem < command.size() - 1) {   // This will run an infinite loop if the item in the inputLine is not in the inventory
           if (checkForItem(command.get(countForItem))[0] >= 0)
             hasFound = true;
           else 
             countForItem++;
         }
-        hasFound = false;
-        int countForContainer = countForItem + 1; // Container cannot appear before or at the same index as item in the InputLine.
-        while (!hasFound) {
-          if (checkForItem(command.get(countForContainer))[0] >= 0) // it crashes here when the player misspells the item when doing "take item from container"
-            hasFound = true;
-          else 
-            countForContainer++;
-        }
-        takeItemFromContainer(command.get(countForItem), command.get(countForContainer));
+        if (hasFound) {
+          hasFound = false;
+          int countForContainer = countForItem + 1; // Container cannot appear before or at the same index as item in the InputLine.
+          while (!hasFound && countForContainer < command.size()) {
+            if (checkForItem(command.get(countForContainer))[0] >= 0) // it crashes here when the player misspells the item when doing "take item from container"
+              hasFound = true;
+            else 
+              countForContainer++;
+          }
+          if (hasFound)
+            takeItemFromContainer(command.get(countForItem), command.get(countForContainer));
+          else
+            takeItemFromContainer(command.get(countForItem), command.get(countForContainer - 1));
+        } else
+          System.out.println("You don't have " + command.get(1));
       }
     } else if (command.get(0).equals("drop")) {
       if (command.size() < 2)

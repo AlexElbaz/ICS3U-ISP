@@ -13,12 +13,6 @@ public class Exit extends OpenableObject {
     this.adjacentRoom = adjacentRoom;
   }
 
-  public Exit(String direction, String adjacentRoom, boolean isLocked, String keyId, Boolean isOpen) {
-    super(isLocked, keyId, isOpen);
-    this.direction = direction;
-    this.adjacentRoom = adjacentRoom;
-  }
-
   public Exit(String direction, String adjacentRoom) {
     this.direction = direction;
     this.adjacentRoom = adjacentRoom;

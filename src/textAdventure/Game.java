@@ -62,8 +62,7 @@ public class Game {
         String adjacentRoom = (String) ((JSONObject) exitObj).get("adjacentRoom");
         String keyId = (String) ((JSONObject) exitObj).get("keyId");
         Boolean isLocked = (Boolean) ((JSONObject) exitObj).get("isLocked");
-        Boolean isOpen = (Boolean) ((JSONObject) exitObj).get("isOpen");
-        Exit exit = new Exit(direction, adjacentRoom, isLocked, keyId, isOpen);
+        Exit exit = new Exit(direction, adjacentRoom, isLocked, keyId);
         exits.add(exit);
       }
       room.setExits(exits);
@@ -719,7 +718,7 @@ public class Game {
         System.out.println("As you make your way over to the weights yet again and look at the " + countWorkout + " empty protein shake bottle(s), the body builders applaud you.");
       System.out.println("You lift with all your might and realize you're getting stronger. You down a protein shake. You earned that extra 10 pounds you can hold.");
       carryingCapacity += 10;
-      player.getInventory().updateMaxWeight(carryingCapacity);
+      player.getInventory().setMaxWeight(carryingCapacity);
       countWorkout++;
     } else
       System.out.println("You can't workout here. Make your way to the gym to get jacked!");

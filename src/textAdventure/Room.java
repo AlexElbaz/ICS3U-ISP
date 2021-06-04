@@ -95,6 +95,8 @@ public class Room {
   /**
    * Return the room that is reached if we go from this room in direction
    * "direction". If there is no room in that direction, return null.
+   * @param direction the direction that the player wants to go in
+   * @return the adjacent room to the player's current room in the specified direction 
    */
   public Room nextRoom(String direction) {
     try {
@@ -115,13 +117,6 @@ public class Room {
     return null;
   }
 
-  /*
-   * private int getDirectionIndex(String direction) { int dirIndex = 0; for
-   * (String dir : directions) { if (dir.equals(direction)) return dirIndex; else
-   * dirIndex++; }
-   * 
-   * throw new IllegalArgumentException("Invalid Direction"); }
-   */
   public String getRoomName() {
     return roomName;
   }

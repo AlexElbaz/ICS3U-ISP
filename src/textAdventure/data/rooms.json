@@ -44,7 +44,6 @@
         }
       ]
     },
-   
     {
       "id": "DininghallTopRight",
       "name": "Great Hall",
@@ -71,8 +70,8 @@
     {
       "id": "DininghallBottomLeft",
       "name": "Great Hall",
-      "description": "Still in the Great Hall, you walk by Ron and Hermione. ",
-      "shortDescription": "Still in the Great Hall, you walk by Ron and Hermione. ",
+      "description": "You are still in the Great Hall and you walk by Ron and Hermione. ",
+      "shortDescription": "You are still in the Great Hall and you walk by Ron and Hermione. ",
       "exits": [
         {
           "isLocked": false,
@@ -141,8 +140,8 @@
     {
       "id": "Hallway13",
       "name": "Hallway",
-      "description": "You are in a cramped hallway. ",
-      "shortDescription": "You are in a cramped hallway. ",
+      "description": "You are in a cramped hallway. You see a door to the west that says 'Class: Potions Class, Teacher: Professor Snape' ",
+      "shortDescription": "You are in a cramped hallway. You see a door to the west that says 'Class: Potions Class, Teacher: Professor Snape' ",
       "exits": [
         {
           "isLocked": true,
@@ -210,8 +209,8 @@
     {
       "id": "Chapel",
       "name": "Chapel",
-      "description": "You are in a chapel with high ceilings and rows of chairs. Sitting down in one, you look around more. You notice stained glass windows, interesting designs on the walls and what looks like a super cool bakery to the south. Thinking more about the bakery, you begin to notice the sweet smell of baking pastries and fall asleep by mistake... Oops!",
-      "shortDescription": "You are in a chapel with high ceilings and rows of chairs. Sitting down in one, you look around more. You notice stained glass windows, interesting designs on the walls and what looks like a super cool bakery to the south. Thinking more about the bakery, you begin to notice the sweet smell of baking pastries and fall asleep by mistake... Oops!",
+      "description": "You are in a chapel with high ceilings and rows of chairs. Sitting down in one, you look around. You notice stained glass windows, interesting designs on the walls and what looks like a super cool bakery to the south. Thinking more about the bakery, you begin to notice the sweet smell of baking pastries and fall asleep by mistake... Oops! ",
+      "shortDescription": "You are in a chapel with high ceilings and rows of chairs. Sitting down in one, you look around. You notice stained glass windows, interesting designs on the walls and what looks like a super cool bakery to the south. Thinking more about the bakery, you begin to notice the sweet smell of baking pastries and fall asleep by mistake... Oops! ",
       "exits": [
         {
           "isLocked": false,
@@ -246,31 +245,13 @@
     {
       "id": "BakeHouse",
       "name": "Bake House",
-      "description": "You are surrounded by ovens and more importantly pastries. Unfortunately, the pastries are not for you and are probably poisoned. Taking a bite of one anyway, you realize it is inedible and are very sad. So the real question is: what produced the sweet scent you enjoyed in the chapel?",
-      "shortDescription": "You are surrounded by ovens and more importantly pastries. Unfortunately, the pastries are not for you and are probably poisoned. Taking a bite of one anyway, you realize it is inedible and are very sad. So the real question is: what produced the sweet scent you enjoyed in the chapel?",
+      "description": "You are surrounded by ovens and more importantly pastries. Unfortunately, the pastries are not for you and are probably poisoned. Taking a bite of one anyway, you realize it is inedible and are very sad. So the real question is: what produced the sweet scent you enjoyed in the chapel? ",
+      "shortDescription": "You are surrounded by ovens and more importantly pastries. Unfortunately, the pastries are not for you and are probably poisoned. Taking a bite of one anyway, you realize it is inedible and are very sad. So the real question is: what produced the sweet scent you enjoyed in the chapel? ",
       "exits": [
         {
           "isLocked": false,
           "direction": "North",
           "adjacentRoom": "Chapel"
-        }
-      ]
-    },
-    {
-      "id": "Hallway12",
-      "name": "Hallway",
-      "description": "You are in a short hallway with plush chairs identical to the ones in the sitting area. ",
-      "shortDescription": "You are in a short hallway with plush chairs identical to the ones in the sitting area. ",
-      "exits": [
-        {
-          "isLocked": false,
-          "direction": "South",
-          "adjacentRoom": "Chapel"
-        },
-        {
-          "isLocked": false,
-          "direction": "West",
-          "adjacentRoom": "SittingArea"
         }
       ]
     },
@@ -295,8 +276,8 @@
     {
       "id": "Hallway11",
       "name": "Hallway",
-      "description": "You are in a long hallway. ",
-      "shortDescription": "You are in a long hallway. ",
+      "description": "You are in a very long hallway. A chilly breeze comes in from the north, and there's a strong sweaty scent coming from the east... ",
+      "shortDescription": "You are in a very long hallway. A chilly breeze comes in from the north, and there's a strong sweaty scent coming from the east... ",
       "exits": [
         {
           "isLocked": false,
@@ -562,8 +543,8 @@
     {
       "id": "Hallway21",
       "name": "Hallway",
-      "description": "Walking in a hallway. ",
-      "shortDescription": "Walking in a hallway. ",
+      "description": "You are walking in a hallway, and you take a second to admire the architecture of the domed ceiling. ",
+      "shortDescription": "You are Walking in a hallway, and you take a second to admire the architecture of the domed ceiling. ",
       "exits": [
         {
           "isLocked": false,

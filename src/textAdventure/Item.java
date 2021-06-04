@@ -17,13 +17,6 @@ public class Item extends OpenableObject {
     inventory = null;
   }
 
-  /*public Item(int weight, String name, int maxWeight) {
-    this.weight = weight;
-    this.name = name;
-    this.isOpenable = true;
-    this.inventory = new Inventory(maxWeight);
-  }*/
-  
   public Item() {
   }
 

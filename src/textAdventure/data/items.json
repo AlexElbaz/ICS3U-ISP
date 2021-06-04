@@ -71,6 +71,20 @@
             "weight": 1,
             "isOpenable": false,
             "keyId": "1"
+        },
+        {
+            "name": "key",
+            "room": "PotionsClass",
+            "weight": 1,
+            "isOpenable": false,
+            "keyId": "2"
+        },
+        {
+            "name": "key",
+            "room": "PotionsClass",
+            "weight": 1,
+            "isOpenable": false,
+            "keyId": "2"
         }
     ]
 }

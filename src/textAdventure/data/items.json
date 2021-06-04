@@ -14,14 +14,14 @@
         },
         {
             "name": "pot",
-            "room": "Kitchen",
+            "room": "MusicRoom",
             "weight": 99,
             "isOpenable": true,
-            "maxWeight": 10
+            "maxWeight": 100
         },
         {
             "name": "vat",
-            "room": "Room",
+            "room": "MusicRoom",
             "weight": 99,
             "isOpenable": true,
             "maxWeight": 100
@@ -67,7 +67,7 @@
         },
         {
             "name": "key",
-            "room": "Room",
+            "room": "MusicRoom",
             "weight": 1,
             "isOpenable": false,
             "keyId": "1"

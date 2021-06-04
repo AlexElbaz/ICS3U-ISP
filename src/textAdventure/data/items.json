@@ -66,6 +66,18 @@
             "isOpenable": false
         },
         {
+            "name": "model",
+            "room": "AstronomyClassBottomLeft",
+            "weight": 200,
+            "isOpenable": false
+        },
+        {
+            "name": "telescope",
+            "room": "AstronomyClassTopRight",
+            "weight": 250,
+            "isOpenable": false
+        },
+        {
             "name": "key",
             "room": "MusicRoom",
             "weight": 1,

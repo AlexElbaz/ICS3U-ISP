@@ -663,7 +663,7 @@
     {
       "id": "Room",
       "name": "Your Room",
-      "description": "You spot a black cloak sitting in an opened gift box. The little door in the corner is locked. You have to use a different way to get in. Maybe a code perhaps? ",
+      "description": "You spot a cloak that has a tag that says 'invisibility cloak' sitting in an opened gift box. The little door in the corner is locked. You have to use a different way to get in. Maybe a code perhaps? ",
       "shortDescription": "Nothing but an empty gift box on the ground. The little door in the corner is locked. You have to use a different way to get in. Maybe a code perhaps? ",
       "exits": [
         {

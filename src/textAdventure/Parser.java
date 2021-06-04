@@ -17,15 +17,14 @@ public class Parser {
 
   public ArrayList<String> getCommand() throws java.io.IOException {
     String inputLine = "";
-    boolean moreWords = false;
-
+    
     System.out.print("> "); // print prompt
 
     inputLine = in.nextLine().toLowerCase();
 
     ArrayList<String> words = new ArrayList<String>(Arrays.asList(inputLine.split(" ")));
     words.removeAll(invalidWords);
-    
+        
     return words;
   }
 

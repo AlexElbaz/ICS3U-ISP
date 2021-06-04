@@ -11,30 +11,58 @@ public class Room {
   private Inventory inventory;
   private ArrayList<String> hints;
 
+  /**
+   * 
+   * @return
+   */
   public ArrayList<Item> getItems() {
     return inventory.getItems();
   }
 
+  /**
+   * 
+   * @return
+   */
   public String getShortDescription() {
     return shortDescription;
   }
 
+  /**
+   * 
+   * @return
+   */
   public void setShortDescription(String shortDescription) {
     this.shortDescription = shortDescription;
   }
 
+  /**
+   * 
+   * @return
+   */
   public Inventory getInventory() {
     return inventory;
   }
 
+  /**
+   * 
+   * @return
+   */
   public void setInventory(Inventory inventory) {
     this.inventory = inventory;
   }
 
+  /**
+   * 
+   * @return
+   */
   public ArrayList<Exit> getExits() {
     return exits;
   }
 
+  /**
+   * 
+   * @return
+   */
   public void setExits(ArrayList<Exit> exits) {
     this.exits = exits;
   }
@@ -49,6 +77,10 @@ public class Room {
     setInventory(new Inventory(Integer.MAX_VALUE));
   }
 
+  /**
+   * 
+   *
+   */
   public Room() {
     roomName = "DEFAULT ROOM";
     description = "DEFAULT DESCRIPTION";
@@ -56,6 +88,10 @@ public class Room {
     setInventory(new Inventory(Integer.MAX_VALUE));
   }
 
+  /**
+   * 
+   * 
+   */
   public void addExit(Exit exit) throws Exception {
     exits.add(exit);
   }
@@ -121,18 +157,34 @@ public class Room {
     return roomName;
   }
 
+  /**
+   * 
+   * 
+   */
   public void setRoomName(String roomName) {
     this.roomName = roomName;
   }
 
+  /**
+   * 
+   * @return 
+   */
   public String getDescription() {
     return description;
   }
 
+  /**
+   * 
+   * 
+   */
   public void setDescription(String description) {
     this.description = description;
   }
 
+  /**
+   * 
+   * 
+   */
   public void setHints(ArrayList<String> hints) {
     this.hints = hints;
   }

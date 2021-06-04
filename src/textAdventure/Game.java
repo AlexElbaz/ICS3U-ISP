@@ -105,9 +105,6 @@ public class Game {
           long maxWeight = (long) ((JSONObject) roomObj).get("maxWeight");
           item.setInventory(new Inventory(maxWeight));
         }
-        String itemRoomDescription = (String) ((JSONObject) roomObj).get("itemRoomDescription");
-        item.setItemRoomDescription(itemRoomDescription);
-        System.out.println(roomId); // delete this
         roomMap.get(roomId).getInventory().addItem(item);
 
         if (((JSONObject) roomObj).get("spells") != null) {

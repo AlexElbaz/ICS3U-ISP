@@ -15,7 +15,7 @@ public class Item extends OpenableObject {
    *  and sets isOpenable and inventory to false (by default items aren't openable).
    * This constructor is only used for making keys.
    */
-  public Item(int weight, String name) {
+  public Item(long weight, String name) {
     this.weight = weight;
     this.name = name;
     this.isOpenable = false;

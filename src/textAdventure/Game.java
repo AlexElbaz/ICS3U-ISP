@@ -18,8 +18,9 @@ public class Game {
   private Character player;
   private boolean hasRunAtWall = false;
   private boolean hasBoardedTrain = false;
-  private int carryingCapacity = 5000;
-  private int countWorkout = 0;
+  private long carryingCapacity = 5000;
+  private long countWorkout = 0;
+  private boolean hasPrinted = false;
 
   /**
    * Create the game and initialise its internal map.
@@ -29,7 +30,7 @@ public class Game {
       player = new Character(new Inventory(carryingCapacity));
       initRooms("src\\textAdventure\\data\\rooms.json");
       initItems("src\\textAdventure\\data\\items.json");
-      currentRoom = roomMap.get("Room");
+      currentRoom = roomMap.get("MusicRoom");
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -61,8 +62,7 @@ public class Game {
         String adjacentRoom = (String) ((JSONObject) exitObj).get("adjacentRoom");
         String keyId = (String) ((JSONObject) exitObj).get("keyId");
         Boolean isLocked = (Boolean) ((JSONObject) exitObj).get("isLocked");
-        Boolean isOpen = (Boolean) ((JSONObject) exitObj).get("isOpen");
-        Exit exit = new Exit(direction, adjacentRoom, isLocked, keyId, isOpen);
+        Exit exit = new Exit(direction, adjacentRoom, isLocked, keyId);
         exits.add(exit);
       }
       room.setExits(exits);
@@ -88,27 +88,33 @@ public class Game {
     JSONArray jsonItems = (JSONArray) json.get("items");
 
     for (Object roomObj : jsonItems) {
-      Item item = new Item();
       String itemName = (String) ((JSONObject) roomObj).get("name");
-      item.setName(itemName);
       String roomId = (String) ((JSONObject) roomObj).get("room");
       long weight = (long) ((JSONObject) roomObj).get("weight");
-      item.setWeight(weight);
       Boolean isOpenable = (Boolean) ((JSONObject) roomObj).get("isOpenable");
-      item.setOpenable(isOpenable);
-      if (((JSONObject) roomObj).get("maxWeight") != null) {
-        long maxWeight = (long) ((JSONObject) roomObj).get("maxWeight");
-        item.setInventory(new Inventory(maxWeight));
-      }
-      roomMap.get(roomId).getInventory().addItem(item);
-
-      if (((JSONObject) roomObj).get("spells") != null) {
-        JSONArray jsonSpells = (JSONArray) ((JSONObject) roomObj).get("spells");
-        ArrayList<String> spells = new ArrayList<String>();
-        for (Object spell : jsonSpells) {
-          spells.add((String) spell);
+      if (((JSONObject) roomObj).get("keyId") != null) {
+        String keyId = (String) ((JSONObject) roomObj).get("keyId");
+        Item key = new Key(keyId, itemName, weight);
+        roomMap.get(roomId).getInventory().addItem(key);
+      } else {
+        Item item = new Item();
+        item.setName(itemName);
+        item.setWeight(weight);
+        item.setOpenable(isOpenable);
+        if (((JSONObject) roomObj).get("maxWeight") != null) {
+          long maxWeight = (long) ((JSONObject) roomObj).get("maxWeight");
+          item.setInventory(new Inventory(maxWeight));
         }
-        item.setSpells(spells);
+        roomMap.get(roomId).getInventory().addItem(item);
+
+        if (((JSONObject) roomObj).get("spells") != null) {
+          JSONArray jsonSpells = (JSONArray) ((JSONObject) roomObj).get("spells");
+          ArrayList<String> spells = new ArrayList<String>();
+          for (Object spell : jsonSpells) {
+            spells.add((String) spell);
+          }
+          item.setSpells(spells);
+        }
       }
     }
   }
@@ -124,7 +130,8 @@ public class Game {
       try {
         ArrayList<String> command = parser.getCommand();
         finished = processCommand(command);
-        processDeath();
+        processWin();
+        processDeath();      
       } catch (IOException e) {
         e.printStackTrace();
       }
@@ -138,7 +145,7 @@ public class Game {
    */
   private void printWelcome() {
     System.out.println();
-    System.out.println("Welcome  player to the wonderous Wizarding World!");
+    System.out.println("Welcome player to the wonderous Wizarding World!");
     System.out.println("This is a place for adventure, heroism, and spirit!");
     System.out.println("If you ever get stuck or need a hand, type 'help'.");
     System.out.println();
@@ -221,34 +228,59 @@ public class Game {
       System.out.println("You can't do that.");
     return false;
   }
-
+  private void processWin(){
+    if(currentRoom.getRoomName().equals("Final Room") && !hasPrinted) {
+      System.out.println("                                                                                     ,---,    ,---,    ,---,  ");
+      System.out.println("                                                                                  ,`--.' | ,`--.' | ,`--.' |  ");
+      System.out.println("                                                        .---.                     |   :  : |   :  : |   :  :  ");
+      System.out.println("        ,---,                                          /. ./|  ,--,               '   '  ; '   '  ; '   '  ; ");
+      System.out.println("       /_ ./|   ,---.           ,--,               .--'.  ' ;,--.'|         ,---, |   |  | |   |  | |   |  |  ");
+      System.out.println(" ,---, |  ' :  '   ,'\\        ,'_ /|              /__./ \\ : ||  |,      ,-+-. /  |'   :  ; '   :  ; '   :  ;  ");
+      System.out.println("/___/ \\.  : | /   /   |  .--. |  | :          .--'.  '   \\' .`--'_     ,--.'|'   ||   |  ' |   |  ' |   |  '  ");
+      System.out.println(" .  \\  \\ ,' '.   ; ,. :,'_ /| :  . |         /___/ \\ |    ' ',' ,'|   |   |  ,\"' |'   :  | '   :  | '   :  |  ");
+      System.out.println("  \\  ;  `  ,''   | |: :|  ' | |  . .         ;   \\  \\;      :'  | |   |   | /  | |;   |  ; ;   |  ; ;   |  ;  ");
+      System.out.println("   \\  \\    ' '   | .; :|  | ' |  | |          \\   ;  `      ||  | :   |   | |  | |`---'. | `---'. | `---'. |  ");
+      System.out.println("    '  \\   | |   :    |:  | : ;  ; |           .   \\    .\\  ;'  : |__ |   | |  |/  `--..`;  `--..`;  `--..`;  ");
+      System.out.println("     \\  ;  ;  \\   \\  / '  :  `--'   \\           \\   \\   ' \\ ||  | '.'||   | |--'  .--,_    .--,_    .--,_     ");
+      System.out.println("      :  \\  \\  `----'  :  ,      .-./            :   '  |--\" ;  :    ;|   |/      |    |`. |    |`. |    |`.  ");
+      System.out.println("       \\  ' ;           `--`----'                 \\   \\ ;    |  ,   / '---'       `-- -`, ;`-- -`, ;`-- -`, ; ");
+      System.out.println("        `--`                                       '---\"      ---`-'                '---`\"   '---`\"   '---`\"  ");
+      System.out.println("                                                                                                              ");
+      hasPrinted = true;
+    }
+  }
   private void processDeath(){
     if(currentRoom.getRoomName().equals("Funny Death Room") ) {
       killPlayer();
     } else if(currentRoom.getRoomName().equals("A Cold Room") ) { 
         if (player.getInventory().viewInventory().indexOf("flute") < 0) {
+          System.out.println("As you tried to go into the cold room without calming the dog down, the dog got angry and bit your head off. You died. \n\n\n\n\n ");
           killPlayer();
         }
     } else if(currentRoom.getRoomName().equals("Overgrown Plant House") ) { 
       if (player.getInventory().viewInventory().indexOf("spellbook") < 0) {
+        System.out.println("As you tried to go into the overgrown plant house, you weren't able to control the plant and it ate you like how a venus fly trap eats a fly. You died. \n\n\n\n\n ");
         killPlayer();
       }
     } else if(currentRoom.getRoomName().equals("Quidditch Field") ) { 
       if (player.getInventory().viewInventory().indexOf("cloak") < 0) {
+        System.out.println("As you tried to go into the quidditch field, Balthazar forced you to play quidditch for three days straight. You died from exhaustion. \n\n\n\n\n ");
         killPlayer();
       }
     } else if(currentRoom.getRoomName().equals("Tiny Room") ) { 
       if (player.getInventory().viewInventory().indexOf("gillyweed") < 0) {
+        System.out.println("As you tried to go into the tiny room, you weren't able to stop the drip of water. You drowned. \n\n\n\n\n ");
         killPlayer();
       }
     } else if(currentRoom.getRoomName().equals("Long Room") ) { 
       if (player.getInventory().viewInventory().indexOf("charm") < 0) {
+        System.out.println("As you tried to go into the long room, the spirit turns YOU into a spirit. You died. \n\n\n\n\n ");
         killPlayer();
       }
     } 
   }
   private void killPlayer(){
-    currentRoom = roomMap.get("Underground");
+    currentRoom = roomMap.get("UndergroundCellar");
     System.out.println(currentRoom.longDescription());
   }
   // implementations of user commands:
@@ -300,15 +332,23 @@ public class Game {
       System.out.println("Do you really think you should be eating at a time like this?");
   }
 
+  /**
+   * Handles everything regarding using the charm item.
+   * @param command user input
+   */
   private void useCharm(ArrayList<String> command) {
-    if (currentRoom.getRoomName().equals("Long Room")) {
+    if (currentRoom.getRoomName().equals("Long Room")) { //checks the name of the room, since you can only use the charm in one of the challenge rooms
       System.out.println("As you use the charm, you notice the boggart starting to transform into spongebob, telling you about his day. He lets you into the next room and congratulates you on beating the game. ");
       System.out.println();
-      currentRoom = roomMap.get("MirrorRoom");
+      currentRoom = roomMap.get("MirrorRoom"); //once you use the charm in the correct room, the game teleports you into the next challenge room
       System.out.println(currentRoom.longDescription());
     }
   }
 
+  /**
+   * Handles everything regarding using the gillyweed item.
+   * @param command user input
+   */
   private void eatGillyweed(ArrayList<String> command) {
     if (currentRoom.getRoomName().equals("Tiny Room")) {
       System.out.println("You eat the gillyweed and you watch in amazement as you start to grow gills. Your feet become webbed and you easily swim in teh water to the door above. ");
@@ -318,6 +358,10 @@ public class Game {
     }
   }
 
+  /**
+   * Handles everything regarding using the cloak item.
+   * @param command user input
+   */
   private void equipCloak(ArrayList<String> command) {
     if (currentRoom.getRoomName().equals("Quidditch Field")) {
       System.out.println("You wait till Balthazar turns his head and pull the cloak over yourself. He tries to find you but you are long gone in the next room. ");
@@ -327,7 +371,11 @@ public class Game {
   } else 
     System.out.println("You use the cloak, but nothing happens. ");
   }
-
+  
+  /**
+   * Handles everything regarding using the flute item. 
+   * @param command user input
+   */
   private void playFlute(ArrayList<String> command) { 
     if (currentRoom.getRoomName().equals("A Cold Room")) {
       System.out.println("You use the flute and now the 3 Headed Dog has fallen asleep. Success! This flute has magical powers afterall since you got teleported to the Death Snare Plant Room. ");
@@ -337,7 +385,12 @@ public class Game {
     } else 
       System.out.println("You play the flute, but nothing happens. ");
   }
-
+  
+  /**
+   * Allows the user to cast spells. Has each specific spell and the funny message that comes with it. Additionally, one of the final challenges requires
+   * a spell so we cover that.
+   * @param command user input
+   */
   private void spellsCast(ArrayList<String> command) {
     if (player.getInventory().viewInventory().indexOf("book") > -1) {
       if (command.get(1).equals("rictusempra"))
@@ -375,6 +428,10 @@ public class Game {
     }
   }
 
+  /**
+   * specific command help for the user, just in case they get stuck or are wondering what a command does
+   * @param command the input from the user, at index 0 is help, and at index 1 is the command they want to learn about
+   */
   private void commandHelp(ArrayList<String> command) {
     if (command.get(1).equals("go")){
       System.out.println("Allows you to move in the following directions: [North, South, East, West, Up, Down]");
@@ -425,14 +482,29 @@ public class Game {
       Room nextRoom = currentRoom.nextRoom(direction);
 
       if (nextRoom == null) {
-        if ("west east north south up down".indexOf(direction) >= 0)  
+        if ("west-east-north-south-up-down".indexOf(direction) >= 0)  
           System.out.println("You can't go that way.");
       } else {
-        currentRoom = nextRoom;
-        System.out.println(currentRoom.longDescription());
+        for (int e = 0; e < currentRoom.getExits().size(); e++) {
+          if (currentRoom.getExits().get(e).getDirection().equalsIgnoreCase(direction)) {
+            if (currentRoom.getExits().get(e).isLocked()) {
+              Exit tempExit = currentRoom.getExits().get(e);
+              for (Item item : player.getItems()) {
+                if (item.getKeyId().equals(tempExit.getKeyId())) {
+                  currentRoom.getExits().get(e).setLocked(false);
+                  currentRoom = nextRoom;
+                  System.out.println(currentRoom.longDescription());
+                }
+              }
+              if (tempExit.isLocked()) // not working, if player has key, then e is still
+                System.out.println("This door is locked. You need the right key to enter. ");
+            } else {
+              currentRoom = nextRoom;
+              System.out.println(currentRoom.longDescription());
+            }
+          }
+        }
       }
-    } else {
-      System.out.println("You can only go one way at a time.");
     }
   }
 
@@ -449,7 +521,7 @@ public class Game {
         currentRoom = nextRoom;
         System.out.println(currentRoom.longDescription());
     } else {
-      if ("west east north south up down".indexOf(command.get(1)) >= 0)
+      if ("west-east-north-south-up-down".indexOf(command.get(1)) >= 0)
         System.out.println("Try using the go command.");
       else
         System.out.println("You can't do that.");
@@ -643,7 +715,7 @@ public class Game {
         System.out.println("As you make your way over to the weights yet again and look at the " + countWorkout + " empty protein shake bottle(s), the body builders applaud you.");
       System.out.println("You lift with all your might and realize you're getting stronger. You down a protein shake. You earned that extra 10 pounds you can hold.");
       carryingCapacity += 10;
-      player.getInventory().updateMaxWeight(carryingCapacity);
+      player.getInventory().setMaxWeight(carryingCapacity);
       countWorkout++;
     } else
       System.out.println("You can't workout here. Make your way to the gym to get jacked!");

@@ -2,7 +2,7 @@
     "items": [
         {
             "name": "spellbook",
-            "room": "Room",
+            "room": "DarkMatterClass",
             "weight": 10,
             "isOpenable": false,           
             "spells": [ 
@@ -14,14 +14,14 @@
         },
         {
             "name": "pot",
-            "room": "Room",
+            "room": "MusicRoom",
             "weight": 99,
             "isOpenable": true,
-            "maxWeight": 10
+            "maxWeight": 100
         },
         {
             "name": "vat",
-            "room": "Room",
+            "room": "MusicRoom",
             "weight": 99,
             "isOpenable": true,
             "maxWeight": 100
@@ -35,13 +35,13 @@
         },
         {
             "name": "charm",
-            "room": "Room",
+            "room": "MirrorRoom",
             "weight": 2,
             "isOpenable": false
         },
         {
             "name": "gillyweed",
-            "room": "Room",
+            "room": "PotionsStorage",
             "weight": 2,
             "isOpenable": false,
             "itemRoomDescription": "There is gillyweed on the ground. "
@@ -64,6 +64,39 @@
             "room": "AstronomyClassBottomRight",
             "weight": 10,
             "isOpenable": false
+        },
+        {
+            "name": "model",
+            "room": "AstronomyClassBottomLeft",
+            "weight": 200,
+            "isOpenable": false
+        },
+        {
+            "name": "telescope",
+            "room": "AstronomyClassTopRight",
+            "weight": 250,
+            "isOpenable": false
+        },
+        {
+            "name": "key",
+            "room": "MusicRoom",
+            "weight": 1,
+            "isOpenable": false,
+            "keyId": "1"
+        },
+        {
+            "name": "key",
+            "room": "PotionsClass",
+            "weight": 1,
+            "isOpenable": false,
+            "keyId": "2"
+        },
+        {
+            "name": "key",
+            "room": "PotionsClass",
+            "weight": 1,
+            "isOpenable": false,
+            "keyId": "2"
         }
     ]
 }

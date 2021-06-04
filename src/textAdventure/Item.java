@@ -10,7 +10,7 @@ public class Item extends OpenableObject {
   private String itemRoomDescription;
   private ArrayList<String> spells;
 
-  public Item(int weight, String name) {
+  public Item(long weight, String name) {
     this.weight = weight;
     this.name = name;
     this.isOpenable = false;

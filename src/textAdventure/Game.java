@@ -18,8 +18,8 @@ public class Game {
   private Character player;
   private boolean hasRunAtWall = false;
   private boolean hasBoardedTrain = false;
-  private int carryingCapacity = 5000;
-  private int countWorkout = 0;
+  private long carryingCapacity = 5000;
+  private long countWorkout = 0;
   private boolean hasPrinted = false;
 
   /**
@@ -30,7 +30,7 @@ public class Game {
       player = new Character(new Inventory(carryingCapacity));
       initRooms("src\\textAdventure\\data\\rooms.json");
       initItems("src\\textAdventure\\data\\items.json");
-      currentRoom = roomMap.get("MirrorRoom");
+      currentRoom = roomMap.get("MusicRoom");
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -89,30 +89,36 @@ public class Game {
     JSONArray jsonItems = (JSONArray) json.get("items");
 
     for (Object roomObj : jsonItems) {
-      Item item = new Item();
       String itemName = (String) ((JSONObject) roomObj).get("name");
-      item.setName(itemName);
       String roomId = (String) ((JSONObject) roomObj).get("room");
       long weight = (long) ((JSONObject) roomObj).get("weight");
-      item.setWeight(weight);
       Boolean isOpenable = (Boolean) ((JSONObject) roomObj).get("isOpenable");
-      item.setOpenable(isOpenable);
-      if (((JSONObject) roomObj).get("maxWeight") != null) {
-        long maxWeight = (long) ((JSONObject) roomObj).get("maxWeight");
-        item.setInventory(new Inventory(maxWeight));
-      }
-      String itemRoomDescription = (String) ((JSONObject) roomObj).get("itemRoomDescription");
-      item.setItemRoomDescription(itemRoomDescription);
-      System.out.println(roomId); // delete this
-      roomMap.get(roomId).getInventory().addItem(item);
-
-      if (((JSONObject) roomObj).get("spells") != null) {
-        JSONArray jsonSpells = (JSONArray) ((JSONObject) roomObj).get("spells");
-        ArrayList<String> spells = new ArrayList<String>();
-        for (Object spell : jsonSpells) {
-          spells.add((String) spell);
+      if (((JSONObject) roomObj).get("keyId") != null) {
+        String keyId = (String) ((JSONObject) roomObj).get("keyId");
+        Item key = new Key(keyId, itemName, weight);
+        roomMap.get(roomId).getInventory().addItem(key);
+      } else {
+        Item item = new Item();
+        item.setName(itemName);
+        item.setWeight(weight);
+        item.setOpenable(isOpenable);
+        if (((JSONObject) roomObj).get("maxWeight") != null) {
+          long maxWeight = (long) ((JSONObject) roomObj).get("maxWeight");
+          item.setInventory(new Inventory(maxWeight));
         }
-        item.setSpells(spells);
+        String itemRoomDescription = (String) ((JSONObject) roomObj).get("itemRoomDescription");
+        item.setItemRoomDescription(itemRoomDescription);
+        System.out.println(roomId); // delete this
+        roomMap.get(roomId).getInventory().addItem(item);
+
+        if (((JSONObject) roomObj).get("spells") != null) {
+          JSONArray jsonSpells = (JSONArray) ((JSONObject) roomObj).get("spells");
+          ArrayList<String> spells = new ArrayList<String>();
+          for (Object spell : jsonSpells) {
+            spells.add((String) spell);
+          }
+          item.setSpells(spells);
+        }
       }
     }
   }
@@ -330,15 +336,23 @@ public class Game {
       System.out.println("Do you really think you should be eating at a time like this?");
   }
 
+  /**
+   * Handles everything regarding using the charm item.
+   * @param command user input
+   */
   private void useCharm(ArrayList<String> command) {
-    if (currentRoom.getRoomName().equals("Long Room")) {
+    if (currentRoom.getRoomName().equals("Long Room")) { //checks the name of the room, since you can only use the charm in one of the challenge rooms
       System.out.println("As you use the charm, you notice the boggart starting to transform into spongebob, telling you about his day. He lets you into the next room and congratulates you on beating the game. ");
       System.out.println();
-      currentRoom = roomMap.get("MirrorRoom");
+      currentRoom = roomMap.get("MirrorRoom"); //once you use the charm in the correct room, the game teleports you into the next challenge room
       System.out.println(currentRoom.longDescription());
     }
   }
 
+  /**
+   * Handles everything regarding using the gillyweed item.
+   * @param command user input
+   */
   private void eatGillyweed(ArrayList<String> command) {
     if (currentRoom.getRoomName().equals("Tiny Room")) {
       System.out.println("You eat the gillyweed and you watch in amazement as you start to grow gills. Your feet become webbed and you easily swim in teh water to the door above. ");
@@ -348,6 +362,10 @@ public class Game {
     }
   }
 
+  /**
+   * Handles everything regarding using the cloak item.
+   * @param command user input
+   */
   private void equipCloak(ArrayList<String> command) {
     if (currentRoom.getRoomName().equals("Quidditch Field")) {
       System.out.println("You wait till Balthazar turns his head and pull the cloak over yourself. He tries to find you but you are long gone in the next room. ");
@@ -357,7 +375,11 @@ public class Game {
   } else 
     System.out.println("You use the cloak, but nothing happens. ");
   }
-
+  
+  /**
+   * Handles everything regarding using the flute item. 
+   * @param command user input
+   */
   private void playFlute(ArrayList<String> command) { 
     if (currentRoom.getRoomName().equals("A Cold Room")) {
       System.out.println("You use the flute and now the 3 Headed Dog has fallen asleep. Success! This flute has magical powers afterall since you got teleported to the Death Snare Plant Room. ");
@@ -367,7 +389,12 @@ public class Game {
     } else 
       System.out.println("You play the flute, but nothing happens. ");
   }
-
+  
+  /**
+   * Allows the user to cast spells. Has each specific spell and the funny message that comes with it. Additionally, one of the final challenges requires
+   * a spell so we cover that.
+   * @param command user input
+   */
   private void spellsCast(ArrayList<String> command) {
     if (player.getInventory().viewInventory().indexOf("book") > -1) {
       if (command.get(1).equals("rictusempra"))
@@ -405,6 +432,10 @@ public class Game {
     }
   }
 
+  /**
+   * specific command help for the user, just in case they get stuck or are wondering what a command does
+   * @param command the input from the user, at index 0 is help, and at index 1 is the command they want to learn about
+   */
   private void commandHelp(ArrayList<String> command) {
     if (command.get(1).equals("go")){
       System.out.println("Allows you to move in the following directions: [North, South, East, West, Up, Down]");
@@ -455,14 +486,29 @@ public class Game {
       Room nextRoom = currentRoom.nextRoom(direction);
 
       if (nextRoom == null) {
-        if ("west east north south up down".indexOf(direction) >= 0)  
+        if ("west-east-north-south-up-down".indexOf(direction) >= 0)  
           System.out.println("You can't go that way.");
       } else {
-        currentRoom = nextRoom;
-        System.out.println(currentRoom.longDescription());
+        for (int e = 0; e < currentRoom.getExits().size(); e++) {
+          if (currentRoom.getExits().get(e).getDirection().equalsIgnoreCase(direction)) {
+            if (currentRoom.getExits().get(e).isLocked()) {
+              Exit tempExit = currentRoom.getExits().get(e);
+              for (Item item : player.getItems()) {
+                if (item.getKeyId().equals(tempExit.getKeyId())) {
+                  currentRoom.getExits().get(e).setLocked(false);
+                  currentRoom = nextRoom;
+                  System.out.println(currentRoom.longDescription());
+                }
+              }
+              if (tempExit.isLocked()) // not working, if player has key, then e is still
+                System.out.println("This door is locked. You need the right key to enter. ");
+            } else {
+              currentRoom = nextRoom;
+              System.out.println(currentRoom.longDescription());
+            }
+          }
+        }
       }
-    } else {
-      System.out.println("You can only go one way at a time.");
     }
   }
 
@@ -479,7 +525,7 @@ public class Game {
         currentRoom = nextRoom;
         System.out.println(currentRoom.longDescription());
     } else {
-      if ("west east north south up down".indexOf(command.get(1)) >= 0)
+      if ("west-east-north-south-up-down".indexOf(command.get(1)) >= 0)
         System.out.println("Try using the go command.");
       else
         System.out.println("You can't do that.");

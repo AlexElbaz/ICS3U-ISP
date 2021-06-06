@@ -30,7 +30,7 @@ public class Game {
       player = new Character(new Inventory(carryingCapacity));
       initRooms("src\\textAdventure\\data\\rooms.json");
       initItems("src\\textAdventure\\data\\items.json");
-      currentRoom = roomMap.get("MusicRoom");
+      currentRoom = roomMap.get("PotionsStorage");
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -490,13 +490,13 @@ public class Game {
             if (currentRoom.getExits().get(e).isLocked()) {
               Exit tempExit = currentRoom.getExits().get(e);
               for (Item item : player.getItems()) {
-                if (item.getKeyId().equals(tempExit.getKeyId())) {
+                if (item.getKeyId() != null && item.getKeyId().equals(tempExit.getKeyId())) {
                   currentRoom.getExits().get(e).setLocked(false);
                   currentRoom = nextRoom;
                   System.out.println(currentRoom.longDescription());
                 }
               }
-              if (tempExit.isLocked()) // not working, if player has key, then e is still
+              if (tempExit.isLocked())
                 System.out.println("This door is locked. You need the right key to enter. ");
             } else {
               currentRoom = nextRoom;

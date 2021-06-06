@@ -7,7 +7,6 @@ public class Item extends OpenableObject {
   private String name;
   private boolean isOpenable;
   private Inventory inventory;
-  private String itemRoomDescription;
   private ArrayList<String> spells;
 
   /**
@@ -23,28 +22,28 @@ public class Item extends OpenableObject {
   }
 
   /**
-   * No arguement item constructor. This constructor is used for creating most items.
+   * No arguement Item constructor. This constructor is used for creating most items.
    * It has no arguements because when we create items we use mainly the JSON to handle item attributes.
    */
   public Item() {
   }
 
   /**
-   * @return Returns an ArrayList of all the items a given item (container) is holding.
+   * @return an ArrayList of all the items that this item (container) is holding.
    */
   public ArrayList<Item> getItems() {
       return inventory.getItems();
   }
 
   /**
-   * @return the inventory of a item (when applicable, i.e. when it is a container).
+   * @return the Inventory of this item (when applicable, i.e. when it is a container).
    */
   public Inventory getInventory() {
     return inventory;
   }
 
   /**
-   * Sets the inventory of an item (when applicable, i.e. when it is a container).
+   * Sets the inventory of this item (when applicable, i.e. when it is a container).
    * Used in initItems() when initializing all items upon startup.
    */
   public void setInventory(Inventory inventory) {
@@ -52,7 +51,7 @@ public class Item extends OpenableObject {
   }
 
   /**
-   * Checks if an item is openable. If so, displays the inventory. If not, informs the player.
+   * Checks if this item is openable. If so, displays its inventory. If not, informs the player that this item is not openable.
    */
   public void open() {
     if (!isOpenable)
@@ -63,14 +62,14 @@ public class Item extends OpenableObject {
   }
 
   /**
-   * @return the weight of the item.
+   * @return the weight of this item.
    */
   public long getWeight() {
     return weight;
   }
 
   /**
-   * Sets the weight of an item.
+   * Sets the weight of this item.
    * Used in initItems() when initializing all items upon startup.
    */
   public void setWeight(long weight) {
@@ -78,14 +77,14 @@ public class Item extends OpenableObject {
   }
 
   /**
-   * @return the name String of an item.
+   * @return the name String of this item.
    */
   public String getName() {
     return name;
   }
 
   /**
-   * Sets the name of an item.
+   * Sets the name String of this item.
    * Used in initItems() when initializing all items upon startup.
    */
   public void setName(String name) {
@@ -93,14 +92,14 @@ public class Item extends OpenableObject {
   }
 
   /**
-   * @return whether an item is openable or not.
+   * @return whether or not this item is openable.
    */
   public boolean isOpenable() {
     return isOpenable;
   }
 
   /**
-   * Sets whether an item is openable or not.
+   * Sets whether this item is openable or not.
    * Used in initItems() when initializing all items upon startup.
    */
   public void setOpenable(boolean isOpenable) {

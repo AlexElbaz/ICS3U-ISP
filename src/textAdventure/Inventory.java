@@ -8,8 +8,10 @@ public class Inventory {
   private long currentWeight;
 
   /**
-   * initializes the new inventory's arraylist of items in the inventory, the max weight that the inventory can hold, and the current weight (the weight of all the items) of the inventory
-   * @param maxWeight the max weight that the inventory can hold
+   * Initializes a new Inventory with an ArrayList for items to be stored in,
+   *  the max weight that this inventory can hold,
+   *  and the current weight (the weight of all the items combined) in this inventory.
+   * @param maxWeight the max weight that this inventory can hold.
    */
   public Inventory(long maxWeight) {
     this.items = new ArrayList<Item>();
@@ -18,45 +20,46 @@ public class Inventory {
   }
 
   /**
-   * returns the max weight that the inventory that calls it can hold
-   * @return the max weight that the inventory that calls it can hold
+   * @return the max weight that this inventory can hold.
    */
   public long getMaxWeight() {
     return maxWeight;
   }
 
   /**
-   * sets the max weight that the inventory that calls it can hold
-   * @param maxWeight the max weight that the inventory that calls it can hold
+   * Sets the max weight that this inventory can hold.
+   * @param maxWeight the max weight that this inventory can hold.
    */
   public void setMaxWeight(long maxWeight){
     this.maxWeight = maxWeight;
   }
 
   /**
-   * returns the current weight (the weight of all the items in the inventory) of the inventory that calls it
-   * @return the current weight (the weight of all the items in the inventory) of the inventory that calls it
+   * @return the current weight (the weight of all the items in the inventory combined) of this inventory.
    */
   public long getCurrentWeight() {
     return currentWeight;
   }
 
   /**
-   * returns the arraylist of items that is in the inventory that calls it
-   * @return the arraylist of items that is in the inventory that calls it
+   * @return the ArrayList of items in this inventory.
    */
   public ArrayList<Item> getItems() {
     return items;
   }
 
   /**
-   * adds the specified item to the inventory that calls it
-   * @param item the specified item
-   * @return true if there is enough room in the inventory to hold the item, false if there is not enough room
+   * Adds a specified Item to this inventory if there is enough space left in this inventory to do so.
+   *  If there is not enough space, the specified Item will not be added and the player will be informed.
+   * @param item the specified Item to be added to this inventory.
+   * @return true if there is enough space in the inventory to hold the item, false if there is not enough space.
    */
   public boolean addItem(Item item) {
-    if (item.getWeight() + currentWeight <= maxWeight) { // checks if the specified item's weight and the weight of all the other items in the inventory is less than or equal to the max weight of the inventory that calls this method
-      currentWeight += item.getWeight(); // updates the current weight of the inventory that calls it by adding the specified item's weight
+    if (item.getWeight() + currentWeight <= maxWeight) {
+      // Checks if the specified Item's weight plus the weight of all the other items in this inventory is less
+      //  than or equal to the max weight of this inventory (meaning there is enough space to add the specified Item).
+      currentWeight += item.getWeight();
+        // Updates the current weight of this inventory by adding the specified Item's weight to currentWeight.
       return items.add(item);
     } else {
       System.out.println("There is no room to add the item.");
@@ -65,25 +68,26 @@ public class Inventory {
   }
 
   /**
-   * removes the specified item from the inventory that calls it
-   * @param item the specified item
-   * @return true if the item exists in the inventory that calls it, false if the item does not exist in the inventory that calls it
+   * Removes a specified Item from this inventory.
+   * @param item the specified Item to be removed from this inventory.
+   * @return true if the item exists in this inventory, false if the item does not exist in this inventory.
    */
   public boolean removeItem(Item item) {
-    currentWeight -= item.getWeight(); // updates the current weight of the inventory that calls it by subtracting the specified item's weight
+    currentWeight -= item.getWeight();
+      // Updates the current weight of this inventory by subtracting the specified Item's weight from currentWeight.
     return items.remove(item);
   }
 
   /**
-   * returns a string that shows the items, the max weight, and the remaining space left in the inventory that calls it
-   * @return a string that shows the items, the max weight, and the remaining space left in the inventory that calls it
+   * @return a String that displays the items, the max weight, and the remaining space left in this inventory.
    */
   public String viewInventory() {
     String output;
-    if (items.size() != 0){ // if there are items in the inventory that calls this method
+    if (items.size() != 0){ // If there are items in this inventory.
       output = "You see: ";
       for (Item item : items) {
-        output += item.getName() + " "; // creates a new string and adds the names of all the items that are in the inventory that calls this method
+        output += item.getName() + " ";
+          // Creates a new output string and adds the names of all the items that are in this inventory to it.
       }
   } else {
     output = "There is nothing in your inventory.";

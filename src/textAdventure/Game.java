@@ -482,7 +482,7 @@ public class Game {
       Room nextRoom = currentRoom.nextRoom(direction);
 
       if (nextRoom == null) {
-        if ("west-east-north-south-up-down".indexOf(direction) >= 0)  
+        if ("west east north south up down".indexOf(direction) >= 0)  
           System.out.println("You can't go that way.");
       } else {
         for (int e = 0; e < currentRoom.getExits().size(); e++) {
@@ -505,7 +505,8 @@ public class Game {
           }
         }
       }
-    }
+    } else
+      System.out.println("You can only go one way at a time.");
   }
 
   private void runWall(ArrayList<String> command) {

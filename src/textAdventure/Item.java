@@ -12,6 +12,8 @@ public class Item extends OpenableObject {
   /**
    * Item constructor. Initializes items with a passed in weight and name,
    *  and sets isOpenable and inventory to false (by default items aren't openable).
+   * @param weight this item's weight.
+   * @param name this item's name.
    * This constructor is only used for making keys.
    */
   public Item(long weight, String name) {
@@ -44,6 +46,7 @@ public class Item extends OpenableObject {
 
   /**
    * Sets the inventory of this item (when applicable, i.e. when it is a container).
+   * @param inventory the Inventory we are setting this item's inventory to be.
    * Used in initItems() when initializing all items upon startup.
    */
   public void setInventory(Inventory inventory) {
@@ -70,6 +73,7 @@ public class Item extends OpenableObject {
 
   /**
    * Sets the weight of this item.
+   * @param weight the weight we are setting this item's weight to be.
    * Used in initItems() when initializing all items upon startup.
    */
   public void setWeight(long weight) {
@@ -77,14 +81,15 @@ public class Item extends OpenableObject {
   }
 
   /**
-   * @return the name String of this item.
+   * @return the name of this item.
    */
   public String getName() {
     return name;
   }
 
   /**
-   * Sets the name String of this item.
+   * Sets the name of this item.
+   * @param name the name we are setting this item's name to be.
    * Used in initItems() when initializing all items upon startup.
    */
   public void setName(String name) {
@@ -100,6 +105,7 @@ public class Item extends OpenableObject {
 
   /**
    * Sets whether this item is openable or not.
+   * @param isOpenable the boolean defining whether or not this item is openable.
    * Used in initItems() when initializing all items upon startup.
    */
   public void setOpenable(boolean isOpenable) {
@@ -114,7 +120,8 @@ public class Item extends OpenableObject {
   }
 
   /**
-   * Sets the spells ArrayList to an ArrayList of all the spells that exist in the JSON.
+   * Sets spells to an ArrayList of all the spells that exist in the JSON.
+   * @param spells the list of spells in this game.
    * Used in initItems() when initializing all the spells upon startup.
    */
   public void setSpells(ArrayList<String> spells) {

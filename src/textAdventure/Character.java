@@ -8,10 +8,11 @@ public class Character {
     private String name;
 
     /**
-     * initializes the new character's inventory, description, and name
-     * @param inventory the arraylist of items, the max weight that the character can hold, and the weight of the items currently in the character's inventory
-     * @param description the description of the character
-     * @param name the name of the character
+     * Initializes a new Character with an Inventory, description, and name.
+     * @param inventory the ArrayList of items, the max weight that this character can hold,
+     *  and the weight of the items currently in this character's inventory.
+     * @param description the description of this character.
+     * @param name the name of this character.
      */
     public Character(Inventory inventory, String description, String name) {
         this.inventory = inventory;
@@ -20,64 +21,63 @@ public class Character {
     }
 
     /**
-     * initializes the new character's inventory
-     * @param inventory the arraylist of items, the max weight that the character can hold, and the weight of the items currently in the character's inventory
+     * Initializes a new Character with an Inventory.
+     * @param inventory the ArrayList of items, the max weight that this character can hold,
+     *  and the weight of the items currently in this character's inventory.
      */
     public Character(Inventory inventory) {
         this.inventory = inventory;
     }
 
     /**
-     * gets the arraylist of items that is in the character's inventory
-     * @return the arraylist of items that is in the character's inventory
+     * @return the ArrayList of items in this character's inventory.
      */
     public ArrayList<Item> getItems() {
         return inventory.getItems();
     }
 
     /**
-     * gets the character's inventory
-     * @return the character's inventory
+     * @return this character's Inventory.
      */
     public Inventory getInventory() {
         return inventory;
     }
 
     /**
-     * sets the character's inventory with the specified inventory
-     * @param inventory the specified inventory that will become the character's inventory
+     * Sets this character's inventory to the specified Inventory.
+     * @param inventory the specified Inventory that will become this character's inventory.
      */
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
     }
 
     /**
-     * gets the character's description
-     * @return the character's description
+     * Gets this character's description.
+     * @return this character's description.
      */
     public String getDescription() {
         return description;
     }
 
     /**
-     * sets the character's description with the specified description
-     * @param description the specified description that will become the character's description
+     * Sets this character's description to the specified description.
+     * @param description the specified description that will become this character's description.
      */
     public void setDescription(String description) {
         this.description = description;
     }
 
     /**
-     * gets the character's name
-     * @return the character's name
+     * Gets this character's name.
+     * @return this character's name.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * sets the character's name with the specified name
-     * @param name the specified name that will become the character's name
+     * Sets this character's name to the specified name.
+     * @param name the specified name that will become this character's name.
      */
     public void setName(String name) {
         this.name = name;

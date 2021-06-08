@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Parser {
   private ArrayList<String> unnecessaryWords = new ArrayList<String>(Arrays.asList("the", "a", "as", "from", "of"));  // Add "in" and other stuff once while loop functionality stuff from takeItemFromContainer() is added everywhere
-  private ArrayList<String> validCommands = new ArrayList<String>(Arrays.asList("go", "quit", "help", "eat", "run", "board", "take", "drop", "cast", "open", "put", "place", "workout", "inventory", "read"));
+  private ArrayList<String> validCommands = new ArrayList<String>(Arrays.asList("go", "quit", "help", "eat", "run", "board", "take", "drop", "cast", "open", "put", "place", "workout", "inventory", "read", "wait", "equip", "use"));
   private Scanner in;
 
   /**

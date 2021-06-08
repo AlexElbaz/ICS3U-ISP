@@ -3,8 +3,8 @@
     {
       "id": "TrainStation",
       "name": "Train Station",
-      "description": "Hagrid leaves you all alone in a busy train station. You watch as the Weasleys run into the brick wall to the east. ",
-      "shortDescription": "Hagrid leaves you all alone in a busy train station. You watch as the Weasleys run into the brick wall to the east. ",
+      "description": "Hagrid leaves you all alone in a busy train station. You watch as the Weasleys run into the brick wall. ",
+      "shortDescription": "Hagrid leaves you all alone in a busy train station. You watch as the Weasleys run into the brick wall. ",
       "exits": [
         {
           "isLocked": false,
@@ -18,6 +18,19 @@
       "name": "Platform 9 3/4",
       "description": "You see the Hogwarts Express train and watch people board the train with their owls and luggage. ",
       "shortDescription": "You see the Hogwarts Express train and watch people board the train with their owls and luggage.",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "East",
+          "adjacentRoom": "TrainRoom"
+        }
+      ]
+    },
+    {
+      "id": "TrainRoom",
+      "name": "Train Room",
+      "description": "You board the train. In looking for an open seat, a small boy with bright orange hair invites you over. He introduces himself as Ron. Maybe strike up a conversation. After all, the only other option is to wait in silence.",
+      "shortDescription": "You board the train. In looking for an open seat, a small boy with bright orange hair invites you over. He introduces himself as Ron. Maybe strike up a conversation. After all, the only other option is to wait in silence.",
       "exits": [
         {
           "isLocked": false,

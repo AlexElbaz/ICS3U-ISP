@@ -196,7 +196,7 @@
       "exits": [
         {
           "isLocked": false,
-          "direction": "West",
+          "direction": "East",
           "adjacentRoom": "Hallway13"
         }
       ]

@@ -14,14 +14,14 @@
         },
         {
             "name": "pot",
-            "room": "MusicRoom",
+            "room": "Room",
             "weight": 99,
             "isOpenable": true,
             "maxWeight": 100
         },
         {
             "name": "vat",
-            "room": "MusicRoom",
+            "room": "Room",
             "weight": 99,
             "isOpenable": true,
             "maxWeight": 100
@@ -83,13 +83,6 @@
             "weight": 1,
             "isOpenable": false,
             "keyId": "1"
-        },
-        {
-            "name": "key",
-            "room": "PotionsClass",
-            "weight": 1,
-            "isOpenable": false,
-            "keyId": "2"
         },
         {
             "name": "key",

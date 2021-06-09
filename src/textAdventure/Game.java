@@ -483,45 +483,44 @@ public class Game {
    * @param command the input from the user, at index 0 is help, and at index 1 is the command they want to learn about
    */
   private void commandHelp(String command) {
-    if (command.equals("go")){
+    if (command.equals("go"))
       System.out.println("Allows you to move in the following directions: [North, South, East, West, Up, Down]");
-    } else if (command.equals("board")){
+    else if (command.equals("board"))
       System.out.println("Helps you get onto a train.");
-    } else if (command.equals("take")){
+    else if (command.equals("take"))
       System.out.println("Allows you to either pick up items that you can use later (take [item]), or take items out of containers (take [item] from [container]).");
-    }  else if (command.equals("drop")) {
+    else if (command.equals("drop")) 
       System.out.println("Allows you to release items that you do not wish to hold onto anymore.");
-    } else if (command.equals("put") || command.equals("place")) {
+    else if (command.equals("put") || command.equals("place")) 
       System.out.println("Allows you to put items into a container (put [item] in [container]).");
-    } else if (command.equals("cast")){
+    else if (command.equals("cast"))
       System.out.println("Helps you make magical spells with your wand.");
-    } else if (command.equals("hit")){
+    else if (command.equals("hit"))
       System.out.println("Allows you to whack things around you.");
-    } else if (command.equals("open")){
+    else if (command.equals("open"))
       System.out.println("Allows you to see what is inside of an object");
-    } else if (command.equals("quit") || command.equals("exit")){
+    else if (command.equals("quit") || command.equals("exit"))
       System.out.println("Ends the game. That's one way to go out!");
-    } else if (command.equals("help")) {
+    else if (command.equals("help"))
       System.out.println("Prints the help message.");
-    } else if (command.equals("eat")){
+    else if (command.equals("eat"))
       System.out.println("Allows you to fuel up before a very cool adventure in Hogwarts!");
-    } else if (command.equals("run")){
+    else if (command.equals("run"))
       System.out.println("Makes you sprint as fast as you can. You may have to do so to get past a certain obstacle... However, if you wish to navigate through rooms, please use the \"go\" command.");
-    } else if (command.equals("workout")){
+    else if (command.equals("workout"))
       System.out.println("Allows you to carry more weight by working out and becoming buff. Self improvement is key.");
-    } else if (command.equals("inventory")){
+    else if (command.equals("inventory"))
       System.out.println("Tells you what you are currently carrying in your inventory.");
-    } else if (command.equals("read")){
+    else if (command.equals("read"))
       System.out.println("Allows you to read the contents of a book, and maybe gain some knowledge to help you in the game!");
-    } else if (command.equals("equip")){
+    else if (command.equals("equip"))
       System.out.println("Allows you to wear a piece of clothing.");
-    } else if (command.equals("wait")) {
+    else if (command.equals("wait")) 
       System.out.println("Allows you to sit and wait.");
-    } else if (command.equals("use")) {
+    else if (command.equals("use")) 
       System.out.println("Allows you to use an item. Note, there are only certain items that you can use.");
-    } else {
+    else 
       System.out.println("That is not a command.");
-    }
   }
 
   /**

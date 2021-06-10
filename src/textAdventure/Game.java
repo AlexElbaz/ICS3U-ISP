@@ -18,7 +18,7 @@ public class Game {
   private Character player;
   private boolean hasRunAtWall = false;
   private boolean hasBoardedTrain = false;
-  private long carryingCapacity = 5000;
+  private long carryingCapacity = 50;
   private long countWorkout = 0;
   private int countSandwich = 0;
   private boolean hasPrinted = false;
@@ -189,11 +189,11 @@ public class Game {
         eatItem(command);    
     else if (command.get(0).equals("board"))
       boardTrain(command);
-    else if (command.get(0).equals("wait") && command.size() < 2)
+    else if (command.get(0).equals("wait"))
       wait(command);
-    else if (command.get(0).equals("take")) {
-      takeCommand(command);    
-    } else if (command.get(0).equals("drop")) {
+    else if (command.get(0).equals("take"))
+      take(command);
+    else if (command.get(0).equals("drop")) {
       if (command.size() < 2)
         System.out.println("Drop what?");
       else
@@ -209,21 +209,20 @@ public class Game {
       workout();
     else if(command.get(0).equalsIgnoreCase("KJ9E3L"))
       enterCode();
-    else if(command.get(0).equals("play")){
-      if(command.get(1).equals("flute")){
-        if (player.getInventory().viewInventory().indexOf("flute") > -1) { // if the player has a flute
+    else if(command.get(0).equals("play")) {
+      if(command.get(1).equals("flute")) {
+        if (player.getInventory().viewInventory().indexOf("flute") > -1) // if the player has a flute
           playFlute(command);
-        } else {
+        else
           System.out.println("You don't have the flute, so you can't use it!");
-        }
       }
-    } else if (command.get(0).equals("equip")) {
+    } else if (command.get(0).equals("equip"))
         equipItem(command);
-    } else if (command.get(0).equals("use")) {
+    else if (command.get(0).equals("use"))
         useItem(command);
-    } else if (command.get(0).equals("cast")) {
+    else if (command.get(0).equals("cast"))
       spellsCast(command);
-    } else if (command.get(0).equals("put") || command.get(0).equals("place"))
+    else if (command.get(0).equals("put") || command.get(0).equals("place"))
       putItemInContainer(command.get(1), command.get(3));
     else if(command.get(0).equals("read")) {
       if (command.size() < 2)
@@ -301,17 +300,18 @@ public class Game {
     currentRoom = roomMap.get("UndergroundCellar");
     System.out.println(currentRoom.longDescription());
   }
+  
   // implementations of user commands:
 
   /**
    * processes multiple situations where "take" is the first word of the command to account for taking an item from the room and taking an item from a container.
    * @param command user input
    */
-  private void takeCommand(ArrayList<String> command) {
-    if (command.size() > 2) { // if the command is four words or longer
+  private void take(ArrayList<String> command) {
+    if (command.size() > 3) { // if the command is longer than 3 words (i.e. we want to take something from a container).
       boolean hasFound = false;
-      int countForItem = 1; // command.get(0) MUST be "take" for this line to occur.
-      while (!hasFound && countForItem < command.size() - 1) { // iterates through the command
+      int countForItem = 1; // command.get(0) MUST be "take" for this line to occur, therefore item must be command.get(1) or later.
+      while (!hasFound && countForItem < command.size() - 1) { // iterates through command. As taking an item from a container requires a container to be specified, the item cannot be the last index (that would mean there is no container).
         if (checkForItem(command.get(countForItem))[0] >= 0) // checks if the player has the specified item
           hasFound = true;
         else 
@@ -329,14 +329,23 @@ public class Game {
         if (hasFound) // if the player has both the item and container
           takeItemFromContainer(command.get(countForItem), command.get(countForContainer)); 
         else
-          takeItemFromContainer(command.get(countForItem), command.get(countForContainer - 1)); // this is to prevent an IndexOutOfBoundsException and will still call the error message provided by takeItemFromContainer()
+          takeItemFromContainer(command.get(countForItem), command.get(countForContainer - 1)); // this is to prevent an IndexOutOfBoundsException. Though we don't know what command.get(countForContainer-1) is, we don't care becuase so long as it is a valid index (which the -1 takes care of) takeItemFromContainer() will handle it.
       } else
         System.out.println("You don't have " + command.get(1));
     } else {
       if (command.size() == 1) // no second word
         System.out.println("Take what?");
-      else
-        takeItem(command.get(1));
+      else {
+        boolean hasFound = false;
+        int countForItem = 1; // command.get(0) MUST be "take" for this line to occur, therefore item must be command.get(1) or later.
+        while (!hasFound && countForItem < command.size() - 1) { // iterates through command. As taking an item from a container requires a container to be specified, the item cannot be the last index (that would mean there is no container).
+          if (checkForItem(command.get(countForItem))[0] >= 0) // checks if the player has the specified item
+            hasFound = true;
+          else 
+            countForItem++;
+        }
+        takeItem(command.get(countForItem));
+      }
     }
   }
 
@@ -674,18 +683,21 @@ public class Game {
   private void takeItem(String item) {
     boolean itemExists = false;
       for (int i = 0; i < currentRoom.getItems().size(); i++) {
-        Item tempItem = currentRoom.getItems().get(i); // a place holder for the item to make code cleaner
+        Item tempItem = currentRoom.getItems().get(i); // a place holder for the item to make code cleaner.
         if (tempItem.getName().equals(item)) {
-          if (player.getInventory().addItem(tempItem)) { // adds the specified item to the player's inventory if they have the space; if they don't, then additem() returns false and an error message
+          if (player.getInventory().addItem(tempItem)) { // adds the specified item to the player's inventory if they have the space. If they don't, then additem() returns false and an error message.
             currentRoom.getInventory().removeItem(tempItem); // removes the specified item from the room
-            currentRoom.setDescription(currentRoom.getShortDescription() + setItemRoomDescription()); // sets the description of the room to the description without items (getShortDescription()) plus the items in the room (setItemRoomDescription()) so that the room's items update and don't overlap in the description 
-            System.out.println("Taken.");
+            currentRoom.setDescription(currentRoom.getShortDescription() + setItemRoomDescription()); // sets the description of the room to the description without items (getShortDescription()) plus the items in the room (setItemRoomDescription()) so that the room's items update and don't overlap in the description.
+            System.out.print("Taken.");
+            if (tempItem.isOpenable())
+              System.out.print(" You notice that this item can be opened, maybe you can store something in it?");
+            System.out.println();
           }
           itemExists = true;
         }
       }
-      if (!itemExists) // checks if the specified item exists in the player's inventory
-        System.out.println("You can't see " + item + " anywhere.");
+      if (!itemExists) // checks if the specified item exists in the room.
+        System.out.println(item + " is not in this room.");
   }
 
   /**

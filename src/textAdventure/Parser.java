@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 
 public class Parser {
-  private ArrayList<String> unnecessaryWords = new ArrayList<String>(Arrays.asList("the", "a", "as", "from", "of"));  // Add "in" and other stuff once while loop functionality stuff from takeItemFromContainer() is added everywhere
+  private ArrayList<String> unnecessaryWords = new ArrayList<String>(Arrays.asList("the"));
   private ArrayList<String> validCommands = new ArrayList<String>(Arrays.asList("go", "quit", "help", "eat", "run", "board", "take", "drop", "cast", "open", "put", "place", "workout", "inventory", "read", "wait", "equip", "use"));
   private Scanner in;
 
@@ -40,8 +40,9 @@ public class Parser {
       //  like this because the [String].split("[String]") method only works for splitting Strings into Arrays.
 
     words.removeAll(unnecessaryWords);
-      // ArrayList functionality allows us to remove all instances of specific words
-      //  (or whatever type the ArrayLists are) from one ArrayList in another specified ArrayList.
+      // ArrayList functionality allows us to remove all instances of specific words (or whatever type 
+      //  the ArrayLists are) from one ArrayList in another specified ArrayList. So, because "the" (the only 
+      //  element in unnecessaryWords) is not necessary, we removed all instances of it from the inputLine.
         
     return words;
   }

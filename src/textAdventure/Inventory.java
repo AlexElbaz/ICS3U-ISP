@@ -84,13 +84,13 @@ public class Inventory {
   public String viewInventory() {
     String output;
     if (items.size() != 0){ // If there are items in this inventory.
-      output = "You see: ";
+      output = "You have: ";
       for (Item item : items) {
         output += item.getName() + " ";
           // Creates a new output string and adds the names of all the items that are in this inventory to it.
       }
   } else {
-    output = "There is nothing in your inventory.";
+    output = "There is nothing in here.";
   }
     return output + "\nYou can hold " + maxWeight + " pounds worth of items, or " + (maxWeight - currentWeight) + " more pound(s) worth of items.";
   }

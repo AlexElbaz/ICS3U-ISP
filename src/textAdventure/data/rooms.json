@@ -29,8 +29,8 @@
     {
       "id": "TrainRoom",
       "name": "Train Room",
-      "description": "You board the train. In looking for an open seat, a small boy with bright orange hair invites you over. He introduces himself as Ron. Maybe strike up a conversation. After all, the only other option is to wait in silence.",
-      "shortDescription": "You board the train. In looking for an open seat, a small boy with bright orange hair invites you over. He introduces himself as Ron. Maybe strike up a conversation. After all, the only other option is to wait in silence.",
+      "description": "You board the train. In looking for an open seat, a small boy with bright orange hair invites you over. He introduces himself as Ron. After that however, he goes quiet. I guess the only option is to wait in silence. ",
+      "shortDescription": "You board the train. In looking for an open seat, a small boy with bright orange hair invites you over. He introduces himself as Ron. After that however, he goes quiet. I guess the only option is to wait in silence. ",
       "exits": [
         {
           "isLocked": false,
@@ -271,8 +271,8 @@
     {
       "id": "Kitchen",
       "name": "Kitchen",
-      "description": "You are in a large kitchen, surrounded by pots and pans. ",
-      "shortDescription": "You are in a large kitchen. ",
+      "description": "You are in a large kitchen, surrounded by pots and pans. There is an empty basket on the floor in front of you and an obsenely large vat in the corner of the room which seems quite heavy. ",
+      "shortDescription": "You are in a large kitchen, surrounded by pots and pans. ",
       "exits": [
         {
           "isLocked": false,
@@ -584,7 +584,7 @@
     {
       "id": "Room",
       "name": "Your Room",
-      "description": "You spot a cloak that has a tag that says 'invisibility cloak' sitting in an opened gift box. The little door in the corner is locked. You have to use a different way to get in. Maybe a code perhaps? ",
+      "description": "You spot a cloak sitting in an opened gift box. Upon inspection, it seems to make anything underneath it invisible... The little door in the corner is locked. You have to use a different way to get in. Maybe a code perhaps? ",
       "shortDescription": "Nothing but an empty gift box on the ground. The little door in the corner is locked. You have to use a different way to get in. Maybe a code perhaps? ",
       "exits": [
         {

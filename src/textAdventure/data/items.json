@@ -13,25 +13,25 @@
             ]
         },
         {
-            "name": "pot",
-            "room": "Room",
-            "weight": 99,
+            "name": "basket",
+            "room": "Kitchen",
+            "weight": 10,
             "isOpenable": true,
-            "maxWeight": 100
+            "maxWeight": 30
         },
         {
             "name": "vat",
-            "room": "Room",
-            "weight": 99,
+            "room": "Kitchen",
+            "weight": 100,
             "isOpenable": true,
-            "maxWeight": 100
+            "maxWeight": 200
         },
         {
             "name": "backpack",
             "room": "PotionsStorage",
             "weight": 20,
             "isOpenable": true,
-            "maxWeight": 40
+            "maxWeight": 60
         },
         {
             "name": "charm",

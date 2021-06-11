@@ -42,8 +42,8 @@
     {
       "id": "DininghallTopLeft",
       "name": "Great Hall",
-      "description": "You are in the Great Hall just after supper. Feel free to explore Hogwarts for the next few hours. ",
-      "shortDescription": "You are in the Great Hall just after supper. Feel free to explore Hogwarts for the next few hours. ",
+      "description": "You arrive in the Great Hall. The teachers have already given you a brief introduction and have sent you all off to explore Hogwarts before bed. You remember some rumors you heard about something called the philospher's stone, you suddenly feel compelled to go find it, maybe if your lucky you could get it before bed. ",
+      "shortDescription": "You arrive in the Great Hall. The teachers have already given you a brief introduction and have sent you all off to explore Hogwarts before bed. You remember some rumors you heard about something called the philospher's stone, you suddenly feel compelled to go find it, maybe if your lucky you could get it before bed. ",
       "exits": [
         {
           "isLocked": false,
@@ -634,14 +634,9 @@
     {
       "id": "Hallway22",
       "name": "Hallway",
-      "description": "You see a small door, but looks like it's all boarded up. At the end of the hallway you see a glass door leading to the outside. To the north, you see a mysterious painting. The painting has the letters KJ9E3L catches your eye. You wonder what it's for. ",
-      "shortDescription": "You see a small door, but looks like it's all boarded up. At the end of the hallway you see a glass door leading to the outside. To the north, you see a mysterious painting. The painting has the letters KJ9E3L catches your eye. You wonder what that is for. ",
+      "description": "You see a small door directly North, but looks like it's all boarded up and impossible to get through, but maybe there's another way in... At the end of the hallway you see a glass door leading to the outside. At the end of the hall to the North, you see a mysterious painting. The painting has the letters KJ9E3L catches your eye. You wonder what it's for. ",
+      "shortDescription": "You see a small door directly North, but looks like it's all boarded up and impossible to get through, but maybe there's another way in... At the end of the hallway you see a glass door leading to the outside. At the end of the hall to the North, you see a mysterious painting. The painting has the letters KJ9E3L catches your eye. You wonder what that is for. ",
       "exits": [
-        {
-          "isLocked": true,
-          "direction": "North",
-          "adjacentRoom": "StorageRoom"
-        },
         {
           "isLocked": false,
           "direction": "East",
@@ -687,7 +682,7 @@
       "shortDescription": "You are in a torch-lit tunnel. It looks abandoned and it feels like the walls are closing in on you. ",
       "exits": [
         {
-          "isLocked": true,
+          "isLocked": false,
           "direction": "North",
           "adjacentRoom": "3HeadedDog"
         },
@@ -727,8 +722,8 @@
     {
       "id": "FlyingWingsGame",
       "name": "Quidditch Field",
-      "description": "As you walk into the room, a strange man named Balthazar is trying to get you to play Quidditch. You decide this is NOT the time for Quidditch, so you need to equip SOMETHING to disguise yourself with! You decide you are either doing this or heading back to your room. ",
-      "shortDescription": "As you walk into the room, a strange man named Balthazar is trying to get you to play Quidditch. You decide this is NOT the time for Quidditch, so you need to equip SOMETHING to disguise yourself with! You decide you are either doing this or heading back to your room. ",
+      "description": "As you walk into the room, a strange man named Balthazar is trying to get you to play Quidditch. You decide this is NOT the time for Quidditch, so you figure you need to equip SOMETHING to disguise yourself with! Unfortunately this man is quite insistent so it's either a disguise or heading back to your room. ",
+      "shortDescription": "As you walk into the room, a strange man named Balthazar is trying to get you to play Quidditch. You decide this is NOT the time for Quidditch, so you figure you need to equip SOMETHING to disguise yourself with! Unfortunately this man is quite insistent so it's either a disguise or heading back to your room. ",
       "exits": [
         {
           "isLocked": false,
@@ -753,8 +748,8 @@
     {
       "id": "BoggartRoom",
       "name": "Long Room",
-      "description": "You see a tall wooden chest. The door swings open violently and the spirit lurks around the room. The spirit whips around the corner and is coming to attack your face. ",
-      "shortDescription": "You see a tall wooden chest. The door swings open violently and the spirit lurks around the room. The spirit whips around the corner and is coming to attack your face. ",
+      "description": "You see a tall wooden chest. The door swings open violently and the spirit lurks around the room. The spirit whips around the corner and is coming to attack your face. However, as the spirit approaches you hear a noise and turn to see a man, wand in hand, preparing to attack you as well. You decide you must deal with this man before the spirit. ",
+      "shortDescription": "You see a tall wooden chest. The door swings open violently and the spirit lurks around the room. The spirit whips around the corner and is coming to attack your face. However, as the spirit approaches you hear a noise and turn to see a man, wand in hand, preparing to attack you as well. You decide you must deal with this man before the spirit. ",
       "exits": [
         {
           "isLocked": false,

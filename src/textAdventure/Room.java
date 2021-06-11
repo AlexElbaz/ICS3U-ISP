@@ -132,12 +132,15 @@ public class Room {
         }
       }
     } catch (IllegalArgumentException ex) {
-      if ("west east north south up down".indexOf(direction) == -1)
+      if ("west east north south up down".indexOf(direction) == -1) {
         // checks if the direction is one of the game's valid directions
         //  (by checking if it appears in the String "west east north south up down").
         System.out.println(direction + " is not a valid direction.");
+      }
       return null;
     }
+    if ("west east north south up down".indexOf(direction) == -1)
+      System.out.println(direction + " is not a valid direction.");
     return null;
   }
 

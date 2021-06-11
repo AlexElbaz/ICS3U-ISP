@@ -13,15 +13,15 @@ public class Parser {
 
   /**
    * No arguement Parser constructor. Initializes a Parser object and creates a
-   *  Scanner for it so that it can be used to detect and stor user input.
+   *  Scanner for it so that it can be used to detect and store the player's input.
    */
   public Parser() {
     in = new Scanner(System.in);
   }
 
   /**
-   * Prompts the user to input a command, stores their input, and parses it into an ArrayList.
-   * @return An ArrayList composed of all the individual words input by the user minus
+   * Prompts the player to input a command, stores their input, and parses it into an ArrayList.
+   * @return An ArrayList composed of all the individual words input by the player minus
    *  any unnecessary words (defined by the unnecessaryWords ArrayList).
    * @throws java.io.IOException
    */
@@ -29,7 +29,7 @@ public class Parser {
     String inputLine = "";
     
     System.out.print("> ");
-      // Print prompt to prompt the user to type a command.
+      // Print prompt to prompt the player to type a command.
 
     inputLine = in.nextLine().toLowerCase();
       // Convert input to lowercase (as we deal with commands and such

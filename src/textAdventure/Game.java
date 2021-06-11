@@ -18,10 +18,11 @@ public class Game {
   private Character player;
   private boolean hasRunAtWall = false;
   private boolean hasBoardedTrain = false;
-  private long carryingCapacity = 50;
+  private long carryingCapacity = 40;
   private long countWorkout = 0;
   private int countSandwich = 0;
-  private boolean hasPrinted = false;
+  private boolean hasDisarmed = false;
+  private int countTurnsInRoom = 0;
 
   /**
    * Create the game and initialise its internal map.
@@ -31,7 +32,7 @@ public class Game {
       player = new Character(new Inventory(carryingCapacity));
       initRooms("src\\textAdventure\\data\\rooms.json");
       initItems("src\\textAdventure\\data\\items.json");
-      currentRoom = roomMap.get("Room");
+      currentRoom = roomMap.get("TrainStation");
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -39,8 +40,8 @@ public class Game {
   }
 
   /**
-   * Initializes the rooms in the room map using the rooms provided in rooms.json
-   * @param fileName the address of rooms.json
+   * Initializes the rooms in the room map using the rooms provided in rooms.json.
+   * @param fileName the address of rooms.json.
    * @throws Exception
    */
   private void initRooms(String fileName) throws Exception {
@@ -87,8 +88,8 @@ public class Game {
   }
   
   /**
-   * initializes the items in their respective rooms using the items provided in items.json
-   * @param fileName the address of items.json
+   * Initializes the items in their respective rooms using the items provided in items.json.
+   * @param fileName the address of items.json.
    * @throws Exception
    */
   private void initItems(String fileName) throws Exception {
@@ -132,7 +133,7 @@ public class Game {
   }
 
   /**
-   * Main play routine. Loops until end of play.
+   * Main play routine. Loops until the player quits or wins the game.
    */
   public void play() {
     printWelcome();
@@ -155,7 +156,7 @@ public class Game {
   }
 
   /**
-   * Print out the opening message for the player.
+   * Print out the opening message of the game.
    */
   private void printWelcome() {
     System.out.println();
@@ -167,78 +168,14 @@ public class Game {
   }
 
   /**
-   * Given a command, process (that is: execute) the command. If this command ends
-   * the game, true is returned, otherwise false is returned.
+   * Prints a short ending message as well as a fancy "YOU WIN!!!" message before quitting the game
+   *  upon the player reaching the final room (AKA upon the player winning the game).
    */
-  private boolean processCommand(ArrayList<String> command) {
-    if (command.get(0).equals("inventory"))
-      System.out.println(player.getInventory().viewInventory());
-    else if (command.get(0).equals("help"))
-      printHelp(command);
-    else if (command.get(0).equals("go")) {
-      if (!(currentRoom.getRoomName().equals("Train Station") || currentRoom.getRoomName().equals("Platform 9 3/4") || currentRoom.getRoomName().equals("Train Room")))
-        goRoom(command);
-      else
-        System.out.println("You can't do that.");
-    } else if (command.get(0).equals("quit") || command.get(0).equals("exit")) {
-      if (command.size() > 1)
-        System.out.println("Quit what?");
-      else
-        return true; // signal that we want to quit
-    } else if (command.get(0).equals("eat")) 
-        eatItem(command);    
-    else if (command.get(0).equals("board"))
-      boardTrain(command);
-    else if (command.get(0).equals("wait"))
-      wait(command);
-    else if (command.get(0).equals("take"))
-      take(command);
-    else if (command.get(0).equals("drop")) {
-      if (command.size() < 2)
-        System.out.println("Drop what?");
-      else
-        dropItem(command.get(1));
-    } else if (command.get(0).equals("open")) {
-      if (command.size() < 2)
-        System.out.println("Open what?");
-      else
-        openContainer(command.get(1));
-    } else if (command.get(0).equals("run"))
-        runWall(command);
-    else if(command.get(0).equals("workout"))
-      workout();
-    else if(command.get(0).equalsIgnoreCase("KJ9E3L"))
-      enterCode();
-    else if(command.get(0).equals("play")) {
-      if(command.get(1).equals("flute")) {
-        if (player.getInventory().viewInventory().indexOf("flute") > -1) // if the player has a flute
-          playFlute(command);
-        else
-          System.out.println("You don't have the flute, so you can't use it!");
-      }
-    } else if (command.get(0).equals("equip"))
-        equipItem(command);
-    else if (command.get(0).equals("use"))
-        useItem(command);
-    else if (command.get(0).equals("cast"))
-      spellsCast(command);
-    else if (command.get(0).equals("put") || command.get(0).equals("place"))
-      putItemInContainer(command.get(1), command.get(3));
-    else if(command.get(0).equals("read")) {
-      if (command.size() < 2)
-        System.out.println("Read what?");
-      else
-        readSpellbook(command.get(1));
-    } else
-      System.out.println("You can't do that.");
-    return false;
-  }
-  
-  /**
-   * prints a fancy "YOU WIN!!!" message when the player is in the final room
-   */
-  private void processWin(){
-    if(currentRoom.getRoomName().equals("Final Room") && !hasPrinted) {
+  private void processWin() {
+    if (currentRoom.getRoomName().equals("Final Room")) {
+      System.out.println("You feel a weight in your pocket. As you pull it out, you realize it's the Philospher's Stone!");
+      System.out.println("Suddenly you feel a rush of excitement knowing all you've accomplished.");
+      System.out.println();
       System.out.println("                                                                                     ,---,    ,---,    ,---,  ");
       System.out.println("                                                                                  ,`--.' | ,`--.' | ,`--.' |  ");
       System.out.println("                                                        .---.                     |   :  : |   :  : |   :  :  ");
@@ -255,63 +192,128 @@ public class Game {
       System.out.println("       \\  ' ;           `--`----'                 \\   \\ ;    |  ,   / '---'       `-- -`, ;`-- -`, ;`-- -`, ; ");
       System.out.println("        `--`                                       '---\"      ---`-'                '---`\"   '---`\"   '---`\"  ");
       System.out.println("                                                                                                              ");
-      hasPrinted = true; // prevents the message from showing multiple times
+      System.exit(0);      
     }
   }
 
   /**
-   * kills the player every time they are in a situation that kills them
+   * Handles killing the player every time they are in a situation that is designed to kill them.
    */
-  private void processDeath(){
-    if(currentRoom.getRoomName().equals("Funny Death Room") ) {
+  private void processDeath() {
+    if (currentRoom.getRoomName().equals("Funny Death Room") ) {
       killPlayer();
-    } else if(currentRoom.getRoomName().equals("A Cold Room") ) { 
+    } else if (currentRoom.getRoomName().equals("A Cold Room") ) { 
         if (player.getInventory().viewInventory().indexOf("flute") < 0) {
+          System.out.println();
           System.out.println("As you tried to go into the cold room without calming the dog down, the dog got angry and bit your head off. You died. \n\n\n\n\n ");
           killPlayer();
         }
-    } else if(currentRoom.getRoomName().equals("Overgrown Plant House") ) { 
+    } else if (currentRoom.getRoomName().equals("Overgrown Plant House") ) { 
       if (player.getInventory().viewInventory().indexOf("spellbook") < 0) { 
+        System.out.println();
         System.out.println("As you tried to go into the overgrown plant house, you weren't able to control the plant and it ate you like how a venus fly trap eats a fly. You died. \n\n\n\n\n ");
         killPlayer();
       }
-    } else if(currentRoom.getRoomName().equals("Quidditch Field") ) { 
+    } else if (currentRoom.getRoomName().equals("Quidditch Field") ) { 
       if (player.getInventory().viewInventory().indexOf("cloak") < 0) {
+        System.out.println();
         System.out.println("As you tried to go into the quidditch field, Balthazar forced you to play quidditch for three days straight. You died from exhaustion. \n\n\n\n\n ");
         killPlayer();
       }
-    } else if(currentRoom.getRoomName().equals("Tiny Room") ) { 
+    } else if (currentRoom.getRoomName().equals("Tiny Room") ) { 
       if (player.getInventory().viewInventory().indexOf("gillyweed") < 0) {
+        System.out.println();
         System.out.println("As you tried to go into the tiny room, you weren't able to stop the drip of water. You drowned. \n\n\n\n\n ");
         killPlayer();
       }
-    } else if(currentRoom.getRoomName().equals("Long Room") ) { 
+    } else if (currentRoom.getRoomName().equals("Long Room") ) { 
       if (player.getInventory().viewInventory().indexOf("charm") < 0) {
+        System.out.println();
         System.out.println("As you tried to go into the long room, the spirit turns YOU into a spirit. You died. \n\n\n\n\n ");
         killPlayer();
+      } else if (countTurnsInRoom >= 1 && !hasDisarmed) { // If that player types a command in this room (other than to disarm the wizard) before disarming the wizard, they die. 
+        System.out.println("In choosing not to deal with the wizard directly behind you first, he strikes you in the back with the killing curse itself; Avada Kedavra. You died. \n\n\n\n\n ");
+        killPlayer();
       }
+      countTurnsInRoom++; // As processDeath() runs after processCommand(), the player will be in this room for one call of processDeath() before getting to type a command in this room. As such, there is a one method call leeway for the player so that they don't die instantly upon entering the room.
     } 
   }
 
   /**
-   * sends the player to the UndergroundCellar room as a way of "killing" the player
+   * Sends the player to the UndergroundCellar room as our way of "killing" the player.
    */
   private void killPlayer(){
     currentRoom = roomMap.get("UndergroundCellar");
     System.out.println(currentRoom.longDescription());
   }
   
-  // implementations of user commands:
+  /**
+   * Given a command, process (that is: execute) the command. If this command ends the game
+   *  (AKA the command is quit), true is returned, ending the game, otherwise false is returned, continuing the main play loop.
+   * @param command an ArrayList composed of the player's input.
+   */
+  private boolean processCommand(ArrayList<String> command) {
+    if (command.get(0).equals("go")) {
+      if (!(currentRoom.getRoomName().equals("Train Station") || currentRoom.getRoomName().equals("Platform 9 3/4") || currentRoom.getRoomName().equals("Train Room") || currentRoom.getRoomName().equals("Long Room") || currentRoom.getRoomName().equals("Final Room")))
+        goRoom(command);
+      else
+        System.out.println("You can't do that.");
+    } else if (command.get(0).equals("inventory"))
+      System.out.println(player.getInventory().viewInventory());
+    else if (command.get(0).equals("help"))
+      printHelp(command);
+     else if (command.get(0).equals("eat")) 
+        eatItem(command);    
+    else if (command.get(0).equals("board"))
+      boardTrain(command);
+    else if (command.get(0).equals("wait"))
+      wait(command);
+    else if (command.get(0).equals("take"))
+      take(command);
+    else if (command.get(0).equals("put") || command.get(0).equals("place"))
+      putItemInContainer(command.get(1), command.get(3));
+    else if (command.get(0).equals("drop"))
+      dropItem(command);
+    else if (command.get(0).equals("open"))
+      openContainer(command);
+    else if (command.get(0).equals("run"))
+        runWall(command);
+    else if (command.get(0).equals("workout"))
+      workout();
+    else if (command.get(0).equalsIgnoreCase("KJ9E3L"))
+      enterCode();
+    else if (command.get(0).equals("play"))
+      playFlute(command);
+    else if (command.get(0).equals("equip"))
+        equipItem(command);
+    else if (command.get(0).equals("use"))
+        useItem(command);
+    else if (command.get(0).equals("cast"))
+      spellsCast(command);
+    else if (command.get(0).equals("read"))
+      readSpellbook(command);
+    else if (command.get(0).equals("quit") || command.get(0).equals("exit")) {
+      if (command.size() > 1)
+        System.out.println("Quit what?");
+      else
+        return true; // signal that we want to quit
+    } else
+      System.out.println("You can't do that.");
+    return false;
+  }
+  
+  // implementations of player commands:
 
   /**
-   * processes multiple situations where "take" is the first word of the command to account for taking an item from the room and taking an item from a container.
-   * @param command user input
+   * Processes situations where "take" is the first word of the command to account for taking an item from
+   *  the room or taking an item from a container.
+   * @param command the player's input.
    */
   private void take(ArrayList<String> command) {
-    if (command.size() > 3) { // if the command is longer than 3 words (i.e. we want to take something from a container).
+    if (command.size() > 3) { // if the command is longer than 3 words (i.e. we know the player wants to take something from a container)
       boolean hasFound = false;
-      int countForItem = 1; // command.get(0) MUST be "take" for this line to occur, therefore item must be command.get(1) or later.
-      while (!hasFound && countForItem < command.size() - 1) { // iterates through command. As taking an item from a container requires a container to be specified, the item cannot be the last index (that would mean there is no container).
+      int countForItem = 1; // command.get(0) MUST be "take" for this line to occur, therefore item must be command.get(1) or later
+      while (!hasFound && countForItem < command.size() - 1) { // iterates through all but the last index of command (as taking an item from a container requires a container to be specified, the item cannot be the last index (as it would mean there is no container))
         if (checkForItem(command.get(countForItem))[0] >= 0) // checks if the player has the specified item
           hasFound = true;
         else 
@@ -332,8 +334,8 @@ public class Game {
           takeItemFromContainer(command.get(countForItem), command.get(countForContainer - 1)); // this is to prevent an IndexOutOfBoundsException. Though we don't know what command.get(countForContainer-1) is, we don't care becuase so long as it is a valid index (which the -1 takes care of) takeItemFromContainer() will handle it.
       } else
         System.out.println("You don't have " + command.get(1));
-    } else {
-      if (command.size() == 1) // no second word
+    } else { // the player wants to take an item from the room
+      if (command.size() < 2) // no second word
         System.out.println("Take what?");
       else {
         boolean hasFound = false;
@@ -350,7 +352,7 @@ public class Game {
   }
 
   /**
-   * moves the player past the painting and into the tunnel when they input the correct code in the right room
+   * Moves the player past the painting and into the tunnel when they input the correct code in the right room.
    */
   private void enterCode() {
     if (currentRoom.getRoomName().equals("Your Room")) {
@@ -358,28 +360,35 @@ public class Game {
       System.out.println();
       currentRoom = roomMap.get("Tunnel");
       System.out.println(currentRoom.longDescription());
-    }
+    } else
+      System.out.println("This doesn't seem like the place to use that.");
   }
 
   /**
-   * the player eats an item.
-   * currently, the only edible items is gillyweed.
-   * the sandwiches are just text for amusement purposes.
-   * @param command
+   * Allows the player to eat an item. Currently, the only item that can be eaten is gillyweed.
+   *  For other inputs (those including a second word) the method will inform the player that the word
+   *  they input cannot be eaten. The sandwich text (when the player types just "eat") is simply for amusement purposes.
+   * @param command the player's input.
    */
   private void eatItem(ArrayList<String> command) {
     if (command.size() >= 2) {
-      if (command.get(1).equals("gillyweed")){
+      if (command.get(1).equals("gillyweed")) {
         if (player.getInventory().viewInventory().indexOf("gillyweed") >= 0) { // if the player has gillyweed in their inventory
           if (currentRoom.getRoomName().equals("Tiny Room")) { // checks if the player is in "Tiny Room" because the gillyweed is only used in this room
-            System.out.println("You eat the gillyweed and you watch in amazement as you start to grow gills. Your feet become webbed and you easily swim in teh water to the door above. ");
+            System.out.println("You eat the gillyweed and you watch in amazement as you start to grow gills. Your feet become webbed and you easily swim in the water to the door above. ");
             System.out.println();
             currentRoom = roomMap.get("BoggartRoom");
-            System.out.println(currentRoom.longDescription());
+            System.out.println(currentRoom.getDescription());
           } else
             System.out.println("You really shouldn't be eating that here, you might reverse drown...");
         } else 
           System.out.println("You don't have gillyweed.");
+      } else if (command.get(1).equals("sandwich")) {
+        if (countSandwich == 0)
+          System.out.println("You pull a sandwich out of your back pocket and eat it. You feel energized.");
+        else
+          System.out.println("You pull another sandwich out of your back pocket and eat it. This is now sandwich " + (countSandwich + 1) + ", how odd...");
+        countSandwich++;
       } else
         System.out.println("You can't eat that.");
     } else {
@@ -392,80 +401,111 @@ public class Game {
   }
 
   /**
-   * Handles everything regarding using the charm item.
-   * @param command user input
+   * Allows the player to use an item. Currently, the only item which can be used is the charm.
+   *  For any other input (including a second word) the method will tell the player that they cannot use that item.
+   * @param command the player's input.
    */
   private void useItem(ArrayList<String> command) {
-    if (command.get(1).equals("charm")) {
-      if (player.getInventory().viewInventory().indexOf("charm") > -1) { // if the player has a charm
-        if (currentRoom.getRoomName().equals("Long Room")) { //checks the name of the room, since you can only use the charm in one of the challenge rooms
-          System.out.println("As you use the charm, you notice the boggart starting to transform into spongebob, telling you about his day. He lets you into the next room and congratulates you on beating the game. ");
-          System.out.println();
-          currentRoom = roomMap.get("MirrorRoom"); //once you use the charm in the correct room, the game teleports you into the next challenge room
-          System.out.println(currentRoom.longDescription());
+    if (command.size() < 2)
+      System.out.println("Use what?");
+    else {
+      if (command.get(1).equals("charm")) {
+        if (player.getInventory().viewInventory().indexOf("charm") > -1) { // if the player has a charm
+          if (currentRoom.getRoomName().equals("Long Room")) { //checks the name of the room, since you can only use the charm in one of the challenge rooms
+            if (hasDisarmed) {
+              System.out.println("As you use the charm, you notice the boggart starting to transform into spongebob, telling you about his day. He lets you into the next room and congratulates you on beating the game. ");
+              System.out.println();
+              currentRoom = roomMap.get("MirrorRoom"); //once you use the charm in the correct room, the game teleports you into the next challenge room
+              System.out.println(currentRoom.getDescription());
+            } else
+              System.out.println("You sense you have made an bad decision.");
+          } else
+            System.out.println("You feel that it would be unwise to use that here.");
         } else
-          System.out.println("You feel that it would be unwise to use that here.");
+          System.out.println("You don't have a charm on you at the moment.");
       } else
-        System.out.println("You don't have a charm on you at the moment.");
-    } else
-      System.out.println("You can't use that.");
+        System.out.println("You can't use that.");
+    }
   }
 
   /**
-   * Handles everything regarding using the cloak item.
-   * @param command user input
+   * Allows the player to equip an item. Currently, the only item which can be equipped is the cloak.
+   *  For any other input (including a second word) the method will tell the player that they cannot use that item.
+   * @param command the player's input.
    */
   private void equipItem(ArrayList<String> command) {
-    if(command.get(1).equals("cloak")) {
-      if (player.getInventory().viewInventory().indexOf("cloak") > -1) { // if the player has a cloak
-        if (currentRoom.getRoomName().equals("Quidditch Field")) { // checks if the player is in "Quidditch Field" because it is the only place where the invisibility cloak is needed
-          System.out.println("You wait till Balthazar turns his head and pull the cloak over yourself. He tries to find you but you are long gone in the next room. ");
-          System.out.println();
-          currentRoom = roomMap.get("GillyWeedRoom");
-          System.out.println(currentRoom.longDescription());
-        } else
-          System.out.println("It doesn't seem worthwhile to use that here.");
+    if (command.size() < 2)
+      System.out.println("Equip what?");
+    else {    
+      if (command.get(1).equals("cloak")) {
+        if (player.getInventory().viewInventory().indexOf("cloak") > -1) { // if the player has a cloak
+          if (currentRoom.getRoomName().equals("Quidditch Field")) { // checks if the player is in "Quidditch Field" because it is the only place where the invisibility cloak is needed
+            System.out.println("You wait untill Balthazar turns his head and pull the cloak over yourself. You can hear as he tries to find you but you are long gone in the next room. Suddenly however, you hear screams errupt from behind you... ");
+            System.out.println();
+            currentRoom = roomMap.get("GillyWeedRoom");
+            System.out.println(currentRoom.longDescription());
+          } else
+            System.out.println("It doesn't seem worthwhile to use that here.");
+        } else 
+          System.out.println("You don't have any cloak on you at the moment.");
       } else 
-        System.out.println("You don't have any cloak on you at the moment.");
-    } else 
-      System.out.println("You can't equip that.");
+        System.out.println("You can't equip that.");
+    }
   }
   
   /**
-   * Handles everything regarding using the flute item. 
-   * @param command user input
+   * Allows the player to play an item. Currently, the only item which can be played is the flute.
+   *  For any other input (including a second word) the method will tell the player that they cannot use that item.
+   * @param command the player's input.
    */
   private void playFlute(ArrayList<String> command) { 
-    if (currentRoom.getRoomName().equals("A Cold Room")) { // checks if the player is in "A Cold Room" because it is the only room where the flute is needed
-      System.out.println("You use the flute and now the 3 Headed Dog has fallen asleep. Success! This flute has magical powers afterall since you got teleported to the Death Snare Plant Room. ");
-      System.out.println();
-      currentRoom = roomMap.get("DeathSnarePlant");
-      System.out.println(currentRoom.longDescription());
-    } else 
-      System.out.println("You play the flute, but nothing happens. ");
+    if (command.size() < 2)
+      System.out.println("Play what?");
+    else {
+      if (command.get(1).equals("flute")) {
+        if (player.getInventory().viewInventory().indexOf("flute") > -1) { // if the player has a flute
+          if (currentRoom.getRoomName().equals("A Cold Room")) { // checks if the player is in "A Cold Room" because it is the only room where the flute is needed
+            System.out.println("You use the flute and now the 3 Headed Dog has fallen asleep. Success! This flute has magical powers afterall since you got teleported to the Death Snare Plant Room. ");
+            System.out.println();
+            currentRoom = roomMap.get("DeathSnarePlant");
+            System.out.println(currentRoom.longDescription());
+          } else 
+            System.out.println("You play the flute, but nothing happens. ");
+        } else
+          System.out.println("You don't have a flute.");
+      } else 
+        System.out.println("You can't play that.");
+    }
   }
   
   /**
-   * Allows the user to cast spells. Has each specific spell and the funny message that comes with it. Additionally, one of the final challenges requires
-   * a spell so this covers that.
-   * @param command user input
+   * Allows the player to cast spells. Contains each specific spell and the message displayed when it is cast. 
+   *  Additionally, as one of the spells is needed for one of the final challenges, it handles that challenge.
+   * @param command the player's input.
    */
   private void spellsCast(ArrayList<String> command) {
-    if (player.getInventory().viewInventory().indexOf("book") > -1) { // if the player has the book in their inventory
+    if (player.getInventory().viewInventory().indexOf("spellbook") > -1) { // if the player has the spellbook in their inventory
       if (command.get(1).equals("rictusempra"))
-        System.out.println("Haha you're tickling yourself!");
+        System.out.println("Hahaha you're tickling yourself!");
       else if (command.get(1).equals("furnunculu"))
-        System.out.println("That just backfired, you covered yourself in boils!");
+        System.out.println("That backfired, you covered yourself in boils!");
       else if (command.get(1).equals("densaugeo"))
-        System.out.println("Ahhh now you have bunny like teeth! ");
+        System.out.println("Ahhh now you have bunny like teeth!");
       else if (command.get(1).equals("incendio")) {
         if (currentRoom.getRoomName().equals("Death Snare Plant")) {
-          System.out.println("You set the death snare on fire, shrinking its size down considerably. You burned a hole through the wall and you walked through it. ");
+          System.out.println("Your wand lights up and tendrils of fire spiral out. The fire torches the death snare, shrinking it down to a manageable size, but also ended up burning a hole through the wall... You decide to walk through it, though you swear you hear footsteps behind you. ");
           currentRoom = roomMap.get("FlyingWingsGame");
           System.out.println(currentRoom.longDescription());
         } else 
-          System.out.println("You consider lighting the room on fire, but you've decided not to. ");
-      }
+          System.out.println("You consider lighting the room on fire, but you've decided not to.");
+      } else if (command.get(1).equals("expelliarmus")) {
+        if (currentRoom.getRoomName().equals("Long Room")) {
+          System.out.println("In one swift motion you whip out your wand and disarm the wizard. You see the wizard, in pure shock, pee his pants slightly before running away screaming like a baby. Now, taking a deep breath, you turn around to face the spirit.");
+          hasDisarmed = true;
+        } else 
+          System.out.println("You decide that this probably isn't the place for that spell.");
+      } else
+        System.out.println("You can't cast that yet.");
     } else
       System.out.println("You don't have the book of spells so you can't cast any spells. ");
   }
@@ -488,8 +528,8 @@ public class Game {
   }
 
   /**
-   * specific command help for the user, just in case they get stuck or are wondering what a command does.
-   * @param command the input from the user, at index 0 is help, and at index 1 is the command they want to learn about
+   * Specific command-help for the player just in case they get stuck or are wondering what a specific command does.
+   * @param command the input from the player. Index 0 is help and index 1 is the command they want to learn about.
    */
   private void commandHelp(String command) {
     if (command.equals("go"))
@@ -533,18 +573,18 @@ public class Game {
   }
 
   /**
-   * Try to go to one direction. If there is an exit, enter the new room,
-   * otherwise print an error message.
+   * Try to go in a spcific direction. If there is an exit in that direction, try to go through that exit to the adjacent room
+   *  in that direction, otherwise print a message telling the player why their request could not be executed.
    */
   private void goRoom(ArrayList<String> command) {
     if (command.size() < 2) {
-      // if there is no second word, we don't know where to go...
+      // if there is no second word, we don't know where the player wants to go
       System.out.println("Go where?");
       return;
-    } else if (command.size() < 3) {  // if the command is 2 words only.
+    } else if (command.size() < 3) {  // if the command is 2 words only
       String direction = command.get(1);
 
-      // Try to leave current room.
+      // Try to leave current room
       Room nextRoom = currentRoom.nextRoom(direction);
 
       if (nextRoom == null) {
@@ -558,6 +598,8 @@ public class Game {
               for (Item item : player.getItems()) {
                 if (item.getKeyId() != null && item.getKeyId().equals(tempExit.getKeyId())) { // checks if the item has a keyId and equals the keyId of tempExit
                   currentRoom.getExits().get(e).setLocked(false); // permanently unlocks the door
+                  System.out.println("You used a key to unlock the door.");
+                  System.out.println();
                   currentRoom = nextRoom;
                   System.out.println(currentRoom.longDescription());
                   e = 4; // advances the index of exits so it does not iterate through the exits of the new room (at this point in the code, currentRoom is nextRoom)
@@ -578,12 +620,12 @@ public class Game {
   }
 
   /**
-   * currently, the only function of the run command is for the player to run "through" the wall in the train station.
-   * @param command user input
+   * Allows the player to run through the wall in the train station to get onto platform 9 3/4.
+   * @param command the player's input.
    */
   private void runWall(ArrayList<String> command) {
     if (command.size() < 2) {
-      // if there is no second word, we don't know where to go...
+      // if there is no second word, we don't know where to go
       System.out.println("Run where?");
       return;
     }
@@ -604,12 +646,12 @@ public class Game {
   }
 
   /**
-   * currently, the only function of the board command is for the player to board the train in Platform 9 3/4.
-   * @param command user input
+   * Allows the player to board the train from platform 9 3/4.
+   * @param command the player's input.
    */
   private void boardTrain(ArrayList<String> command) {
     if (command.size() < 2) {
-      // if there is no second word, we don't know where to go...
+      // if there is no second word, we don't know where to go
       System.out.println("Board what?");
       return;
     }
@@ -628,10 +670,9 @@ public class Game {
   }
 
   /**
-   * used when the player says to wait.
-   * if the player is in "Train Room", a message is displayed and the player is transported to Hogwarts.
-   * waiting is currently the only way to get out of the train.
-   * @param command user input
+   * Allows the player to sit and wait. When on the train in the "Train Room" the player must wait to progress.
+   *  As such, in that situation it displays a message and transports the player to Hogwarts.
+   * @param command the player's input.
    */
   private void wait(ArrayList<String> command) {
     if (currentRoom.getRoomName().equals("Train Room")) { // checks if the player is in "Train Room"
@@ -648,10 +689,10 @@ public class Game {
   }
 
   /**
-   * checks if the player has the specified item in their inventory or any container(s) they have.
-   * @param item the name of the item that the player wants to take
-   * @return an int array with 2 numbers: the index of the specified item in the inventory or container (-1 if the player does not have the specified item anywhere) 
-   *         and the index of the container that holds the specified item (-1 if the specified item is not in a container)
+   * Checks if the player has a specified item either in their inventory or in any container(s) they have.
+   * @param item the name of the item that the player wants to do something with.
+   * @return an int array with 2 numbers: 1st (index 0 of the int[]) the index of the specified item in the inventory or container (-1 if the player does not have the specified item anywhere) 
+   *  and 2nd (index 1 of the int[]) the index of the container that holds the specified item (-1 if the specified item is not in a container).
    */
   private int[] checkForItem(String item) {
     int[] result = {-1, -1};
@@ -674,10 +715,9 @@ public class Game {
   }
 
   /**
-   * The player takes an item from the room.
-   * This checks if the item is actually in the room or not.
-   * The item leaves the room's inventory and goes into the player's inventory.
-   * If the item is not in the room's inventory, there is an error message and nothing happens.
+   * Allows the player to take an item from a room.
+   * Checks if the item is actually in the room or not. If so, the item leaves the room's inventory and goes into the player's inventory.
+   *  If the item is not in the room's inventory, it will alert the player and nothing will happen.
    * @param item the name of the item that the player wants to take
    */
   private void takeItem(String item) {
@@ -701,11 +741,11 @@ public class Game {
   }
 
   /**
-   * The player takes the specified item from the specified container..
-   * If the player does not correctly input a valid item and its container, then there is an error message.
-   * If inputted correctly, the specified item goes into the player's inventory and leaves its container.
-   * @param item the name of the item that the player wants to take
-   * @param container the name of the container that the player wants to take the item from
+   * Allows the player to take a specified item from a specified container.
+   * If inputted correctly (and the player has enough space in their inventory), the specified item goes into the player's inventory and leaves its container.
+   * If the player does not correctly input a valid item and its container (or there is not enough space for the item in the player's inventory), then it alerts the player with an appropriate message.
+   * @param item the name of the item that the player wants to take.
+   * @param container the name of the container that the player wants to take the item from.
    */
   private void takeItemFromContainer(String item, String container) {
     int containerIndex = checkForItem(container)[0]; // the index of the container that is specified by the player in the player's inventory 
@@ -714,13 +754,13 @@ public class Game {
     if (containerIndex >= 0) {
       Item tempContainer = player.getItems().get(containerIndex); // a place holder for the specified container in the player's inventory to make code cleaner
       if (tempContainer.isOpenable()) { // checks if the specified container is actually a container
-        if (itemInContainerIndex >= 0 && containerOfItemIndex == containerIndex) { // checks if the specified item exists in one of the player's containers and if the specified container matches with the container of the specified item (ex. the player could say "take key from backpack", but the key is in the pot)
+        if (itemInContainerIndex >= 0 && containerOfItemIndex == containerIndex) { // checks if the specified item exists in one of the player's containers and if the specified container matches with the container of the specified item (ex. the player could say "take key from backpack", but if the key was in the pot then that shouldn't work)
           Item tempItemInContainer = tempContainer.getItems().get(itemInContainerIndex); // a place holder for the specified item that the player wants to remove from the specified container to make code cleaner
           if (player.getInventory().addItem(tempItemInContainer)) { // adds the specified item to the player's inventory if they have the space; if they don't, then additem() returns false and an error message
             tempContainer.getInventory().removeItem(tempItemInContainer);
             System.out.println("You took the " + item + " out of the " + container + ".");
           } else { 
-            System.out.println("You are carrying too much to take the " + item + ".");
+            System.out.println("You are carrying too much to take the " + item + " out of the" + container + ".");
           }
         } else
           System.out.println("The " + item + " is not in the " + container + ".");
@@ -731,27 +771,31 @@ public class Game {
   }
 
   /**
-   * The player drops an item into the room.
-   * This checks if the item is actually in the player's inventory or not.
-   * The item leaves the player's inventory and goes into the room's inventory.
-   * If the item is not in the player's inventory, there is an error message and nothing happens.
-   * @param item the name of the item the player wants to drop
+   * Allows the player to drop an item into a room.
+   * Checks if the item is actually in the player's inventory or not. If so, the item leaves the player's inventory
+   *  and goes into the room's inventory. If the item is not in the player's inventory, an appropriate message alerting
+   *  the player is displayed and nothing happens.
+   * @param command the player's input.
    */
-  private void dropItem(String item) { 
-    int i = checkForItem(item)[0]; // the index of the specified item in the player's inventory
-    if (i >= 0) {
-      Item tempItem = player.getItems().get(i);
-      currentRoom.getInventory().addItem(tempItem); // an if statement is not needed here because rooms do not have a max weight for their inventory (they can hold an unlimited amount of items)
-      player.getInventory().removeItem(tempItem);
-      currentRoom.setDescription(currentRoom.getShortDescription() + setItemRoomDescription()); // sets the description of the room to the description without items (getShortDescription()) plus the items in the room (setItemRoomDescription()) so that the room's items update and don't overlap in the description
-      System.out.println("You dropped your " + item + " in the " + currentRoom.getRoomName());
-    } else
-      System.out.println("You don't have a " + item + ".");
+  private void dropItem(ArrayList<String> command) { 
+    if (command.size() < 2)
+      System.out.println("Drop what?");
+    else {
+      int i = checkForItem(command.get(1))[0]; // the index of the item the player wants to drop (command.get(1) should = the item the player wants to drop) in the player's inventory
+      if (i >= 0) {
+        Item tempItem = player.getItems().get(i);
+        currentRoom.getInventory().addItem(tempItem); // an if statement is not needed here because rooms do not have a max weight for their inventory (they can hold an unlimited amount of items)
+        player.getInventory().removeItem(tempItem);
+        currentRoom.setDescription(currentRoom.getShortDescription() + setItemRoomDescription()); // sets the description of the room to the description without items (getShortDescription()) plus the items in the room (setItemRoomDescription()) so that the room's items update and don't overlap in the description
+        System.out.println("You dropped your " + command.get(1) + " in the " + currentRoom.getRoomName());
+      } else
+        System.out.println("You don't have a " + command.get(1) + ".");
+    }
   }
 
   /**
-   * The player puts an item from their inventory into a container (ex. backpack) in their inventory.
-   * If the item or container do not exist or are not in the player's inventory, then there is an error message.
+   * Allows the player to put an item from inside their inventory into a container (ex. backpack) in their inventory.
+   * If the item or container do not exist or are not in the player's inventory, then an appropriate message alerting the player of that is displayed.
    * @param item the item they want to put in the container
    * @param container the place to store that item
    */
@@ -780,27 +824,32 @@ public class Game {
   }
   
   /**
-   * if the player inputs a valid container that they have, then this prints the container's inventory
-   * @param container the container that the player wants to view the contents of
+   * If the player inputs a valid container that they have in their inventory, then this prints the container's inventory.
+   * @param command the player's input.
    */
-  private void openContainer(String container) {
-    int containerIndex = checkForItem(container)[0]; // the index of the container in the player's inventory
-    int containerOfContainerIndex = checkForItem(container)[1]; // the index of the container that the specified container is in (-1 if the specified container is not already in a container, so this should be -1 if the player is using this correctly)
-    if (containerOfContainerIndex < 0) { // checks if the specified container is not in another container
-      if (containerIndex >= 0) {
-        Item tempContainer = player.getItems().get(containerIndex); // a place holder for the specified container to make code cleaner
-        if (tempContainer.isOpenable()) // checks if the specified container is actually a container
-          tempContainer.open(); // prints all the items in the container
-        else 
-          System.out.println("You can't open " + container + ".");
+  private void openContainer(ArrayList<String> command) {
+    if (command.size() < 2)
+      System.out.println("Open what?");
+    else {
+      String container = command.get(1); // the container that the player wants to view the contents of
+      int containerIndex = checkForItem(container)[0]; // the index of the container in the player's inventory
+      int containerOfContainerIndex = checkForItem(container)[1]; // the index of the container that the specified container is in (-1 if the specified container is not already in a container, so this should be -1 if the player is using this correctly)
+      if (containerOfContainerIndex < 0) { // checks if the specified container is not in another container
+        if (containerIndex >= 0) {
+          Item tempContainer = player.getItems().get(containerIndex); // a place holder for the specified container to make code cleaner
+          if (tempContainer.isOpenable()) // checks if the specified container is actually a container
+            tempContainer.open(); // prints all the items in the container
+          else 
+            System.out.println("You can't open " + container + ".");
+        } else 
+          System.out.println("You don't have " + container + ".");
       } else 
-        System.out.println("You don't have " + container + ".");
-    } else 
-      System.out.println("The " + container + " is already in the " + player.getItems().get(containerOfContainerIndex).getName() +".");
+        System.out.println("The " + container + " is already in the " + player.getItems().get(containerOfContainerIndex).getName() +".");
+    }
   }
 
   /**
-   * @return a string of all the items in the current room that is based on the number of items in the room (for better punctuation)
+   * @return a string of all the items in the current room that is based on the number of items in the room (for better punctuation).
    */
   private String setItemRoomDescription() {
     String items = "";
@@ -827,8 +876,8 @@ public class Game {
   }
 
   /**
-   * increases the player's carrying capacity by 10 pounds.
-   * keeps track of how many workouts the player has done
+   * Allows the player to increase their carrying capacity by 10 pounds for each time they workout (in the gym).
+   * Keeps track of how many workouts the player has done and displays a different message depending on that number.
    */
   private void workout() {
     if (currentRoom.getRoomName().equals("Gym")) {
@@ -843,20 +892,24 @@ public class Game {
   }
 
   /**
-   * if the player has a spellbook, this prints the spells in that spellbook
-   * @param spellbook the name of the spellbook that the player wants to read from
+   * If the player has the spellbook, this prints the spells in that spellbook.
+   * @param command the player's input.
    */
-  private void readSpellbook(String spellbook) {
-    int spellbookIndex = checkForItem(spellbook)[0]; // the index of the spellbook in the player's inventory
-    if (spellbookIndex >= 0) {
-      Item tempSpellbook = player.getItems().get(spellbookIndex); // a place holder for the spellbook to make code cleaner
-      if (tempSpellbook.getSpells() != null) { // checks if tempSpellbook has a spells attribute (because the player could try to read something that is not a spellbook, but that would result in an error message)
-        for (String spell : tempSpellbook.getSpells()) {
-          System.out.println(spell);
-        }
+  private void readSpellbook(ArrayList<String> command) {
+    if (command.size() < 2)
+      System.out.println("Read what?");
+    else {
+      int spellbookIndex = checkForItem(command.get(1))[0]; // the index of the spellbook (command.get(1) should = spellbook) in the player's inventory
+      if (spellbookIndex >= 0) {
+        Item tempSpellbook = player.getItems().get(spellbookIndex); // a place holder for the spellbook to make code cleaner
+        if (tempSpellbook.getSpells() != null) { // checks if tempSpellbook has a spells attribute (because the player could try to read something that is not a spellbook, but that would result in an error message)
+          for (String spell : tempSpellbook.getSpells()) {
+            System.out.println(spell);
+          }
+        } else
+          System.out.println("There is nothing to read. ");
       } else
-        System.out.println("There is nothing to read. ");
-    } else
-      System.out.println("You don't have " + spellbook + ". ");
+        System.out.println("You don't have " + command.get(1) + ". ");
+    }
   }
 }

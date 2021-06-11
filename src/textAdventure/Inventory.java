@@ -89,9 +89,8 @@ public class Inventory {
         output += item.getName() + " ";
           // Creates a new output string and adds the names of all the items that are in this inventory to it.
       }
-  } else {
-    output = "There is nothing in here.";
-  }
+    } else
+      output = "There is nothing in here.";
     return output + "\nYou can hold " + maxWeight + " pounds worth of items, or " + (maxWeight - currentWeight) + " more pound(s) worth of items.";
   }
 }

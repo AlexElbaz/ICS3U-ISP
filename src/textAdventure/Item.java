@@ -7,12 +7,13 @@ public class Item extends OpenableObject {
   private String name;
   private boolean isOpenable;
   private Inventory inventory;
-  private String itemRoomDescription;
   private ArrayList<String> spells;
 
   /**
    * Item constructor. Initializes items with a passed in weight and name,
    *  and sets isOpenable and inventory to false (by default items aren't openable).
+   * @param weight this item's weight.
+   * @param name this item's name.
    * This constructor is only used for making keys.
    */
   public Item(long weight, String name) {
@@ -23,28 +24,29 @@ public class Item extends OpenableObject {
   }
 
   /**
-   * No arguement item constructor. This constructor is used for creating most items.
+   * No arguement Item constructor. This constructor is used for creating most items.
    * It has no arguements because when we create items we use mainly the JSON to handle item attributes.
    */
   public Item() {
   }
 
   /**
-   * @return Returns an ArrayList of all the items a given item (container) is holding.
+   * @return an ArrayList of all the items that this item (container) is holding.
    */
   public ArrayList<Item> getItems() {
       return inventory.getItems();
   }
 
   /**
-   * @return the inventory of a item (when applicable, i.e. when it is a container).
+   * @return the Inventory of this item (when applicable, i.e. when it is a container).
    */
   public Inventory getInventory() {
     return inventory;
   }
 
   /**
-   * Sets the inventory of an item (when applicable, i.e. when it is a container).
+   * Sets the inventory of this item (when applicable, i.e. when it is a container).
+   * @param inventory the Inventory we are setting this item's inventory to be.
    * Used in initItems() when initializing all items upon startup.
    */
   public void setInventory(Inventory inventory) {
@@ -52,7 +54,7 @@ public class Item extends OpenableObject {
   }
 
   /**
-   * Checks if an item is openable. If so, displays the inventory. If not, informs the player.
+   * Checks if this item is openable. If so, displays its inventory. If not, informs the player that this item is not openable.
    */
   public void open() {
     if (!isOpenable)
@@ -63,14 +65,15 @@ public class Item extends OpenableObject {
   }
 
   /**
-   * @return the weight of the item.
+   * @return the weight of this item.
    */
   public long getWeight() {
     return weight;
   }
 
   /**
-   * Sets the weight of an item.
+   * Sets the weight of this item.
+   * @param weight the weight we are setting this item's weight to be.
    * Used in initItems() when initializing all items upon startup.
    */
   public void setWeight(long weight) {
@@ -78,14 +81,15 @@ public class Item extends OpenableObject {
   }
 
   /**
-   * @return the name String of an item.
+   * @return the name of this item.
    */
   public String getName() {
     return name;
   }
 
   /**
-   * Sets the name of an item.
+   * Sets the name of this item.
+   * @param name the name we are setting this item's name to be.
    * Used in initItems() when initializing all items upon startup.
    */
   public void setName(String name) {
@@ -93,14 +97,15 @@ public class Item extends OpenableObject {
   }
 
   /**
-   * @return whether an item is openable or not.
+   * @return whether or not this item is openable.
    */
   public boolean isOpenable() {
     return isOpenable;
   }
 
   /**
-   * Sets whether an item is openable or not.
+   * Sets whether this item is openable or not.
+   * @param isOpenable the boolean defining whether or not this item is openable.
    * Used in initItems() when initializing all items upon startup.
    */
   public void setOpenable(boolean isOpenable) {
@@ -115,7 +120,8 @@ public class Item extends OpenableObject {
   }
 
   /**
-   * Sets the spells ArrayList to an ArrayList of all the spells that exist in the JSON.
+   * Sets spells to an ArrayList of all the spells that exist in the JSON.
+   * @param spells the list of spells in this game.
    * Used in initItems() when initializing all the spells upon startup.
    */
   public void setSpells(ArrayList<String> spells) {

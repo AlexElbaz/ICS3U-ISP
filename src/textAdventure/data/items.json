@@ -9,29 +9,30 @@
                 "Fire making spell: 'Incendio' ",
                 "Covers target in boils: 'Furnunculu' ",
                 "Makes teeth grow quickly: 'Densaugeo' ",
-                "Tickle spell: 'Rictusempra' "
+                "Tickle spell: 'Rictusempra' ",
+                "Disarming spell: 'Expelliarmus' "
             ]
         },
         {
-            "name": "pot",
-            "room": "MusicRoom",
-            "weight": 99,
+            "name": "basket",
+            "room": "Kitchen",
+            "weight": 10,
             "isOpenable": true,
-            "maxWeight": 100
+            "maxWeight": 30
         },
         {
             "name": "vat",
-            "room": "MusicRoom",
-            "weight": 99,
+            "room": "Kitchen",
+            "weight": 100,
             "isOpenable": true,
-            "maxWeight": 100
+            "maxWeight": 200
         },
         {
             "name": "backpack",
             "room": "PotionsStorage",
             "weight": 20,
             "isOpenable": true,
-            "maxWeight": 40
+            "maxWeight": 60
         },
         {
             "name": "charm",
@@ -83,13 +84,6 @@
             "weight": 1,
             "isOpenable": false,
             "keyId": "1"
-        },
-        {
-            "name": "key",
-            "room": "PotionsClass",
-            "weight": 1,
-            "isOpenable": false,
-            "keyId": "2"
         },
         {
             "name": "key",

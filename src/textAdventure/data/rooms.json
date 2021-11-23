@@ -3,8 +3,8 @@
     {
       "id": "TrainStation",
       "name": "Train Station",
-      "description": "Hagrid leaves you all alone in a busy train station. You watch as the Weasleys run into the brick wall to the east. ",
-      "shortDescription": "Hagrid leaves you all alone in a busy train station. You watch as the Weasleys run into the brick wall to the east. ",
+      "description": "Hagrid leaves you all alone in a busy train station. You watch as the Weasleys run into the brick wall. ",
+      "shortDescription": "Hagrid leaves you all alone in a busy train station. You watch as the Weasleys run into the brick wall. ",
       "exits": [
         {
           "isLocked": false,
@@ -22,6 +22,19 @@
         {
           "isLocked": false,
           "direction": "East",
+          "adjacentRoom": "TrainRoom"
+        }
+      ]
+    },
+    {
+      "id": "TrainRoom",
+      "name": "Train Room",
+      "description": "You board the train. In looking for an open seat, a small boy with bright orange hair invites you over. He introduces himself as Ron. After that however, he goes quiet. I guess the only option is to wait in silence. ",
+      "shortDescription": "You board the train. In looking for an open seat, a small boy with bright orange hair invites you over. He introduces himself as Ron. After that however, he goes quiet. I guess the only option is to wait in silence. ",
+      "exits": [
+        {
+          "isLocked": false,
+          "direction": "East",
           "adjacentRoom": "DininghallTopLeft"
         }
       ]
@@ -29,8 +42,8 @@
     {
       "id": "DininghallTopLeft",
       "name": "Great Hall",
-      "description": "You are in the Great Hall just after supper. Feel free to explore Hogwarts for the next few hours. ",
-      "shortDescription": "You are in the Great Hall just after supper. Feel free to explore Hogwarts for the next few hours. ",
+      "description": "You arrive in the Great Hall. The teachers have already given you a brief introduction and have sent you all off to explore Hogwarts before bed. You remember some rumors you heard about something called the philospher's stone, you suddenly feel compelled to go find it, maybe if your lucky you could get it before bed. ",
+      "shortDescription": "You arrive in the Great Hall. The teachers have already given you a brief introduction and have sent you all off to explore Hogwarts before bed. You remember some rumors you heard about something called the philospher's stone, you suddenly feel compelled to go find it, maybe if your lucky you could get it before bed. ",
       "exits": [
         {
           "isLocked": false,
@@ -183,7 +196,7 @@
       "exits": [
         {
           "isLocked": false,
-          "direction": "West",
+          "direction": "East",
           "adjacentRoom": "Hallway13"
         }
       ]
@@ -258,8 +271,8 @@
     {
       "id": "Kitchen",
       "name": "Kitchen",
-      "description": "You are in a large kitchen, surrounded by pots and pans. ",
-      "shortDescription": "You are in a large kitchen. ",
+      "description": "You are in a large kitchen, surrounded by pots and pans. There is an empty basket on the floor in front of you and an obsenely large vat in the corner of the room which seems quite heavy. ",
+      "shortDescription": "You are in a large kitchen, surrounded by pots and pans. ",
       "exits": [
         {
           "isLocked": false,
@@ -571,7 +584,7 @@
     {
       "id": "Room",
       "name": "Your Room",
-      "description": "You spot a cloak that has a tag that says 'invisibility cloak' sitting in an opened gift box. The little door in the corner is locked. You have to use a different way to get in. Maybe a code perhaps? ",
+      "description": "You spot a cloak sitting in an opened gift box. Upon inspection, it seems to make anything underneath it invisible... The little door in the corner is locked. You have to use a different way to get in. Maybe a code perhaps? ",
       "shortDescription": "Nothing but an empty gift box on the ground. The little door in the corner is locked. You have to use a different way to get in. Maybe a code perhaps? ",
       "exits": [
         {
@@ -621,14 +634,9 @@
     {
       "id": "Hallway22",
       "name": "Hallway",
-      "description": "You see a small door, but looks like it's all boarded up. At the end of the hallway you see a glass door leading to the outside. To the north, you see a mysterious painting. The painting has the letters KJ9E3L catches your eye. You wonder what it's for. ",
-      "shortDescription": "You see a small door, but looks like it's all boarded up. At the end of the hallway you see a glass door leading to the outside. To the north, you see a mysterious painting. The painting has the letters KJ9E3L catches your eye. You wonder what that is for. ",
+      "description": "You see a small door directly North, but looks like it's all boarded up and impossible to get through, but maybe there's another way in... At the end of the hallway you see a glass door leading to the outside. At the end of the hall to the North, you see a mysterious painting. The painting has the letters KJ9E3L catches your eye. You wonder what it's for. ",
+      "shortDescription": "You see a small door directly North, but looks like it's all boarded up and impossible to get through, but maybe there's another way in... At the end of the hallway you see a glass door leading to the outside. At the end of the hall to the North, you see a mysterious painting. The painting has the letters KJ9E3L catches your eye. You wonder what that is for. ",
       "exits": [
-        {
-          "isLocked": true,
-          "direction": "North",
-          "adjacentRoom": "StorageRoom"
-        },
         {
           "isLocked": false,
           "direction": "East",
@@ -674,7 +682,7 @@
       "shortDescription": "You are in a torch-lit tunnel. It looks abandoned and it feels like the walls are closing in on you. ",
       "exits": [
         {
-          "isLocked": true,
+          "isLocked": false,
           "direction": "North",
           "adjacentRoom": "3HeadedDog"
         },
@@ -714,8 +722,8 @@
     {
       "id": "FlyingWingsGame",
       "name": "Quidditch Field",
-      "description": "As you walk into the room, a strange man named Balthazar is trying to get you to play Quidditch. You decide this is NOT the time for Quidditch, so you need to equip SOMETHING to disguise yourself with! You decide you are either doing this or heading back to your room. ",
-      "shortDescription": "As you walk into the room, a strange man named Balthazar is trying to get you to play Quidditch. You decide this is NOT the time for Quidditch, so you need to equip SOMETHING to disguise yourself with! You decide you are either doing this or heading back to your room. ",
+      "description": "As you walk into the room, a strange man named Balthazar is trying to get you to play Quidditch. You decide this is NOT the time for Quidditch, so you figure you need to equip SOMETHING to disguise yourself with! Unfortunately this man is quite insistent so it's either a disguise or heading back to your room. ",
+      "shortDescription": "As you walk into the room, a strange man named Balthazar is trying to get you to play Quidditch. You decide this is NOT the time for Quidditch, so you figure you need to equip SOMETHING to disguise yourself with! Unfortunately this man is quite insistent so it's either a disguise or heading back to your room. ",
       "exits": [
         {
           "isLocked": false,
@@ -740,8 +748,8 @@
     {
       "id": "BoggartRoom",
       "name": "Long Room",
-      "description": "You see a tall wooden chest. The door swings open violently and the spirit lurks around the room. The spirit whips around the corner and is coming to attack your face. ",
-      "shortDescription": "You see a tall wooden chest. The door swings open violently and the spirit lurks around the room. The spirit whips around the corner and is coming to attack your face. ",
+      "description": "You see a tall wooden chest. The door swings open violently and the spirit lurks around the room. The spirit whips around the corner and is coming to attack your face. However, as the spirit approaches you hear a noise and turn to see a man, wand in hand, preparing to attack you as well. You decide you must deal with this man before the spirit. ",
+      "shortDescription": "You see a tall wooden chest. The door swings open violently and the spirit lurks around the room. The spirit whips around the corner and is coming to attack your face. However, as the spirit approaches you hear a noise and turn to see a man, wand in hand, preparing to attack you as well. You decide you must deal with this man before the spirit. ",
       "exits": [
         {
           "isLocked": false,

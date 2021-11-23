@@ -30,7 +30,7 @@ public class Game {
       player = new Character(new Inventory(carryingCapacity));
       initRooms("src\\textAdventure\\data\\rooms.json");
       initItems("src\\textAdventure\\data\\items.json");
-      currentRoom = roomMap.get("PotionsStorage");
+      currentRoom = roomMap.get("TrainStation");
     } catch (Exception e) {
       e.printStackTrace();
     }
